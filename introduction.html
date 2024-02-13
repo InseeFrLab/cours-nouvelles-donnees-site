@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Données émergentes - Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./administratives.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Données émergentes - Introduction">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Données émergentes">
+<meta name="twitter:title" content="Données émergentes - Introduction">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@linogaliana">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Données émergentes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./introduction.html" aria-current="page"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-administratives" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données administratives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-administratives">    
+        <li>
+    <a class="dropdown-item" href="./administratives.html">
+ <span class="dropdown-text">Données administratives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./administratives_exemples.html">
+ <span class="dropdown-text">Quelques exemples approfondis de données administratives</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./geolocalized_data.html"> 
+<span class="menu-text">Données géolocalisées</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-textuelle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse textuelle</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-textuelle">    
+        <li>
+    <a class="dropdown-item" href="./textes.html">
+ <span class="dropdown-text">Données textuelles et non structurées</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./textes_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-dimages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse d’images</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-dimages">    
+        <li>
+    <a class="dropdown-item" href="./images.html">
+ <span class="dropdown-text">Images</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./images_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nowcasting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Nowcasting</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-nowcasting">    
+        <li>
+    <a class="dropdown-item" href="./series_temporelles.html">
+ <span class="dropdown-text">Nowcasting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nowcasting_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./introduction.html">Introduction</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Données administratives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données administratives</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quelques exemples approfondis de données administratives</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Données géolocalisées</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geolocalized_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données géolocalisées</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Analyse textuelle</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données textuelles et non structurées</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Analyse d’images</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Nowcasting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./series_temporelles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nowcasting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nowcasting_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#les-données-émergentes-dans-le-temps-long" id="toc-les-données-émergentes-dans-le-temps-long" class="nav-link active" data-scroll-target="#les-données-émergentes-dans-le-temps-long">Les données émergentes dans le temps long</a></li>
+  <li><a href="#la-production-renouvelée-de-données-de-la-puissance-publique" id="toc-la-production-renouvelée-de-données-de-la-puissance-publique" class="nav-link" data-scroll-target="#la-production-renouvelée-de-données-de-la-puissance-publique">La production renouvelée de données de la puissance publique</a></li>
+  <li><a href="#innover-pour-traiter-ces-données" id="toc-innover-pour-traiter-ces-données" class="nav-link" data-scroll-target="#innover-pour-traiter-ces-données">Innover pour traiter ces données</a></li>
+  <li><a href="#collaboration-avec-de-nouveaux-acteurs" id="toc-collaboration-avec-de-nouveaux-acteurs" class="nav-link" data-scroll-target="#collaboration-avec-de-nouveaux-acteurs">Collaboration avec de nouveaux acteurs</a></li>
+  <li><a href="#historique" id="toc-historique" class="nav-link" data-scroll-target="#historique">Historique</a></li>
+  <li><a href="#futur" id="toc-futur" class="nav-link" data-scroll-target="#futur">Futur</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./introduction.html">Introduction</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Introduction</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="les-données-émergentes-dans-le-temps-long" class="level2">
+<h2 class="anchored" data-anchor-id="les-données-émergentes-dans-le-temps-long">Les données émergentes dans le temps long</h2>
+<p>L’histoire de la statistique est une suite d’évolutions de la discipline où les données émergentes un jour deviennent le lendemain traditionnelles. Le XIXe siècle, qui est celui où la statistique s’est constituée en temps que discipline autonome et s’est dotée d’une partie des concepts qui en font aujourd’hui les fondements, est ainsi une période où de nombreuses données ont émergé et ont pu entraîner des révolutions scientifiques. Parmi celles-ci, la construction de la loi normale, qui constitue aujourd’hui l’objet central de la statistique, correspond au besoin de construire de nouveaux concepts et outils afin de structurer dans une théorie commune un ensemble de nouvelles données. La manière dont Gauss a collecté et synthétisé un ensemble d’observations astronomiques a ainsi permis de construire la méthode des moindres carrés et le concept de loi normale, appréhendé à partir des erreurs d’observations.</p>
+<p>L’accès à des recensements par des universitaires à la fin du XIXe siècle a été un élément moteur de la constitution de la sociologie en temps que discipline autonome. Les registres de décès ont ainsi permis à Durkheim de participer aux débats sociologiques sur le suicide et de proposer une interprétation sociologique de ses causes à rebours des approches psychologisantes qui étaient fréquentes à l’époque. Avant Durkheim, l’usage novateur des monographies a permis de dessiner les prémisses de la sociologie en temps que discipline autonome. Les avancées de la statistique au cours du XXe siècle sont intimement liées à la génération des enquêtes ou des sondages.</p>
+<p>Les notions d’échantillonnage, de représentativité, ou encore de marges d’erreur, qui sont au coeur de la statistique moderne, ont permis de rendre traditionnel ce nouveau mode de collecte. Ces enquêtes sont aujourd’hui encore très utilisées dans la production statistique moderne ou dans les études économiques et sociologiques.</p>
+<p>La prolifération de traces numériques, parce qu’elle a créé de nouvelles opportunités pour la puissance publique ou pour des acteurs privés de valoriser des données, est un moteur d’évolution de la statistique. L’émergence du concept de <em>data-science</em>, qu’on le considère comme un ensemble de pratiques ou uniquement comme un <em>buzzword</em>, est intimement lié à la multiplication des traces numériques. Les nouvelles disciplines ou méthodes qui se sont développées récemment sont intrinsèquement liées aux données émergentes. La vitesse à laquelle se développent les innovations dans le domaine de la <em>data-science</em> est d’une ampleur inédite du fait de la multiplicité des données collectées et des acteurs impliqués. IBM estimait en effet que 2.5 quintillions d’octets de données étaient générés chaque jour il y a environ 10 ans. Dans un ouvrage sur l’histoire de la statistique, <span class="citation" data-cites="hacking-90">Hacking (<a href="#ref-hacking-90" role="doc-biblioref">1990</a>)</span> parle déjà en 1990 du début d’une “avalanche de chiffres”.</p>
+</section>
+<section id="la-production-renouvelée-de-données-de-la-puissance-publique" class="level2">
+<h2 class="anchored" data-anchor-id="la-production-renouvelée-de-données-de-la-puissance-publique">La production renouvelée de données de la puissance publique</h2>
+<p>La puissance publique est une productrice historique de données. Les registres administratifs ou comptables sont une source de données très appréciée des historiens. Si elles n’atteignent pas les volumétries actuelles, ces sources sont néanmoins les ancêtres de nos données administratives actuelles. Les recensements de population sont également une des productions historiques de données. Le comptage de la population et des impôts fait partie intégrante du processus de constitution de la puissance publique centralisatrice <span class="citation" data-cites="desrosieres2016politique">(<a href="#ref-desrosieres2016politique" role="doc-biblioref">Desrosières 2010</a>)</span>. Curieusement, la tablette Kish de l’empire sumérien (environ 3500 av. J.-C.), l’un des plus anciens exemples d’écriture humaine, semble être un document administratif destiné à des fins statistiques.</p>
+<p>La statistique publique, si elle est aujourd’hui entendue beaucoup plus largement que par le passé, et qu’elle dispose d’une indépendance vis-à-vis d’autres branches de l’Etat, c’est parce qu’elle est un élément essentiel pour pour permettre le bon fonctionnement de l’économie et de la démocratie. Le slogan de l’Insee, <em>“mesurer pour comprendre”</em>, correspond bien à cette idée. Les statistiques officielles essaient d’objectiver les phénomènes socio-économiques par la collecte de données et la construction de concepts cohérents avec le phénomène mesuré.</p>
+<p>Les enquêtes sont historiquement une source privilégiée puisque la conception de celles-ci, en amont de la collecte et des retraitements post-collecte, est justement effectuée en fonction des réutilisations futures. Les questions sont ainsi conçues pour s’approcher au plus près des phénomènes qu’on désire quantifier et l’échantillonnage puis les redressements post-collecte permettront de contrôler la population sur laquelle portent les statistiques construites. L’inconvénient est que cette production nécessite des moyens et un temps conséquents (en amont de la collecte, lors de celle-ci puis à l’issue de celle-ci). De plus, les enquêtes ne sont pas à l’abri d’erreurs dans la collecte, qu’il s’agisse d’omissions ou réponses erronnées, qu’elles soient volontaires ou non. A ces problèmes s’ajoute la baisse historique des taux de réponse <span class="citation" data-cites="riviere2018">(<a href="#ref-riviere2018" role="doc-biblioref">Rivière 2018</a>)</span>.</p>
+<p>L’Etat n’accumule pas uniquement de la connaissance sur sa population par le biais d’enquête. Les registres des impôts, de l’assurance maladie, etc. sont des sources de gestion par lesquelles chaque individu communique un certain nombre d’informations sur lui. On parle de données administratives pour regrouper cet ensemble de sources qui sont produites par la puissance publique et dont la collecte répond à des enjeux de gestion mais pas à des besoins de statistique publique. La définition qu’en donnait <span class="citation" data-cites="desrosieres2004">Desrosières (<a href="#ref-desrosieres2004" role="doc-biblioref">2004</a>)</span>, résume bien ceci: <em>“une source administrative est issue d’une institution dont la finalité n’est pas de produire une telle information, mais dont les activités de gestion impliquent la tenue, selon des règles générales, de fichiers ou de registres individuels, dont l’agrégation n’est qu’un sous-produit”</em>. Les besoins de la statistique publique ne sont donc pas à la source de la collecte mais on peut utiliser celle-ci comme opportunité pour enrichir la connaissance de phénomènes socio-économiques (Connelly et al., Einav et al.). Certaines informations disponibles dans ces données sont très génériques et communes à de nombreuses bases de gestion (l’état civil notamment), ce qui peut faciliter l’association entre elles, alors que d’autres sont propres à chaque source. Outre la possibilité de disposer d’informations sur une population plus importante, la différence principale entre ces sources de données, historiquement collectées par papier et de plus en plus par collecte numérique, et les enquêtes est que les premières ne sont pas conçues initialement à des fins de statistique donc le statisticien n’en contrôle pas la conceptualisation et la collecte. Néanmoins, ces sources peuvent fournir des informations très précieuses à la statistique publique. Si on est en mesure de relier celles-ci à une enquête, il devient possible d’enrichir ou de corriger certaines informations collectées si les concepts présents dans l’enquête correspondent à ceux de la source administrative.</p>
+<p>Les données administratives deviennent ainsi de plus en plus fréquemment mobilisées dans la production officielle de statistiques ou dans les études économiques. La numérisation de l’économie et des démarches administratives, parce qu’elle a facilité la constitution de bases et l’association entre celles-ci, a accéléré le mouvement de constitution de grands répertoires administratifs. Parmi les principaux exploités par la statistique publique : la DSN, Fidéli, le SNDS… La construction de ces sources, car celles-ci nécessitent pour leur usage à des fins statistiques une reconstruction, implique également un changement des institutions collectant la donnée. Ce n’est plus l’Insee qui collecte directement la donnée (que ce soit à son compte ou pour le compte d’autres institutions comme les services statistiques ministériels) mais des ministères. Ces derniers peuvent, ou non, exploiter ces données à leur propre compte mais aussi mettre à disposition la donnée brute ou une version retravaillée de celle-ci. Par exemple, la Direction Générale des Finances Publiques (DGFiP) est, par son rôle de collecte des impôts, un acteur central dans la constitution de bases sur les revenus qui permettent de produire de nombreuses statistiques socio-économiques. De même, la Caisse Nationale d’Assurance Maladie (CNAM) est, par son rôle de gestionnaire du système français de sécurité sociale, un élément central dans la constitution du Système national des données de santé (SNDS).</p>
+<p>La multiplication de traces numériques collectées non plus seulement par les acteurs publics mais aussi par des acteurs privés a permis de produire de nouvelles sources de données, à une fréquence ou à une échelle inédite. A ce premier facteur qu’est l’intensification de la production de statistique, s’ajoute la demande croissante de la population et des décideurs publics pour des statistiques plus détaillées et disponibles plus rapidement. Cela a ainsi amené à une intensification de la disponibilité de statistiques, dont la production n’est plus le monopole de la puissance publique. Afin de pouvoir produire ces statistiques, tout en satisfaisant aux critères usuels de qualité sur lesquels nous reviendrons, la statistique publique se doit d’innover dans la collecte traditionnelle, l’utilisation de nouvelles statistiques et concepts ou dans les processus de valorisation de données auquel elle accédait déjà. Parmi ces trois facteurs, nous allons principalement nous concentrer sur le deuxième, c’est-à-dire la valorisation de nouvelles sources de données, qu’il s’agisse de données produites par l’administration ou de données privées. Le premier point - l’innovation dans les méthodes de collecte traditionnelles - renvoie, entre autres, à la question du multimode. Enfin, en ce qui concerne le troisième élément - la rénovation des processus de production - il y a des éléments connexes à notre problématique (certaines méthodes sont intrinsèquement liées à de nouvelles sources) mais aussi certains qui le dépassent. Nous n’allons donc pas nous concentrer sur ceux-ci bien qu’il se peut que nous évoquions à plusieurs reprises ces enjeux.</p>
+</section>
+<section id="innover-pour-traiter-ces-données" class="level1">
+<h1>Innover pour traiter ces données</h1>
+<p>Les nouvelles données permettent ainsi de faire évoluer la production statistique en amenant à essayer d’objectiver des phénomènes qui l’étaient difficilement par le passé. Le fait qu’elles n’aient pas été produites initialement pour être traitées à des fins de statistique publique implique un surcroit de travail et de précautions méthodologiques pour en assurer la qualité et l’exploitation. Il est également nécessaire de travailler sur les métadonnées (description des données) pour répondre aux exigences de la statistique publique.</p>
+<p>La volumétrie et la (dé)structuration des nouvelles sources de données a de forts enjeux informatiques. Les innovations dans ce domaine sont à un rythme impressionnant. Les acteurs majeurs du numérique, qui sont les principaux acteurs de la collecte de données, sont ainsi les principaux développeurs des langages de <em>data-science</em> modernes. Ces derniers sont des solutions logicielles pour faciliter le traitement de tel ou tel type de données. Par exemple, <code>TensorFlow</code> a été développé par <code>Google</code>, <code>PyTorch</code> par <code>Meta</code>, <code>Airflow</code> par <code>Airbnb</code>.</p>
+</section>
+<section id="collaboration-avec-de-nouveaux-acteurs" class="level1">
+<h1>Collaboration avec de nouveaux acteurs</h1>
+<p>Ces nouvelles sources de données sont collectées par de nouveaux acteurs, qu’il s’agisse d’administrations, d’acteurs privés ou d’autres acteurs tiers (ONG, associations, instituts de recherche, etc.). Ces données sont parfois déjà valorisées par ces acteurs: certains acteurs proposent des solutions commerciales qui revendent certains agrégats issus des données qu’ils collectent.</p>
+<p>Pour la statistique publique, il y a donc un enjeu à construire des partenariats pour accéder sur la durée à des données collectées par d’autres. Les exploitations de nouvelles sources ayant été principalement expérimentales, les partenariats entre l’administration et les entreprises ont jusqu’à présent été souvent ponctuels. Les données de caisse, c’est-à-dire les données de supermarchés qui sont collectées automatiquement en caisse, sont une exception. Une réglementation européenne imposant leur usage pour la constitution des statistiques d’inflation et des séries de prix, <a href="https://www.insee.fr/fr/information/4318285">l’accès pérenne à celles-ci a été nécessaire</a>.</p>
+<p>Pour construire ces partenariats durables, il est nécessaire de respecter les intérêts des entreprises qui détiennent les données. Il y a besoin de confiance, de garanties de confidentialité, ce qui demande un cadre légal facilitateur. La responsabilité sociale doit constituer un moteur pour avancer.</p>
+<ul>
+<li>Sur la confidentialité des données : <em>privacy-enhancing technologies</em>.</li>
+<li>Besoin de moderniser la manière de produire des statistiques officielles pour s’adapter aux nouvelles sources de données et faciliter les partenariats : méthodologie et travail sur la qualité transparents (code open-source, reproductible au maximum);</li>
+<li>Fonctionnement participatif et agile pour identifier les potentiels problèmes liés à la réutilisation de données privées (besoin d’experts de ces données). Réseaux de recherche avec les partenaires privés, la recherche académique, etc.</li>
+</ul>
+</section>
+<section id="historique" class="level1">
+<h1>Historique</h1>
+<ul>
+<li><a href="https://unstats.un.org/unsd/dnss/gp/fundprinciples.aspx">Principes fondamentaux de la statistique publique</a> établis par les Nations Unies ;</li>
+<li>Règles de qualité fixées par le <a href="https://ec.europa.eu/eurostat/web/quality/european-quality-standards/european-statistics-code-of-practice">Code Européen de Bonnes Pratiques Statistiques</a>.</li>
+</ul>
+</section>
+<section id="futur" class="level1">
+<h1>Futur</h1>
+<ul>
+<li>L’<a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1561563110433&amp;uri=CELEX:32019L1024"><em>Open Data Directive</em></a> adoptée en 2019 identifie des jeux de données open-source à forte valeur potentielle pour la statistique publique ;</li>
+<li>Le <em>Data Governance Act</em> (adopté en Mai 2022 et appliqué à partir de Septembre 2023) : promeut le partage de données personnelles et non-personnelles en mettant en place des structures d’intermédiation:
+<ul>
+<li>Assistance technique et légale pour faciliter la réutilisation de certaines données protégées du secteur publique;</li>
+<li>Structures d’intermédiation de la donnée;</li>
+<li>Certification pour les organisations qui pratiquent le <em>data altruism</em>.</li>
+</ul></li>
+<li>Le <em>Data Act</em> (proposition en Février 2022): règles sur qui peut accéder aux données générées au sein de l’UE dans chaque secteur économique, avec l’objectif de rendre les données plus accessibles pour tous;</li>
+<li>Les textes vont dans une direction commune: encourager la réutilisation de données privées. Il est aussi nécessaire d’encourager une intensification des dialogues entre parties prenantes et la société entière.</li>
+</ul>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-desrosieres2004" class="csl-entry" role="listitem">
+Desrosières, Alain. 2004. <span>“Enquêtes Versus Registres Administratifs: Réflexions Sur La Dualité Des Sources Statistiques.”</span> <em>Courrier Des Statistiques</em>.
+</div>
+<div id="ref-desrosieres2016politique" class="csl-entry" role="listitem">
+———. 2010. <em>La Politique Des Grands Nombres: Histoire de La Raison Statistique</em>. La d<span>é</span>couverte.
+</div>
+<div id="ref-hacking-90" class="csl-entry" role="listitem">
+Hacking, Ian. 1990. <em>The Taming of Chance</em>. Ideas in Context. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511819766">https://doi.org/10.1017/CBO9780511819766</a>.
+</div>
+<div id="ref-riviere2018" class="csl-entry" role="listitem">
+Rivière, Pascal. 2018. <span>“Utiliser Les Déclarations Administratives à Des Fins Statistiques.”</span> <em>Courrier Des Statistiques</em>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./administratives.html" class="pagination-link" aria-label="Données administratives">
+        <span class="nav-page-text">Données administratives</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<ol start="3" type="a">
+<li>2022, Lino Galiana and Tom Seimandi</li>
+</ol>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

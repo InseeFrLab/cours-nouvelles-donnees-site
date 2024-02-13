@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Données émergentes - Données géolocalisées</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./textes.html" rel="next">
+<link href="./administratives_exemples.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Données émergentes - Données géolocalisées">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Données émergentes">
+<meta name="twitter:title" content="Données émergentes - Données géolocalisées">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@linogaliana">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Données émergentes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./introduction.html" aria-current="page"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-administratives" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données administratives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-administratives">    
+        <li>
+    <a class="dropdown-item" href="./administratives.html">
+ <span class="dropdown-text">Données administratives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./administratives_exemples.html">
+ <span class="dropdown-text">Quelques exemples approfondis de données administratives</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./geolocalized_data.html"> 
+<span class="menu-text">Données géolocalisées</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-textuelle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse textuelle</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-textuelle">    
+        <li>
+    <a class="dropdown-item" href="./textes.html">
+ <span class="dropdown-text">Données textuelles et non structurées</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./textes_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-dimages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse d’images</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-dimages">    
+        <li>
+    <a class="dropdown-item" href="./images.html">
+ <span class="dropdown-text">Images</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./images_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nowcasting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Nowcasting</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-nowcasting">    
+        <li>
+    <a class="dropdown-item" href="./series_temporelles.html">
+ <span class="dropdown-text">Nowcasting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nowcasting_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Données administratives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données administratives</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quelques exemples approfondis de données administratives</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Données géolocalisées</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geolocalized_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Données géolocalisées</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Analyse textuelle</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données textuelles et non structurées</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Analyse d’images</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Nowcasting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./series_temporelles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nowcasting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nowcasting_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#les-données-publiques-géolocalisées" id="toc-les-données-publiques-géolocalisées" class="nav-link" data-scroll-target="#les-données-publiques-géolocalisées">Les données publiques géolocalisées</a></li>
+  <li><a href="#données-de-téléphonie-mobile" id="toc-données-de-téléphonie-mobile" class="nav-link" data-scroll-target="#données-de-téléphonie-mobile">Données de téléphonie mobile</a></li>
+  <li><a href="#données-de-réseaux-sociaux" id="toc-données-de-réseaux-sociaux" class="nav-link" data-scroll-target="#données-de-réseaux-sociaux">Données de réseaux sociaux</a></li>
+  <li><a href="#données-de-suivi-de-navires-ou-de-vols" id="toc-données-de-suivi-de-navires-ou-de-vols" class="nav-link" data-scroll-target="#données-de-suivi-de-navires-ou-de-vols">Données de suivi de navires ou de vols</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/geolocalized_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Données géolocalisées</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Disposer de données géolocalisées pour produire de la statistique publique est un besoin qui se fait de plus en plus fort. Pour cause, un intérêt croissant est accordé aux caractéristiques spatiales des phénomènes que la statistique publique a pour rôle de décrire. Le comité d’experts des Nations Unies sur la gestion de l’information géospatiale mondiale (<code>UN-GGIM</code>) a d’ailleurs <em>reconnu l’importance cruciale d’intégrer les informations géospatiales aux statistiques et aux données socio-économiques et le développement d’une infrastructure statistique géospatiale</em>.</p>
+<p>La production et la diffusion accrue de données géolocalisées dépasse le cadre de la statistique publique. La généralisation de traces numériques géolocalisées (données mobile, GPS, localisation d’adresses IP…) a entraîné une multiplication des acteurs valorisant des données spatiales. Certains acteurs de l’écosystème de la donnée sont spécialisés dans la collecte ou la valorisation de sources géolocalisées collectées par d’autres.</p>
+<p>Un premier apport fondamental des données géolocalisées est qu’elles permettent de calculer des indicateurs avec une granularité spatiale plus fine que les découpages administratifs ou historiques classiques. Cette approche permet d’éclairer des phénomènes socio-économiques locaux comme les problématiques de mixité <span class="citation" data-cites="galiana2020segregation">(<a href="#ref-galiana2020segregation" role="doc-biblioref">Galiana, Sémécurbe, et al. 2020</a>)</span>. L’Insee met à disposition en <em>open-data</em> des données très fines sur une grande variété de facteur. Les sites officiels <a href="https://www.geoportail.gouv.fr/">geoportail</a> et <a href="https://statistiques-locales.insee.fr">statistiques-locales.insee.fr</a> ou encore les sites faits par des tiers comme <a href="https://www.comeetie.fr/galerie/francepixels/">celui d’Etienne Côme</a> ou <a href="https://www.hubblo.fr/">hubblo</a> permettent d’explorer la richesse des sources fines mises à disposition. Pour désigner les sources les plus fines, on parle de données carroyées, publiées sur des carreaux pouvant aller de 200 mètres à plusieurs kilomètres de côté (voir <a href="#fig-carroyees" class="quarto-xref">Figure&nbsp;1</a>). Une telle granularité permet de capter certains phénomènes démographiques ou socio-économiques qui ne sont pas détectables au niveau de l’IRIS ou de la commune<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div id="fig-carroyees" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-carroyees-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/geolocalized_data/carte_densite.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-carroyees-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Carte des densités de population sur des carreaux de largeur d’un kilomètre à Lyon et ses alentours en 2017 (calculées à partir de Filosofi). Source : <a href="https://www.geoportail.gouv.fr/donnees/densite-de-population">géoportail</a>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="les-données-publiques-géolocalisées" class="level3">
+<h3 class="anchored" data-anchor-id="les-données-publiques-géolocalisées">Les données publiques géolocalisées</h3>
+<p>Plusieurs grands répertoires de données de l’Insee sont ainsi géolocalisés aujourd’hui :</p>
+<ul>
+<li><code>Filosofi</code> (pour <strong>Fichier localisé social et fiscal</strong>) est un fichier de synthèse de sources fiscales (déclarations de revenus des ménages, taxe d’habitation, fichier d’imposition des personnes) enrichi par les données sur les prestations sociales fournies par les organismes sociaux, pour un peu plus de 26 millions de ménages fiscaux en France. Les résidences des ménages y sont géolocalisées ;</li>
+<li><code>Fidéli</code> (pour Fichier démographique sur les logements et les individus) peut se définir comme une base annuelle exhaustive de données statistiques sur les logements - qui sont géolocalisés - et de leurs occupants ;</li>
+<li>La <code>Base Permanente des Equipements (BPE)</code> est une source qui fournit le niveau de services rendus à la population sur un territoire, en répertoriant un large éventail d’équipements et de services accessibles au public sur l’ensemble de la France au 1er janvier de chaque année. La plupart des types d’équipement (commerce, services, santé, etc.) sont géolocalisés dans la base accessible en <em>open data</em> ;</li>
+<li>Les établissements du répertoire <code>Sirene</code> sont géolocalisés (hors Mayotte) et ces données sont mises à disposition des utilisateurs en <em>open data</em>. La géolocalisation des établissements actifs de 200 salariés ou plus a été systématiquement vérifiée par des gestionnaires de reprise de géolocalisation, ainsi que celle des établissements de 20 à 199 salariés pour lesquels la géolocalisation automatique est incertaine ;</li>
+<li>Le <code>Recensement de la Population</code> conduit aujourd’hui à une publication de statistiques à la maille des IRIS. Une première diffusion de données carroyées à partir du recensement suite à une phase de géolocalisation est prévue pour 2024.</li>
+</ul>
+<p>En général, la géolocalisation est réalisée par une combinaison d’un appariement avec un référentiel d’adresses géolocalisées construit à partir du <code>Répertoire d’Immeubles Localisés (RIL)</code> pour les besoins du Recensement de la Population dans les communes de plus de 10 000 habitants, et de la géolocalisation des parcelles cadastrales. Ce sont ainsi ces deux répertoires administratifs qui permettent de géolocaliser de nombreuses autres sources. Une reprise manuelle peut être faite dans les cas où la géolocalisation n’est pas possible ou s’est faite avec un faible niveau de confiance.</p>
+<p>L’appariement entre les grands répertoires géolocalisés et d’autres sources peut donner naissance à des bases de données extrêmement riches et ainsi à des études de phénomènes socio-économiques à des échelles spatiales très faibles. Par exemple, <span class="citation" data-cites="andre-21">André and Meslin (<a href="#ref-andre-21" role="doc-biblioref">2021</a>)</span> constituent une base exhaustive rassemblant les caractéristiques des ménages et la description détaillée de leur patrimoine immobilier, à partir de différentes sources administratives (le cadastre, le fichier Fidéli, les revenus fiscaux et sociaux, les transactions immobilières et des données sur les sociétés civiles immobilières). Cette base permet d’analyser finement la concentration de la propriété immobilière en fonction du niveau de vie ou encore le profil redistributif de la taxe foncière (part de cette taxe dans le revenu disponible en fonction de ce dernier).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les données géolocalisées sont relativement récentes à l’Insee et ne sont pas encore exploitées à leur plein potentiel. Preuve de la reconnaissance de ce dernier, un <em>Manuel d’analyse spatiale</em> <span class="citation" data-cites="feuillet-18">(<a href="#ref-feuillet-18" role="doc-biblioref">Loonis and Bellefon 2018</a>)</span> a été publié pour former les agents de l’Institut (entre autres) à la fois sur la théorie et l’application pratique avec <code>R</code> de méthodes d’analyse spatiale.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Une attention particulière doit être portée lors de la publication d’informations à un niveau fin à la protection de la vie privée et au respect du secret statistique. En effet, les réglementations européennes et nationales interdisent la diffusion de données permettant la réidentification de l’identité de ménages (ou d’entreprises) concernés. Or c’est un risque qui devient important dès lors que l’on publie des indicateurs à une échelle territoriale fine.</p>
+<p>Pour garantir la confidentialité au moment de la publication d’indicateurs, une possibilité est de contrôler les cellules au sein desquelles les calculs ont été faits pour identifier des cellules à risque, typiquement des cellules avec une population faible. Ces cellules à risque peuvent être fusionnées avec d’autres cellules ou subir d’autres traitements spécifiques (imputation de l’indicateur d’intérêt par exemple) pour diminuer le risque de réidentification <span class="citation" data-cites="feuillet-18">(<a href="#ref-feuillet-18" role="doc-biblioref">Loonis and Bellefon 2018</a>)</span>.</p>
+<p>Une autre approche consiste à travailler en amont du calcul des indicateurs à publier. On associe à chaque observation un niveau de risque qui représente sa probabilité d’être réidentifié et qui dépend des caractéristiques des observations voisines. Les observations présentant un risque élevé peuvent ensuite subir un traitement spécifique, comme la permutation de leurs caractéristiques avec d’autres observations (méthodes de <em>swapping</em>).</p>
+</div>
+</div>
+<p>De nombreux acteurs privés collectent des données géolocalisées, en général en grande quantité, qui ont un fort potentiel pour la statistique publique. Dans le cadre de partenariats, l’Insee peut obtenir des accès temporaires (parfois indirects) à de telles données.</p>
+</section>
+<section id="données-de-téléphonie-mobile" class="level3">
+<h3 class="anchored" data-anchor-id="données-de-téléphonie-mobile">Données de téléphonie mobile</h3>
+<p>Les données de téléphonie mobile en sont un bon exemple. On distingue en général 2 types de données de téléphonie mobile :</p>
+<ul>
+<li>Les <em>Call Detail Records</em> (CDR) qui sont générés lors des communications actives d’un utilisateur à travers son téléphone mobile (appel, envoi de SMS, etc.);</li>
+<li>Les données de signalisation passive qui sont collectées par les opérateurs principalement à des fins d’optimisation et de surveillance de leurs réseaux. Ces données de signalisation sont caractérisées par une fréquence temporelle bien supérieure à celle des données CDR.</li>
+</ul>
+<p>Ces deux types de données contiennent la même information spatiale : chaque observation contient des informations sur l’antenne radio avec laquelle le téléphone est en communication. Les données CDR permettent de produire des statistiques intéressantes sur les populations présentes et les déplacements de la population. Par exemple, <span class="citation" data-cites="galiana-20">Galiana, Suarez-Castillo, et al. (<a href="#ref-galiana-20" role="doc-biblioref">2020</a>)</span> observe à partir de comptages issus des données CDR que la répartition de la population sur le territoire s’est significativement modifiée à la mise en place du confinement en mars 2020, au début de la pandémie de Covid-19 (voir <a href="#fig-confinement-deconfinement" class="quarto-xref">Figure&nbsp;2</a>). Pendant le confinement, la population a davantage passé la nuit dans son département de résidence qu’avant le confinement. Au moment du déconfinement, les mêmes données de CDR indiquent que les mouvements de population sur le territoire ont repris partiellement, le sûrcroit de population se trouvant dans son département de résidence diminuant de moitié par rapport à la période de confinement.</p>
+<div id="fig-confinement-deconfinement" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confinement-deconfinement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/geolocalized_data/confinement-deconfinement.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confinement-deconfinement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Évolution du nombre de personnes présentes dans les départementents métropolitains lors du confinement par rapport à la période antérieure (à gauche) et lors du déconfinement par rapport au confinement (à droite).
+</figcaption>
+</figure>
+</div>
+<p>Les données de signalisation permettent d’aller plus loin, par exemple en estimant des populations présentes avec une fréquence temporelle élevée <span class="citation" data-cites="ricciato-20">(<a href="#ref-ricciato-20" role="doc-biblioref">Ricciato et al. 2020</a>)</span>. Pour un maillage territorial donné, par exemple des carreaux de 200 mètres de côté, les opérateurs téléphoniques peuvent modéliser leur réseau de manière à estimer la probabilité qu’un téléphone se trouvant au sein d’un carreau <span class="math inline">\(i\)</span> soit détecté dans une cellule (aire couverte par une antenne) <span class="math inline">\(j\)</span>. Ceci permet d’avoir une estimation du lieu où se trouvent tous les téléphones en lien avec le réseau quasiment en continu. En repondérant les nombres de téléphones estimés dans chaque tuile en fonction du nombre du nombre de téléphones considérés comme résidant dans chaque tuile et la population effectivement résidente de chaque tuile (obtenue grâce aux données fiscales géolocalisées), il est possible d’avoir une estimation en temps réelle de la population présente pour le maillage territorial choisi.</p>
+<p>La <a href="#fig-france-pops" class="quarto-xref">Figure&nbsp;3</a> et la <a href="#fig-paris-pops" class="quarto-xref">Figure&nbsp;4</a> illustrent ces estimations des variations de densité de population présente, heure par heure dans une même journée et jour par jour dans une même semaine, respectivement en France métropolitaine et à Paris et ses alentours. Même s’il faut prendre ces résultats avec précaution au vu de la simplicité de la méthodologie adoptée, on constate des tendances intéressantes :</p>
+<ul>
+<li>On peut observer les variations de populations présentes intra-journalières dues aux mouvements des habitants des banlieues d’agglomérations qui travaillent en centre-ville. La population présente a tendance à être élevée dans la périphérie des villes la nuit, où elle diminue à partir de 9 heures du matin et jusqu’au soir au profit des centres-villes ;</li>
+<li>Lorsqu’on regarde Paris et ses alentours avec une granularité spatiale plus fine, les variations de populations présentes intra-journalières discriminent les zones avec une forte activité touristique, économique et de loisirs des zones résidentielles ;</li>
+<li>Les variations de populations présentes à l’intérieur de la semaine montrent que les villes (et en particulier Paris) se vident en partie pendant les week-ends, au moment où les régions côtières et montagneuses ont tendance à accueillir des visiteurs. À Paris, certaines zones voient leur population présente augmenter la nuit lors des week-ends, ce qui suggère une activité nocturne ou des nuitées touristiques.</li>
+</ul>
+<div id="fig-france-pops" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-france-pops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p float="left">
+<img src="gif/france_day_densities_cropped.gif" width="400" class="figure-img"> <img src="gif/france_week_densities_cropped.gif" width="400" class="figure-img">
+</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-france-pops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Estimation des variations de densité de population présente (nombre de personnes présentes par kilomètre carré), heure par heure dans une même journée (à gauche) et jour par jour dans une même semaine en France métropolitaine.
+</figcaption>
+</figure>
+</div>
+<div id="fig-paris-pops" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-paris-pops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p float="left">
+<img src="gif/paris_day_densities.gif" width="400" class="figure-img"> <img src="gif/paris_week_densities.gif" width="400" class="figure-img">
+</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paris-pops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Estimation des variations de densité de population présente (nombre de personnes présentes par kilomètre carré), heure par heure dans une même journée (à gauche) et jour par jour dans une même semaine à Paris et ses environs.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’utilisation de données de téléphonie mobile pour la production de statistiques publiques pose des questions :</p>
+<ul>
+<li><strong>Questions sur la qualité</strong> : les données disponibles ne concernent qu’un sous-champ de la population, par exemple les clients d’un opérateur en particulier, ce qui engendre en général des biais de sélection. Dès lors, il est nécessaire d’évaluer la représentativité de ce sous-champ par rapport à la population générale pour s’assurer de la validité (partielle) des résultats;</li>
+<li><strong>Questions sur la perennité</strong> : les données viennent de tiers privés et l’Insee n’a donc aucun contrôle sur des possibles changements de format ou de méthode de collection des données. Dans ce contexte, il n’y a pas de garantie que les indicateurs restent comparables au cours du temps.</li>
+<li><strong>Questions d’éthique</strong> : avant d’utiliser ces données personnelles, il faut s’assurer que l’usage qui en est fait est proportionné et que la production statistique qui en résulte a une valeur ajoutée pour la population.</li>
+<li><strong>Questions légales</strong> : les aspects légaux autour des données personnelles sont aussi à prendre en compte, en lien d’ailleurs avec les questions d’éthique et les questions sur la pérennité. Aujourd’hui la législation européenne et son application dans la loi française ne sont pas favorables à l’utilisation de données téléphoniques de signalisation pour la statistique publique. Même si elles venaient à le devenir, il n’y a aucune garantie qu’on ne revienne pas quelques années après à la situation actuelle.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="données-de-réseaux-sociaux" class="level3">
+<h3 class="anchored" data-anchor-id="données-de-réseaux-sociaux">Données de réseaux sociaux</h3>
+<p>Les réseaux sociaux sont une autre source privée d’informations parfois géolocalisées. Les données issues de réseaux sociaux ont potentiellement des applications intéressantes pour la statistique publique :</p>
+<ul>
+<li>En complément des données de téléphonie mobile, elles peuvent participer à l’estimation de populations présentes en temps réel, avec un apport particulier pour le tourisme. Pour cause, les touristes sont souvent absents des données de téléphonie mobile et ont tendance à être très actifs sur les réseaux sociaux ;</li>
+<li>Elles peuvent servir à estimer le niveau de bien-être de la population à partir de méthodes d’analyse de sentiment ;</li>
+<li>Elles peuvent servir à analyser l’opinion publique à propos de sujets ou d’évènements particulier. Par exemple, <code>CBS</code> (INS des Pays-Bas) utilise un indicateur de sentiment calculé à partir de données issues de réseaux sociaux pour complémenter un indicateur de confiance des consommateurs lui calculé à partir de données d’enquête <span class="citation" data-cites="brakel-17">(<a href="#ref-brakel-17" role="doc-biblioref">Brakel et al. 2017</a>)</span>.</li>
+</ul>
+<p>Aujourd’hui plusieurs réseaux sociaux fournissent des interfaces pour accéder à leurs données. Par exemple, <code>Twitter</code> propose une API qui permet de récupérer des tweets à partir de requêtes simples à construire. Il est ainsi possible de récupérer tous les tweets contenant un ou plusieurs mots clés, en excluant les retweets et les tweets sans information de géolocalisation. Tous les <em>tweets</em> ne contiennent pas d’information sur la position de l’appareil utilisé au moment de l’envoi : il faut que l’utilisateur ait activé cette fonctionnalité. On peut avec de telles requêtes de connaître la position et l’heure exactes de l’envoi des tweets - géolocalisés - portant sur un sujet.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Des forts biais de sélection peuvent exister lorsque l’on exploite les données de réseaux sociaux. Dans le cas de <code>Twitter</code> par exemple, les personnes qui tweetent, et a fortiori les personnes qui tweetent en partageant leur localisation ne constituent a priori pas un échantillon représentatif de la population générale. C’est encore davantage le cas sur un sujet en particulier. A priori, les gens qui communiquent sur ce sujet sont plus souvent concernés directement que la population générale.</p>
+<p>Pour publier des indicateurs relevant de la statistique publique et calculés entièrement à partir de données de réseaux sociaux, il est nécessaire d’adopter un cadre de contrôle qualité très strict, en commençant par dresser une liste exhaustive des différents biais possibles <span class="citation" data-cites="olteanu-19">(<a href="#ref-olteanu-19" role="doc-biblioref">Olteanu et al. 2019</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="données-de-suivi-de-navires-ou-de-vols" class="level3">
+<h3 class="anchored" data-anchor-id="données-de-suivi-de-navires-ou-de-vols">Données de suivi de navires ou de vols</h3>
+<p>Les données <code>AIS</code> sont des données de localisation de navires. AIS fait référence au système d’identification automatique utilisé par les navires partout dans le monde, utilisé à l’origine pour les échanges d’information entre navires équipés de terminaux AIS. Les données AIS sont générées et transmises de manière automatique, toutes les 2 à 10 secondes en fonction de la position et de la vitesse du navire. Lorsque ce dernier est à l’arrêt, des informations sont transmises toutes les 6 minutes. Les données transmises incluent :</p>
+<ul>
+<li>Des données sur les caractéristiques des navires : identifiant, nom, type de vaisseau, taille, nationalité, etc.</li>
+<li>Des données géospatiales : localisation, vitesse, etc.</li>
+<li>Des données techniques supplémentaires : source de la transmission, date et heure, etc.</li>
+</ul>
+<p>Des applications potentielles impliquant l’utilisation des données AIS existent pour la statistique publique et pourraient être explorées par l’Insee :</p>
+<ul>
+<li>Prévisions à court-terme (<em>nowcasting</em>) sur le commerce domestique et/ou international : les données AIS sont disponibles quasiment en temps réel, ce qui les rend adaptées pour faire des prévisions à court-terme. Par exemple, l’ONS (INS du Royaume-Uni) a étudie en continu l’activité maritime de 10 grands ports britanniques, en se concentrant sur deux indicateurs : le <em>temps passé au port</em> et le <em>trafic total</em>. Ces indicateurs offrent une mesure rapide du niveau de l’activité de transport maritime, qui est liée au commerce de marchandises. Ils sont à prendre en compte lors de l’élaboration d’indicateurs conjoncturels.</li>
+<li>De manière similaire, le Fond Monétaire International a estimé des volumes d’échanges commerciaux à partir de données AIS et a constaté une forte corrélation avec des statistiques officielles sur le commerce, au niveau de pays individuels aussi bien qu’au niveau mondial <span class="citation" data-cites="cerdeiro-20">(<a href="#ref-cerdeiro-20" role="doc-biblioref">Cerdeiro et al. 2020</a>)</span>.</li>
+<li>Estimation des émissions de gaz à effet de serre liés au transport maritime : en appariant les données AIS avec des données relatives aux types de moteurs et à la consommation de carburant, il est possible de calculer les émissions de chaque navire. Utiliser les données AIS permet de discriminer les transports nationaux des transports internationaux <span class="citation" data-cites="imo-20">(<a href="#ref-imo-20" role="doc-biblioref">Organization 2020</a>)</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Des défis se posent au moment d’utiliser les données AIS :</p>
+<ul>
+<li>Des problèmes de qualité existent et demandent des pré-traitements spécifiques :
+<ul>
+<li>Données corrompues à cause d’un équipement défectueux ou de conflits lors de la transmission de signaux ;</li>
+<li>La couverture des émetteurs-récepteurs terrestres est limitée aux zones proches du rivage. En haute mer, des récepteurs satellites sont utilisés pour empêcher les problèmes de transmissions mais ces derniers peuvent tout de même se produire ;</li>
+</ul></li>
+<li>Les données brutes sont complexes et demandent de manière générale des pré-traitements lourds pour être utilisables. Des fournisseurs de données privées collectent, nettoient et vendent les données traitées (mais à des prix élevés). Des données pré-traitées sont aussi mises à disposition des Instituts statistiques nationaux sur la <em>UN Global Platform</em> ;</li>
+<li>La taille des données constitue un fort enjeu. En effet, 310 milliards de transmissions sont effectuées chaque année. Une infrastructure adaptée est indispensable pour pouvoir traiter les données brutes ;</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-andre-21" class="csl-entry" role="listitem">
+André, Mathias, and Olivier Meslin. 2021. <span>“Et Pour Quelques Appartements de Plus : <span>É</span>tude de La Propri<span>é</span>t<span>é</span> Immobili<span>è</span>re Des m<span>é</span>nages Et Du Profil Redistributif de La Taxe Fonci<span>è</span>re.”</span>
+</div>
+<div id="ref-brakel-17" class="csl-entry" role="listitem">
+Brakel, Jan, Emily Söhler, P. J. H. Daas, and Bart Buelens. 2017. <span>“Social Media as a Data Source for Official Statistics; the Dutch Consumer Confidence Index.”</span> <em>Survey Methodology</em> 43 (December).
+</div>
+<div id="ref-cerdeiro-20" class="csl-entry" role="listitem">
+Cerdeiro, Mr. Diego A., Andras Komaromi, Yang Liu, and Mamoon Saeed. 2020. <span>“<span class="nocase">World Seaborne Trade in Real Time: A Proof of Concept for Building AIS-based Nowcasts from Scratch</span>.”</span> IMF Working Papers 2020/057. International Monetary Fund. <a href="https://ideas.repec.org/p/imf/imfwpa/2020-057.html">https://ideas.repec.org/p/imf/imfwpa/2020-057.html</a>.
+</div>
+<div id="ref-galiana2020segregation" class="csl-entry" role="listitem">
+Galiana, Lino, François Sémécurbe, Benjamin Sakarovitch, and Zbigniew Smoreda. 2020. <span>“Residential Segregation, Daytime Segregation and Spatial Frictions: An Analysis from Mobile Phone Data.”</span>
+</div>
+<div id="ref-galiana-20" class="csl-entry" role="listitem">
+Galiana, Lino, Milena Suarez-Castillo, François Sémécurbe, Élise Coudin, and Marie-Pierre de Bellefon. 2020. <span>“Retour Partiel Des Mouvements de Population Avec Le d<span>é</span>confinement.”</span>
+</div>
+<div id="ref-feuillet-18" class="csl-entry" role="listitem">
+Loonis, Vincent, and Marie-Pierre de Bellefon. 2018. <span>“Manuel d’analyse Spatiale. Th<span>é</span>orie Et Mise En <span class="nocase">œ</span>uvre Pratique Avec r, Insee&nbsp;m<span>é</span>thodes n<span></span>&nbsp;131, Insee, Eurostat, 392&nbsp;p.”</span> <em>Cybergeo</em>, December. <a href="https://doi.org/10.4000/cybergeo.29853">https://doi.org/10.4000/cybergeo.29853</a>.
+</div>
+<div id="ref-olteanu-19" class="csl-entry" role="listitem">
+Olteanu, Alexandra, Carlos Castillo, Fernando Diaz, and Emre Kıcıman. 2019. <span>“Social Data: Biases, Methodological Pitfalls, and Ethical Boundaries.”</span> <em>Frontiers in Big Data</em> 2. <a href="https://doi.org/10.3389/fdata.2019.00013">https://doi.org/10.3389/fdata.2019.00013</a>.
+</div>
+<div id="ref-imo-20" class="csl-entry" role="listitem">
+Organization, International Maritime. 2020. <span>“IMO Fourth Greenhouse Gas Study 2020.”</span>
+</div>
+<div id="ref-ricciato-20" class="csl-entry" role="listitem">
+Ricciato, Fabio, Giampaolo Lanzieri, Albrecht Wirthmann, and Gerdy Seynaeve. 2020. <span>“Towards a Methodological Framework for Estimating Present Population Density from Mobile Network Operator Data.”</span> <em>Pervasive and Mobile Computing</em> 68: 101263. <a href="https://doi.org/10.1016/j.pmcj.2020.101263">https://doi.org/10.1016/j.pmcj.2020.101263</a>.
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Le <a href="https://github.com/eurostat/gridviz">projet <code>gridviz</code></a> porté par <code>Eurostat</code> vise à proposer un outil facilitant la construction de mosaiques agrégées à partir de données spatiales.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./administratives_exemples.html" class="pagination-link  aria-label=" quelques="" exemples="" approfondis="" de="" données="" administratives"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Quelques exemples approfondis de données administratives</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./textes.html" class="pagination-link" aria-label="Données textuelles et non structurées">
+        <span class="nav-page-text">Données textuelles et non structurées</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<ol start="3" type="a">
+<li>2022, Lino Galiana and Tom Seimandi</li>
+</ol>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/geolocalized_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

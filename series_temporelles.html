@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Données émergentes - Nowcasting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./nowcasting_exemples.html" rel="next">
+<link href="./images_exemples.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Données émergentes - Nowcasting">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Données émergentes">
+<meta name="twitter:title" content="Données émergentes - Nowcasting">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@linogaliana">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Données émergentes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./introduction.html" aria-current="page"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-administratives" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données administratives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-administratives">    
+        <li>
+    <a class="dropdown-item" href="./administratives.html">
+ <span class="dropdown-text">Données administratives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./administratives_exemples.html">
+ <span class="dropdown-text">Quelques exemples approfondis de données administratives</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./geolocalized_data.html"> 
+<span class="menu-text">Données géolocalisées</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-textuelle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse textuelle</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-textuelle">    
+        <li>
+    <a class="dropdown-item" href="./textes.html">
+ <span class="dropdown-text">Données textuelles et non structurées</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./textes_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-dimages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyse d’images</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyse-dimages">    
+        <li>
+    <a class="dropdown-item" href="./images.html">
+ <span class="dropdown-text">Images</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./images_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nowcasting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Nowcasting</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-nowcasting">    
+        <li>
+    <a class="dropdown-item" href="./series_temporelles.html">
+ <span class="dropdown-text">Nowcasting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nowcasting_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./series_temporelles.html">Nowcasting</a></li><li class="breadcrumb-item"><a href="./series_temporelles.html">Nowcasting</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-collapse-item" href="https://github.com/linogaliana/ensai-donnees-emergentes/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Données administratives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données administratives</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./administratives_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quelques exemples approfondis de données administratives</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Données géolocalisées</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geolocalized_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données géolocalisées</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Analyse textuelle</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données textuelles et non structurées</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./textes_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Analyse d’images</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Nowcasting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./series_temporelles.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Nowcasting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nowcasting_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#statistiques-de-recherches-sur-internet" id="toc-statistiques-de-recherches-sur-internet" class="nav-link active" data-scroll-target="#statistiques-de-recherches-sur-internet">Statistiques de recherches sur Internet</a></li>
+  <li><a href="#données-de-réseaux-sociaux" id="toc-données-de-réseaux-sociaux" class="nav-link" data-scroll-target="#données-de-réseaux-sociaux">Données de réseaux sociaux</a></li>
+  <li><a href="#le-nowcasting-à-linsee" id="toc-le-nowcasting-à-linsee" class="nav-link" data-scroll-target="#le-nowcasting-à-linsee">Le <em>nowcasting</em> à l’Insee</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/series_temporelles.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./series_temporelles.html">Nowcasting</a></li><li class="breadcrumb-item"><a href="./series_temporelles.html">Nowcasting</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Nowcasting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>La statistique publique publiant des statistiques à intervalle régulier, une longue tradition de production et d’exploitation de séries temporelles précède les innovations récentes. La constance de la méthodologie, ou les harmonisations faites <em>a posteriori</em> - par exemple la technique de la rétropolation en comptabilité nationale - assure en théorie une forme de comparabilité et permet de considérer les productions statistiques comme des séries temporelles. Parmi les productions statistiques dont la formalisation a été la plus précoce, la comptabilité nationale tient une bonne place. Le Système de Comptabilité Nationale (SCN) est ainsi un cadre international harmonisé qui permet la construction de séries temporelles depuis l’après-guerre. La France est l’un des pays pour lesquels il est possible de remonter le plus loin dans le passé avec des séries harmonisées depuis XXXX.</p>
+<p>En raison de délais imposés par la collecte et le traitement des données, certains indicateurs supposés donner des informations sur la situation actuelle sont publiés avec du retard et ne peuvent pas jouer leur rôle dans la prise de décision publique. C’est pourquoi la statistique publique participe aussi à la réalisation de prévisions à court terme de valeurs d’indicateurs macro-économiques. Si la production de séries statistiques récurrentes fait partie des missions de tous les instituts statistiques, l’Insee a également des missions plus spécifiques dans le domaine des séries temporelles. La construction d’indicateurs conjoncturels prospectifs, au service du débat public et de la prise de décision politique, en fait partie. A l’Insee cette mission prospective est assurée par le département de la conjoncture qui construit des indicateurs et des analyses prospectifs sur l’activité économiques des prochains trimestres. Ce département mobilise historiquement des données dont la remontée est plus rapide que celles utilisées pour la construction des agrégats macroéconomiques de la comptabilité nationale. Cependant, la collecte accrue de traces numériques a permis l’accès à des données à haute fréquence pouvant être mobilisées pour disposer de signaux sur la situation macroéconomique actuelle ou très récente.</p>
+<p>Dans ce cadre, l’<code>Insee</code>, <code>QuantCube</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, Paris School of Economics<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, <code>CANDRIAM</code> et la Société Générale ont créé une Chaire de recherche <strong>Mesures de l’économie, nowcasting ‐ au‐delà du PIB</strong> en 2021. Cette Chaire a pour objectif de travailler sur l’amélioration des prévisions économiques, en particulier grâce à la mobilisation de nouvelles sources de données. Parmi ces nouvelles sources, on trouve les actualités <span class="citation" data-cites="bortoli-18">(<a href="#ref-bortoli-18" role="doc-biblioref">Bortoli, Combes, and Renault 2018</a>)</span>, les médias sociaux, les données satellitaires, les réseaux professionnels et les avis de consommateurs, ainsi que les données sur le commerce international, la consommation d’électricité et le transport routier <span class="citation" data-cites="fornaro-20">(<a href="#ref-fornaro-20" role="doc-biblioref">Fornaro 2020</a>)</span>, le transport maritime, l’immobilier, l’hôtellerie et les télécommunications. Un autre objectif de la Chaire est de travailler sur la mesure de nouveaux indicateurs économiques, de bien-être ou de développement durable (<strong>au‐delà du PIB</strong>), ici encore en utilisant ces données nouvelles.</p>
+<p>Côté technique, des modèles autorégressifs de type <em>bridge models</em> ou <em>mixed-data sampling</em> <span class="citation" data-cites="schumacher-16">(<a href="#ref-schumacher-16" role="doc-biblioref">Schumacher 2016</a>)</span>, des <em>dynamic factor models</em> <span class="citation" data-cites="stock-10">(<a href="#ref-stock-10" role="doc-biblioref">Stock and Watson 2010</a>)</span> ou plus récemment des modèles de Deep Learning de type LSTM <span class="citation" data-cites="hopp-21">(<a href="#ref-hopp-21" role="doc-biblioref">Hopp 2021</a>)</span> sont souvent utilisés pour combiner des indicateurs de type <em>soft</em> comme le climat des affaires ou le sentiment des consommateurs avec des indicateurs <em>hard</em> comme la production industrielle, le commerce de détail, les prix de l’immobilier, etc. à différentes fréquences. La littérature fait particulièrement état de l’utilisation de deux sources de données massive permettant d’obtenir des indicateurs <em>soft</em> <span class="citation" data-cites="richardson-18">(<a href="#ref-richardson-18" role="doc-biblioref">Richardson 2018</a>)</span>, même si bien d’autres sources ont été expertisées :</p>
+<p>‑ les statistiques de recherches sur Internet basées sur la fréquence de recherche de mots‑clés ou de sujets spécifiques ; ‑ les médias sociaux sur Internet (Twitter).</p>
+<section id="statistiques-de-recherches-sur-internet" class="level1">
+<h1>Statistiques de recherches sur Internet</h1>
+<p>L’idée derrière l’utilisation de ces données est la suivante : les recherches sur Internet sont devenues un moyen répandu pour les agents économiques d’obtenir des informations pertinentes sur leur situation et leurs décisions économiques immédiates. Ainsi, les événements courants se reflètent dans le comportement de recherche et peuvent être corrélés à des statistiques macro-économiques. <code>Google</code> a mis en place des services permettant l’accès à des statistiques sur les recherches effectuées via son moteur de recherche : <a href="https://trends.google.fr/trends/"><code>Google Trends</code></a>.</p>
+<p>L’apport de données de Google Trends dans le cadre de prédictions économiques a été évaluée concernant le marché du travail et le chômage, la consommation, le marché du logement, le tourisme et les anticipations d’inflation, ainsi que d’autres études macro-économiques <span class="citation" data-cites="givordblanchet">(<a href="#ref-givordblanchet" role="doc-biblioref"><strong>givordblanchet?</strong></a>)</span>. Dans la plupart des cas, les auteurs constatent une amélioration de la précision prédictive mais cette dernière est souvent assez limitée et n’est pas toujours robuste.</p>
+</section>
+<section id="données-de-réseaux-sociaux" class="level1">
+<h1>Données de réseaux sociaux</h1>
+<p>Les données de réseaux sociaux (en particulier <code>Twitter</code>) ont déjà été évoquées du fait de leur dimension géographique ou textuelle. Elles présentent également un aspect temporel. Les données de réseaux sociaux ont des avantages par rapport aux données de recherches sur Internet :</p>
+<ul>
+<li>ces données sont beaucoup plus riches, avec beaucoup d’information associée à chaque observation (contenu textuel du tweet, informations sur l’utilisateur, etc.) ;</li>
+<li>ces données permettent une approche stratifiée, en utilisant les informations de groupes d’utilisateurs bien définis ;</li>
+<li>l’absence de préparation par les propriétaires des données (comme c’est le cas pour Google Trends), qui peut en réalité constituer un avantage ou un inconvénient.</li>
+</ul>
+<p>Des données issues de <code>Twitter</code> ont été testées dans des études de prévisions du comportement des marchés financiers et du marché du travail (utililsation d’indicateurs dérivés de la fréquence d’utilisation des termes de perte et de recherche d’emploi dans des échantillons de tweets) entre autres.</p>
+<p>Comme pour les données de Google Trends, les résultats sont mitigés, ce qui est naturel si on réfléchit aux biais qui limitent le potentiel de ces données. Tout d’abord, pour pouvoir récupérer les tweets pertinents concernant un certain sujet, il est nécessaire de mettre au point des bonnes méthodes de recherche sur de grands ensembles d’entrées. On constate d’ailleurs une forte sensibilité aux choix des mots-clés ou en général à la spécification de la recherche. Les jeux de données récupérés sont sujets à un fort biais de sélection : les utilisateurs de Twitter qui communiquent sur un sujet ne sont pas représentatifs de la population générale. Il faut en outre pouvoir correctement interpréter le contenu des textes, ce qui représente en général une tâche difficile (les progrès récents en NLP ont permis des fortes avancées sur ce point).</p>
+</section>
+<section id="le-nowcasting-à-linsee" class="level1">
+<h1>Le <em>nowcasting</em> à l’Insee</h1>
+<p>L’Insee a travaillé de manière particulièrement intensive sur le <em>nowcasting</em> au cours de la crise sanitaire liée au Covid-19, moment auquel le travail des conjoncturistes de l’Insee a été réorienté pour mesurer au mieux, à chaque instant, la chute de l’activité économique.</p>
+<p>Pour réaliser cette évaluation, l’Insee a recueilli de l’information de la part d’entreprises ou de branches professionnelles, directement ou via des partenaires (par exemple la Banque de France ou des instituts de conjoncture). Cette information a été traitée, secteur par secteur, pour donner un ordre de grandeur de perte d’activité à hauteur d’un tiers du PIB. Pour consolider ce résultat, il a été choisi d’exploiter d’autres sources de données disponibles à haute fréquence. Ont été envisagées mais écartées plusieurs pistes : consommation d’électricité, indicateurs de pollution, Google Trends, vocabulaire utilisé dans la presse, etc. Finalement, des statistiques issues des transactions par cartes bancaires fournies par le Groupement des Cartes Bancaires CB<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, ont été privilégiées.</p>
+<p>Ces données ont permis, très tôt dans le confinement, de confirmer l’ordre de grandeur d’une chute d’un tiers pour la consommation. Le 26 mars, l’Insee publie donc une estimation de chute de PIB (en instantané par rapport à un régime normal) de 35 % et de chute de la consommation des ménages du même ordre de grandeur. Cet ordre de grandeur s’est révélé assez fiable. Il a été confirmé par deux mises à jour ultérieures et par des évaluations de la Banque de France et des instituts de conjoncture nationaux.</p>
+<p>Des données de téléphonie mobile à haute fréquence ont également été utilisées pour mesurer les déplacements de populations au moment des confinement et déconfinement <span class="citation" data-cites="galiana-20">(<a href="#ref-galiana-20" role="doc-biblioref">Galiana et al. 2020</a>)</span>. Plus d’éléments sont présentés à ce propos dans le chapitre sur les données géolocalisées.</p>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bortoli-18" class="csl-entry" role="listitem">
+Bortoli, Clément, Stéphanie Combes, and Thomas Renault. 2018. <span>“<span class="nocase">Nowcasting GDP Growth by Reading Newspapers</span>.”</span> <em><span>Economie Et Statistique / Economics and Statistics</span></em>, Big data and statistics - part 1, no. 505-506: 17–33. <a href="https://doi.org/10.24187/ecostat.2018.505d.1964">https://doi.org/10.24187/ecostat.2018.505d.1964</a>.
+</div>
+<div id="ref-fornaro-20" class="csl-entry" role="listitem">
+Fornaro, Paolo. 2020. <span>“<span>Nowcasting Industrial Production Using Uncoventional Data Sources</span>.”</span> ETLA Working Papers 80. The Research Institute of the Finnish Economy. <a href="https://ideas.repec.org/p/rif/wpaper/80.html">https://ideas.repec.org/p/rif/wpaper/80.html</a>.
+</div>
+<div id="ref-galiana-20" class="csl-entry" role="listitem">
+Galiana, Lino, Milena Suarez-Castillo, François Sémécurbe, Élise Coudin, and Marie-Pierre de Bellefon. 2020. <span>“Retour Partiel Des Mouvements de Population Avec Le d<span>é</span>confinement.”</span>
+</div>
+<div id="ref-hopp-21" class="csl-entry" role="listitem">
+Hopp, Daniel. 2021. <span>“Economic Nowcasting with Long Short-Term Memory Artificial Neural Networks (LSTM).”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2106.08901">https://doi.org/10.48550/ARXIV.2106.08901</a>.
+</div>
+<div id="ref-richardson-18" class="csl-entry" role="listitem">
+Richardson, Pete. 2018. <span>“Nowcasting and the Use of Big Data in Short Term Macroeconomic Forecasting: A Critical Review.”</span> <em>Economie Et Statistique</em> 505 (1): 65–87. <a href="https://doi.org/10.24187/ecostat.2018.505d.1966">https://doi.org/10.24187/ecostat.2018.505d.1966</a>.
+</div>
+<div id="ref-schumacher-16" class="csl-entry" role="listitem">
+Schumacher, Christian. 2016. <span>“A Comparison of MIDAS and Bridge Equations.”</span> <em>International Journal of Forecasting</em> 32 (2): 257–70. <a href="https://EconPapers.repec.org/RePEc:eee:intfor:v:32:y:2016:i:2:p:257-270">https://EconPapers.repec.org/RePEc:eee:intfor:v:32:y:2016:i:2:p:257-270</a>.
+</div>
+<div id="ref-stock-10" class="csl-entry" role="listitem">
+Stock, James, and Mark Watson. 2010. <span>“Dynamic Factor Models.”</span> In <em>Oxford Handbook of Economic Forecasting</em>, edited by Michael P. Clements and David F. Henry. Oxford: Oxford University Press; Oxford University Press. <a href="http://www.economics.harvard.edu/faculty/stock/files/dfm_oup_4.pdf">http://www.economics.harvard.edu/faculty/stock/files/dfm_oup_4.pdf</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Start‐up proposant des prévisions macroéconomiques fondées sur le Big Data et l’intelligence artificielle<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>société internationale de gestion d’actifs<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Dans le domaine de la monétique, le Groupement des cartes bancaires est un groupement d’intérêt économique privé qui réunit la plupart des établissements financiers français dans le but d’assurer l’interbancarité des cartes de paiement.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./images_exemples.html" class="pagination-link  aria-label=" application"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Application</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./nowcasting_exemples.html" class="pagination-link" aria-label="Application">
+        <span class="nav-page-text">Application</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<ol start="3" type="a">
+<li>2022, Lino Galiana and Tom Seimandi</li>
+</ol>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/series_temporelles.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/linogaliana/ensai-donnees-emergentes">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
