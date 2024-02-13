@@ -1,0 +1,91 @@
+project:
+  type: website
+
+website:
+  title: "Données émergentes"
+  navbar:
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Introduction"
+        file: introduction.qmd
+      - text: "Données administratives"
+        menu:
+          - administratives.qmd
+          - administratives_exemples.qmd
+      - text: "Données géolocalisées"
+        file: geolocalized_data.qmd
+      - text: "Analyse textuelle"
+        menu:
+          - textes.qmd
+          - textes_exemples.qmd
+      - text: "Analyse d'images"
+        menu:
+          - images.qmd
+          - images_exemples.qmd
+      - text: "Nowcasting"
+        menu:
+          - series_temporelles.qmd
+          - nowcasting_exemples.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Introduction"
+        contents:
+          - introduction.qmd
+      - section: "Données administratives"
+        contents:
+          - administratives.qmd
+          - administratives_exemples.qmd
+      - section: "Données géolocalisées"
+        contents:
+          - geolocalized_data.qmd
+      - section: "Analyse textuelle"
+        contents:
+          - textes.qmd
+          - textes_exemples.qmd
+      - section: "Analyse d'images"
+        contents:
+          - images.qmd
+          - images_exemples.qmd
+      - section: "Nowcasting"
+        contents:
+          - series_temporelles.qmd
+          - nowcasting_exemples.qmd
+    tools:
+      - icon: twitter
+        href: https://twitter.com
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://github.com/linogaliana/ensai-donnees-emergentes
+          - text: Report a Bug
+            url:  https://github.com/linogaliana/ensai-donnees-emergentes/issues
+  page-navigation: true
+  page-footer:
+    left: "(c) 2022, Lino Galiana and Tom Seimandi"
+    right:
+      - icon: github
+        href: https://github.com/linogaliana/ensai-donnees-emergentes
+      - icon: twitter
+        href: https://twitter.com/
+  reader-mode: true
+  repo-url: https://github.com/linogaliana/ensai-donnees-emergentes
+  repo-actions: [edit, issue]
+  twitter-card:
+    creator: "@linogaliana"
+  open-graph: true
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+theme:
+  light: flatly
+  dark: darkly
