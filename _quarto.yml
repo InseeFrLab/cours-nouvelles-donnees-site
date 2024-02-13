@@ -14,7 +14,9 @@ website:
           - administratives.qmd
           - administratives_exemples.qmd
       - text: "Données géolocalisées"
-        file: geolocalized_data.qmd
+        menu: 
+          - geolocalized_data.qmd
+          - geolocalized_data_exemples.qmd
       - text: "Analyse textuelle"
         menu:
           - textes.qmd
@@ -41,6 +43,7 @@ website:
       - section: "Données géolocalisées"
         contents:
           - geolocalized_data.qmd
+          - geolocalized_data_exemples.qmd
       - section: "Analyse textuelle"
         contents:
           - textes.qmd
