@@ -334,7 +334,7 @@ officielles. Le troisième est une expérimentation encore en cours.
 
 ## Appariements
 
-![Source: @galiana2022.](https://www.linogaliana.fr/publication/2022-jms/featured.png){ fig-align="center" width=80% }
+![Source: @galiana2022.](img/images/img_appariements.png){ fig-align="center" width=80% }
 
 # Conclusion
 
