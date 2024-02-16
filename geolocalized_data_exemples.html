@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./images.html" rel="next">
-<link href="./textes.html" rel="prev">
+<link href="./textes.html" rel="next">
+<link href="./geolocalized_data.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./textes.html">Analyse textuelle</a></li><li class="breadcrumb-item"><a href="./textes_exemples.html">Application</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li><li class="breadcrumb-item"><a href="./geolocalized_data_exemples.html">Application</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -291,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./geolocalized_data_exemples.html" class="sidebar-item-text sidebar-link">
+  <a href="./geolocalized_data_exemples.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Application</span></a>
   </div>
 </li>
@@ -314,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./textes_exemples.html" class="sidebar-item-text sidebar-link active">
+  <a href="./textes_exemples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Application</span></a>
   </div>
 </li>
@@ -377,7 +377,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./textes.html">Analyse textuelle</a></li><li class="breadcrumb-item"><a href="./textes_exemples.html">Application</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./geolocalized_data.html">Données géolocalisées</a></li><li class="breadcrumb-item"><a href="./geolocalized_data_exemples.html">Application</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Application</h1>
 </div>
@@ -396,15 +396,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>L’objectif de ce TP est d’explorer les aspects suivants du traitement du langage naturel:</p>
+<p>L’objectif de ce TP est de donner un exemple introductif d’utilisation de données géolocalisées dans le cadre de la production de statistique publique. Plus précisément, il propose de manipuler les données du Registre Parcellaire Graphique (RPG), une base de données géographiques administrative servant de référence à l’instruction des aides de la politique agricole commune (PAC). Ces données sont mises en regard:</p>
 <ul>
-<li><em>Preprocessing</em></li>
-<li><code>ElasticSearch</code>: indexation et requêtage</li>
+<li>des données du Drias de simulation de l’évolution climatique pour le siècle en cours sur la France;</li>
+<li>des données ERA5 agro-météorologiques de surface quotidiens pour la période allant de 1979 à aujourd’hui.</li>
 </ul>
-<p>Il est disponible sur <a href="https://pythonds.linogaliana.fr/elastic/">cette page</a> en version <em>web</em> et peut être ouvert sur l’environnement <code>SSPCloud</code> où <code>ElasticSearch</code> est disponible en cliquant sur le bouton suivant:</p>
-<p><a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABpython-datascience%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2Flinogaliana%2Fpython-datascientist%2Fmaster%2Fsspcloud%2Finit-jupyter.sh%C2%BB&amp;init.personalInitArgs=%C2%ABmodern-ds%20elastic_intro%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
+<p>Le TP composé de plusieurs applications décrites ci-dessous et disponibles <strong>sur ce <a href="https://inseefrlab.github.io/funathon2023_sujet2/">site</a></strong>.</p>
+<p>Un environnement de travail peut être lancé sur le <code>SSP Cloud</code> en cliquant sur le bouton suivant:</p>
+<p><a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABtp-geo%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Rstudio" alt="Onyxia"></a></p>
+<section id="application-0-optionnelle-création-dune-base-de-données-postgresql" class="level4">
+<h4 class="anchored" data-anchor-id="application-0-optionnelle-création-dune-base-de-données-postgresql">Application 0 (optionnelle) : Création d’une base de données PostgreSQL</h4>
+<p>Les données du RPG étant volumineuses (on a vu que c’était souvent le cas pour les données administratives), il faut pouvoir les requêter depuis une base de données. Les données sont disponibles dans une base de données PostgreSQL (avec l’extension pour données spatiales PostGIS) prête à l’emploi. Néanmoins, cette application explique comment procéder pour créer une telle base de données sur la plateforme SSP Cloud.</p>
+</section>
+<section id="application-1-première-manipulation-du-rpg" class="level4">
+<h4 class="anchored" data-anchor-id="application-1-première-manipulation-du-rpg">Application 1 : Première manipulation du RPG</h4>
+<p>L’objectif de cette première étape est d’effectuer des premières requêtes géographiques permettant d’examiner les cultures à proximité d’un point géographique donné, et de comparer la composition observée avec les compositions départementale, régionale, etc. On propose également de mettre au point une interface de type tableau de bord permettant d’obtenir ces informations interactivement.</p>
+</section>
+<section id="application-2-exposition-des-cultures-au-déficit-de-précipitations" class="level4">
+<h4 class="anchored" data-anchor-id="application-2-exposition-des-cultures-au-déficit-de-précipitations">Application 2 : Exposition des cultures au déficit de précipitations</h4>
+<p>L’objectif de cette application est de mettre en regard cultures et prévisions climatiques localement, pour identifier des cultures particulièrement mises en danger par le changement climatique en France.</p>
+</section>
+<section id="application-3-evolution-des-cultures-lien-avec-le-climat-passé" class="level4">
+<h4 class="anchored" data-anchor-id="application-3-evolution-des-cultures-lien-avec-le-climat-passé">Application 3 : Evolution des cultures, lien avec le climat passé</h4>
+<p>Après avoir regardé vers l’avenir, il est temps de jeter un coup d’oeil dans le rétroviseur, et de regarder comment l’évolution des températures au cours des 40 dernières années a pu influencer certaines cultures en France. On estimera l’évolution des dates potentielles de récolte du maïs grain dans les différents bassins de productions français depuis 1980.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -796,13 +813,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./textes.html" class="pagination-link" aria-label="Données textuelles et non structurées">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Données textuelles et non structurées</span>
+      <a href="./geolocalized_data.html" class="pagination-link" aria-label="Données géolocalisées">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Données géolocalisées</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./images.html" class="pagination-link" aria-label="Images">
-        <span class="nav-page-text">Images</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./textes.html" class="pagination-link" aria-label="Données textuelles et non structurées">
+        <span class="nav-page-text">Données textuelles et non structurées</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -816,7 +833,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/textes_exemples.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/edit/main/geolocalized_data_exemples.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/linogaliana/ensai-donnees-emergentes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

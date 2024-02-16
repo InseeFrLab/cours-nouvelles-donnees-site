@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./textes_exemples.html" rel="next">
-<link href="./geolocalized_data.html" rel="prev">
+<link href="./geolocalized_data_exemples.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,13 +122,11 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Données émergentes - Données textuelles et non structurées">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://pythonds.linogaliana.fr/dalle/featured.png">
 <meta property="og:site_name" content="Données émergentes">
 <meta name="twitter:title" content="Données émergentes - Données textuelles et non structurées">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://pythonds.linogaliana.fr/dalle/featured.png">
 <meta name="twitter:creator" content="@linogaliana">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -171,10 +169,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./geolocalized_data.html"> 
-<span class="menu-text">Données géolocalisées</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-géolocalisées" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données géolocalisées</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-géolocalisées">    
+        <li>
+    <a class="dropdown-item" href="./geolocalized_data.html">
+ <span class="dropdown-text">Données géolocalisées</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./geolocalized_data_exemples.html">
+ <span class="dropdown-text">Application</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyse-textuelle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Analyse textuelle</span>
@@ -327,6 +336,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./geolocalized_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Données géolocalisées</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geolocalized_data_exemples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application</span></a>
   </div>
 </li>
       </ul>
@@ -505,7 +520,7 @@ window.Quarto = {
 <div id="fig-word2vec" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-word2vec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://raw.githubusercontent.com/linogaliana/python-datascientist/master/content/course/NLP/04_word2vec/w2v_vecto.png" class="img-fluid figure-img">
+<img src="https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/w2v_vecto.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-word2vec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Schéma illustratif de <code>word2vec</code>.
@@ -522,7 +537,7 @@ Figure&nbsp;1: Schéma illustratif de <code>word2vec</code>.
 <div id="fig-embeddings" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-embeddings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://raw.githubusercontent.com/InseeFrLab/ssphub/main/content/post/word-embedding/word_embedding.png" class="img-fluid figure-img" style="width:70.0%">
+<img src="https://raw.githubusercontent.com/InseeFrLab/ssphub/blob/main/post/embedding/word_embedding.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-embeddings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Illustration des <em>word embeddings</em>.
@@ -575,7 +590,7 @@ Figure&nbsp;3: <em>“A Shiba Inu dog wearing a beret and black turtleneck”</e
 <p>Si vous êtes intéressés par ce type de modèle, vous pouvez <a href="https://pythonds.linogaliana.fr/dalle/">tester les exemples du cours de Python de l’ENSAE</a>. Vous pouvez tester <strong>“Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat scene”</strong> pour générer une image comme celle-ci dessous ou chercher à obtenir l’image de votre choix:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://pythonds.linogaliana.fr/dalle/featured.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/chuck.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section>
@@ -601,7 +616,7 @@ Figure&nbsp;3: <em>“A Shiba Inu dog wearing a beret and black turtleneck”</e
 <h2 class="anchored" data-anchor-id="appariements">Appariements</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.linogaliana.fr/publication/2022-jms/featured.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<p><img src="img/images/img_appariements.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 <figcaption>Source: <span class="citation" data-cites="galiana2022">Galiana and Suarez Castillo (<a href="#ref-galiana2022" role="doc-biblioref">2022</a>)</span>.</figcaption>
 </figure>
 </div>
@@ -1023,8 +1038,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./geolocalized_data.html" class="pagination-link  aria-label=" données="" géolocalisées"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Données géolocalisées</span>
+      <a href="./geolocalized_data_exemples.html" class="pagination-link" aria-label="Application">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Application</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
