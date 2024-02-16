@@ -1,0 +1,30 @@
+---
+title: "Application"
+---
+
+L'objectif de ce TP est de donner un exemple introductif d'utilisation de données géolocalisées dans le cadre de la production de statistique publique. Plus précisément, il propose de manipuler les données du Registre Parcellaire Graphique (RPG), une base de données géographiques administrative servant de référence à l'instruction des aides de la politique agricole commune (PAC). Ces données sont mises en regard:
+
+- des données du Drias de simulation de l'évolution climatique pour le siècle en cours sur la France;
+- des données ERA5 agro-météorologiques de surface quotidiens pour la période allant de 1979 à aujourd'hui.
+
+Le TP composé de plusieurs applications décrites ci-dessous et disponibles **sur ce [site](https://inseefrlab.github.io/funathon2023_sujet2/)**.
+
+Un environnement de travail peut être lancé sur le `SSP Cloud` en cliquant sur le bouton suivant:
+
+<a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABtp-geo%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Rstudio" alt="Onyxia"></a>
+
+#### Application 0 (optionnelle) : Création d'une base de données PostgreSQL
+
+Les données du RPG étant volumineuses (on a vu que c'était souvent le cas pour les données administratives), il faut pouvoir les requêter depuis une base de données. Les données sont disponibles dans une base de données PostgreSQL (avec l'extension pour données spatiales PostGIS) prête à l'emploi. Néanmoins, cette application explique comment procéder pour créer une telle base de données sur la plateforme SSP Cloud. 
+
+#### Application 1 : Première manipulation du RPG
+
+L'objectif de cette première étape est d'effectuer des premières requêtes géographiques permettant d'examiner les cultures à proximité d'un point géographique donné, et de comparer la composition observée avec les compositions départementale, régionale, etc. On propose également de mettre au point une interface de type tableau de bord permettant d'obtenir ces informations interactivement.
+
+#### Application 2 : Exposition des cultures au déficit de précipitations
+
+L'objectif de cette application est de mettre en regard cultures et prévisions climatiques localement, pour identifier des cultures particulièrement mises en danger par le changement climatique en France.
+
+#### Application 3 : Evolution des cultures, lien avec le climat passé
+
+Après avoir regardé vers l'avenir, il est temps de jeter un coup d'oeil dans le rétroviseur, et de regarder comment l'évolution des températures au cours des 40 dernières années a pu influencer certaines cultures en France. On estimera l'évolution des dates potentielles de récolte du maïs grain dans les différents bassins de productions français depuis 1980.

@@ -190,7 +190,7 @@ et un autre document contenant le mot _"Reine"_ ont beaucoup de chance
 d'aborder des sujets semblables.
 
 ::: {#fig-word2vec}
-![](https://raw.githubusercontent.com/linogaliana/python-datascientist/master/content/course/NLP/04_word2vec/w2v_vecto.png)
+![](https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/w2v_vecto.png)
 
 Schéma illustratif de `word2vec`.
 :::
@@ -227,7 +227,7 @@ on obtient finalement des *embeddings* pour chaque mot du vocabulaire,
 qui présentent les propriétés discutées précédemment.
 
 ::: {#fig-embeddings}
-![](https://raw.githubusercontent.com/InseeFrLab/ssphub/main/content/post/word-embedding/word_embedding.png){ width=70% }
+![](https://raw.githubusercontent.com/InseeFrLab/ssphub/blob/main/post/embedding/word_embedding.png){ width=70% }
 
 Illustration des *word embeddings*.
 :::
@@ -308,7 +308,7 @@ __"Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat 
 pour générer une image comme celle-ci dessous ou chercher à obtenir
 l'image de votre choix:
 
-![](https://pythonds.linogaliana.fr/dalle/featured.png){ fig-align="center" }
+![](https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/chuck.png){ fig-align="center" }
 
 # Modèles de langage dans la statistique publique
 
@@ -334,7 +334,7 @@ officielles. Le troisième est une expérimentation encore en cours.
 
 ## Appariements
 
-![Source: @galiana2022.](https://www.linogaliana.fr/publication/2022-jms/featured.png){ fig-align="center" width=80% }
+![Source: @galiana2022.](img/images/img_appariements.png){ fig-align="center" width=80% }
 
 # Conclusion
 
