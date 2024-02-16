@@ -227,7 +227,7 @@ on obtient finalement des *embeddings* pour chaque mot du vocabulaire,
 qui présentent les propriétés discutées précédemment.
 
 ::: {#fig-embeddings}
-![](https://raw.githubusercontent.com/InseeFrLab/ssphub/blob/main/post/embedding/word_embedding.png){ width=70% }
+![](img/images/word_embedding.png){ width=70% }
 
 Illustration des *word embeddings*.
 :::
