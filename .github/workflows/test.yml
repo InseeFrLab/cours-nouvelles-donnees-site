@@ -18,7 +18,9 @@ jobs:
           cache: 'pip' # caching pip dependencies
         
       - name: Install python Dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install pybind11
+          pip install -r requirements.txt
 
       - name: Download NLP requirements
         run: ./download_nlp_reqs.sh
