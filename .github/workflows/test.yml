@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Install python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'pip' # caching pip dependencies
@@ -20,6 +20,7 @@ jobs:
       - name: Install python Dependencies
         run: |
           pip install pybind11
+          pip install wheel setuptools pip --upgrade
           pip install -r requirements.txt
 
       - name: Download NLP requirements
