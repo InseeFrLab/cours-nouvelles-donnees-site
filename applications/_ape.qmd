@@ -405,10 +405,10 @@ df_test['prediction'] = predictions['prediction'].astype(str).str.replace(r'__la
 ```
 
 ```{python}
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score
 accuracy_score(df_test['nace'],df_test['prediction'])
 
-df['match'] = (df['nace']==df['prediction'])
+df_test['match'] = (df_test['nace']==df_test['prediction'])
 
 # Aggregating by 'nace' to count correct predictions and calculate accuracy
 aggregation = df_test.groupby('nace').agg(correct_predictions=('match', 'sum'),
