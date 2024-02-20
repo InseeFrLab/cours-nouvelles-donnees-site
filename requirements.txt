@@ -8,3 +8,4 @@ scikit-learn
 fasttext
 plotnine
 xlrd
+jupyter
