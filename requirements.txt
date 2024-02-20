@@ -1,0 +1,10 @@
+pandas
+nltk
+unidecode
+matplotlib
+wordcloud
+spacy
+scikit-learn
+fasttext
+plotnine
+xlrd

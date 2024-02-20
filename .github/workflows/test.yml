@@ -10,6 +10,18 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        
+      - name: Install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # caching pip dependencies
+        
+      - name: Install python Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download NLP requirements
+        run: ./download_nlp_reqs.sh
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

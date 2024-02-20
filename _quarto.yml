@@ -20,6 +20,7 @@ website:
       - text: "Analyse textuelle"
         menu:
           - textes.qmd
+          - applications/ape.qmd
           - textes_exemples.qmd
       - text: "Analyse d'images"
         menu:
@@ -47,6 +48,7 @@ website:
       - section: "Analyse textuelle"
         contents:
           - textes.qmd
+          - applications/ape.qmd
           - textes_exemples.qmd
       - section: "Analyse d'images"
         contents:
@@ -62,19 +64,17 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/linogaliana/ensai-donnees-emergentes
+            url: https://github.com/InseeFrLab/cours-nouvelles-donnees-site
           - text: Report a Bug
-            url:  https://github.com/linogaliana/ensai-donnees-emergentes/issues
+            url: https://github.com/InseeFrLab/cours-nouvelles-donnees-site/issues
   page-navigation: true
   page-footer:
     left: "(c) 2022, Lino Galiana and Tom Seimandi"
     right:
       - icon: github
-        href: https://github.com/linogaliana/ensai-donnees-emergentes
-      - icon: twitter
-        href: https://twitter.com/
+        href: https://github.com/InseeFrLab/cours-nouvelles-donnees-site
   reader-mode: true
-  repo-url: https://github.com/linogaliana/ensai-donnees-emergentes
+  repo-url: https://github.com/InseeFrLab/cours-nouvelles-donnees-site
   repo-actions: [edit, issue]
   twitter-card:
     creator: "@linogaliana"

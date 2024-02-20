@@ -1,21 +1,22 @@
 ---
-title: "Classification automatique dans une nomenclature"
-subtitle: "Application de `Fasttext`"
+title: "Application 1"
 echo: false
-execute: 
-  cache: true
+output-dir: _site
 ---
 
 Cette application illustrera certains apports des outils du 
 NLP pour la codification automatique des déclarations d'activité
-dans la nomenclature des activités françaises. 
+dans la nomenclature des activités françaises. On pourra coder dans un 
+notebook au sein de l'environnement `SSP Cloud` suivant:
+
+<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABpython-datascience%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2Ftomseimandi%2Finit-scripts%2Fmain%2Fcours-ensai.sh%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
 ## Exploration du jeu de données
 
 Ce tutoriel se propose d'illustrer la problématique de
-la classification automatiquem par le biais de
+la classification automatique par le biais de
 l'algorithme d'apprentissage
-supervisé `Fasttext`
+supervisé `fastText`
 à partir des données issues des déclarations Sirene. 
 
 Le code pour lire les données est directement fourni:
@@ -48,9 +49,8 @@ les enjeux du nettoyage de texte.
 <h3 class="alert-heading"><i class="fa-solid fa-pencil"></i> Exercice 1 </h3>
 ```
 
-1. Créer une fonction pour compter le nombre d'occurrences d'un mot ou 
-groupe donné
-dans le corpus. La tester avec _"data science"_ et _"boulanger"_
+1. Créer une fonction pour compter le nombre de textes contenant une séquence de caractères
+donnée dans le corpus. La tester avec _"data science"_ et _"boulanger"_.
 
 2. Faire une fonction pour afficher le _wordcloud_
 de notre corpus dans son ensemble et de certaines
@@ -58,7 +58,7 @@ catégories pour comprendre la nature de notre
 corpus. 
 
 3. Retirer les stopwords à partir de la liste
-des mots disponibles dans `SpaCy`
+des mots disponibles dans `SpaCy`.
 
 <details>
 <summary>
@@ -93,7 +93,7 @@ train['text_clean'] = (train['text']
 </details>
 
 
-4. Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage
+4. Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage.
 
 ```{=html}
 </div>
@@ -108,42 +108,44 @@ beaucoup plus de déclarations liées à la boulangerie que
 liées à la _data science_:
 
 ```{python}
-word = "data"
 train_data=train.copy()
 
-def nb_occurrence(train_data, word):
-    word_capitalized = word.upper() 
-    mask = train_data['text'].str.contains(word_capitalized)
+def filter_train_data(train_data, sequence):
+    sequence_capitalized = sequence.upper() 
+    mask = train_data['text'].str.contains(sequence_capitalized)
     nb_occurrence = mask.astype(int).sum()
     print(
-        f"Nombre d'occurrences du terme '{word}': {nb_occurrence}"
+        f"Nombre d'occurrences de la séquence '{sequence}': {nb_occurrence}"
     )
     return train_data.loc[mask]
 ```
 
 ```{python}
 #| echo: true
-nb_occurrence(train, "data science").head(5)
-nb_occurrence(train, "boulanger").head(5)
+filter_train_data(train, "data science").head(5)
+filter_train_data(train, "boulanger").head(5)
 ```
 
 ```{python}
 #1. Wordclouds
-def graph_wordcloud(train_data, text_var = "text", naf = None):
-  if naf is not None:
-    train_data = train_data.loc[train_data['nace'] == naf]
+def graph_wordcloud(train_data, text_var="text", naf=None):
+    if naf is not None:
+        train_data = train_data.loc[train_data['nace'] == naf]
 
-  txt = train_data[text_var]
-  all_text = ' '.join([text for text in txt])
-  wordcloud = WordCloud(width=800, height=500,
-                      random_state=21,
-                      max_words=2000,
-                      background_color = "white",
-                      colormap='Set2').generate(all_text)
-  return wordcloud
+    txt = train_data[text_var]
+    all_text = ' '.join([text for text in txt])
+    wordcloud = WordCloud(
+        width=800,
+        height=500,
+        random_state=21,
+        max_words=2000,
+        background_color="white",
+        colormap='Set2'
+    ).generate(all_text)
+    return wordcloud
 ```
 
-Les _wordcloud_ peuvent servir à rapidement visualiser
+Les _wordclouds_ peuvent servir à rapidement visualiser
 la structure d'un corpus. On voit ici que notre
 corpus est très bruité car nous n'avons pas 
 nettoyé celui-ci:
@@ -161,7 +163,7 @@ des catégories, on peut représenter le corpus de certaines
 d'entre elles ? Arrivez-vous à inférer la catégorie de la NAF 
 en question ? Si oui, vous utilisez sans doute des heuristiques
 proches de celles que nous allons mettre en oeuvre dans notre
-algorithme de classification
+algorithme de classification.
 
 ```{python}
 wordcloud_corpus = graph_wordcloud(train, naf = "1071C")
@@ -184,7 +186,7 @@ bruitées. La première étape classique est de retirer
 les _stop words_ et éventuellement des 
 termes spécifiques à notre corpus. Par exemple,
 pour des données de caisse, on retirera les bruits, 
-les abbréviations, etc. qui peuvent bruiter notre
+les abréviations, etc. qui peuvent bruiter notre
 corpus. 
 
 ```{python}
@@ -216,7 +218,7 @@ train['text_clean'] = (train['text']
 ```
 
 
-## Premier algorithe d'apprentissage supervisé
+## Premier algorithme d'apprentissage supervisé
 
 Nous avons nettoyé nos données. Cela devrait améliorer
 la pertinence de nos modèles en réduisant le ratio signal/bruit. 
@@ -226,13 +228,13 @@ notamment raciniser nos mots.
 
 Pour cela, récupérer les fichiers suivants:
 
-- [`constants.py`]()
-- [`preprocessor.py`]()
-- [`utils.py`]()
+- [`constants.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py)
+- [`preprocessor.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py)
+- [`utils.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py)
 
-et mettre ceux-ci dans le même dossier que votre _notebook_ `Jupyter`
+et mettre ceux-ci dans le même dossier que votre _notebook_ `Jupyter`.
 
-Le code de nettoyage est directement fourni
+Le code de nettoyage est directement fourni:
 
 ```{python}
 #| echo: true
@@ -249,7 +251,7 @@ df.head(2)
 
 Nous allons commencer à entraîner un modèle dont le plongement de mot est de 
 faible dimension. 
-Voici les paramètres qui seront utiles pour le prochain exercice
+Voici les paramètres qui seront utiles pour le prochain exercice.
 
 ```{python}
 #| echo: true
@@ -281,10 +283,10 @@ def write_training_data(df, params, training_data_path=None):
 <h3 class="alert-heading"><i class="fa-solid fa-pencil"></i> Exercice 2 </h3>
 ```
 
-1. Découper notre échantillon complet en _train_ et _test_
-2. `Fasttext` effectue son entraînement à partir d'objets stockés
+1. Découper notre échantillon complet en _train_ et _test_.
+2. `fastText` effectue son entraînement à partir d'objets stockés
 dans un `.txt`. Utiliser la fonction `write_training_data` 
-de la manière suivante pour l'écrire
+de la manière suivante pour l'écrire.
 
 ```{.python}
 # Write training data in a .txt file (fasttext-specific)
@@ -306,7 +308,7 @@ list_libs = ["vendeur d'huitres", "boulanger"]
 
 6. Sur l'ensemble du jeu de test, renvoyer la meilleure prédiction
 pour chaque descriptif d'activités. Evaluer la performance globale
-et la performance classe par classe (pour les classes de plus
+et la performance classe par classe, par exemple en calculant le rappel (pour les classes de plus
 de 200 cas). 
 
 ```{=html}
@@ -391,12 +393,12 @@ df.merge(naf, left_on = "Label", right_on="Code")
 # Question 6
 output_column = "prediction"
 predictions = pd.DataFrame(
-        {
-        output_column: \
-            [k[0] for k in model.predict(
-                [str(libel) for libel in df_test["text"]], k = 1
-                )[0]]
-        })
+    {
+    output_column: \
+        [k[0] for k in model.predict(
+            [str(libel) for libel in df_test["text"]], k = 1
+            )[0]]
+    })
 
 df_test[output_column] = predictions['prediction'].astype(str).str.replace(r'__label__', '')
 df_test = df_test.reset_index(drop = True)
@@ -406,23 +408,46 @@ df_test['prediction'] = predictions['prediction'].astype(str).str.replace(r'__la
 
 ```{python}
 from sklearn.metrics import accuracy_score
-accuracy_score(df_test['nace'],df_test['prediction'])
+accuracy_score(df_test['nace'], df_test['prediction'])
 
-df_test['match'] = (df_test['nace']==df_test['prediction'])
+df_test['match'] = (df_test['nace'] == df_test['prediction'])
 
 # Aggregating by 'nace' to count correct predictions and calculate accuracy
-aggregation = df_test.groupby('nace').agg(correct_predictions=('match', 'sum'),
-                                           total=('nace', 'count'),
-                                           accuracy=('match', 'mean'))
+aggregation = df_test.groupby('nace').agg(
+    correct_predictions=('match', 'sum'),
+    total=('nace', 'count'),
+    recall=('match', 'mean')
+)
 
-aggregation.loc[aggregation['total']>200].sort_values('accuracy', ascending = True)
+aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True)
 ```
 
 ```{python}
 from plotnine import *
 
 ggplot(
-    aggregation.loc[aggregation['total']>200].sort_values('accuracy', ascending = True),
-    aes(x = 'accuracy')
-) + geom_histogram()
+    aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True),
+    aes(x='recall')
+) + geom_histogram(bins=20)
 ```
+
+## Pour aller plus loin, introduction au MLOps
+
+On utilise dans cette application un modèle de Machine 
+Learning (ML) pour prédire l'activité des entreprises à 
+partir de texte descriptifs. Les méthodes de 
+ML sont quasiment indispensables pour traiter du texte, 
+mais utiliser des modèles de ML pour servir des cas d'usage 
+réels demande de respecter un certain nombre de bonnes pratiques 
+pour que tout se passe convenablement, en particulier:
+
+- Tracking propre des expérimentations
+- Versioning des modèles, en même temps que des données et du code correspondants
+- Mise à disposition efficace du modèle aux utilisateurs
+- Monitoring de l'activité du modèle servi
+- Réentraînement du modèle
+
+Une introduction à ces bonnes pratiques, auxquelles on fait 
+régulièrement référence à travers le terme MLOps, est donné dans 
+[cette formation](https://inseefrlab.github.io/formation-mlops/slides/fr/index.html#/title-slide) 
+([dépôt associé](https://github.com/InseeFrLab/formation-mlops)).
