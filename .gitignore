@@ -5,3 +5,12 @@ __pycache__/
 ape.ipynb
 training_data.txt
 ape_files/
+
+
+*.parquet
+data/
+*.csv.gz
+*.csv
+*.sqlite
+*.log
+*.gpkg
