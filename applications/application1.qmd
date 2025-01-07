@@ -1,0 +1,218 @@
+---
+title: "Application 1 - Données spatiales"
+format: html
+---
+
+# Préparation de l'environnement
+
+### Import des données dans votre work locale
+
+- Les données « Demandes de Valeurs Foncières », ou **DVF**, qui recensent l'ensemble des ventes de biens fonciers réalisées au cours des dernières années, en métropole et dans les départements et territoires d'outre-mer — sauf à Mayotte et en Alsace-Moselle. Les biens concernés peuvent être bâtis (appartement et maison) ou non bâtis (parcelles et exploitations). Les données sont produites par la Direction générale des finances publiques. Elles proviennent des actes enregistrés chez les notaires et des informations contenues dans le cadastre. Cette base a été filtrée de manière à être la plus pédagogique possible pour cette formation.
+- Les données spatiales carroyées à 200m, produites par l'Insee à partir du dispositif **Filosofi**, contentant des informations socio-économiques sur les ménages.
+- 3 contours géographiques : 
+  - La commune de Malakoff
+  - La commune de Montrouge
+  - Le "Triangle d'or" de Malakoff (autrement dit, son centre-ville à peu de choses près)
+
+```{r}
+system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet dvf.parquet")
+system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet carreaux.parquet")
+system("mc cp s3/projet-formation/nouvelles-sources/data/triangle.geojson triangle.geojson")
+system("mc cp s3/projet-formation/nouvelles-sources/data/malakoff.geojson malakoff.geojson")
+system("mc cp s3/projet-formation/nouvelles-sources/data/montrouge.geojson montrouge.geojson")
+```
+
+### Chargement des libraries nécessaires : 
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(duckdb)
+library(glue)
+library(dplyr)
+library(mapview)
+```
+
+### Variables globales pour l'applications : 
+
+```{r}
+cog_malakoff <- "92046"
+cog_montrouge <- "92049"
+```
+
+
+### Import et visualisation des contours géographiques : 
+
+
+```{r}
+
+triangle <- sf::st_read("triangle.geojson", quiet=TRUE)
+malakoff <- sf::st_read("malakoff.geojson", quiet=TRUE)
+montrouge <- sf::st_read("montrouge.geojson", quiet=TRUE)
+
+mapview(triangle)
+mapview(malakoff)
+mapview(montrouge)
+
+```
+
+### Préparation de DuckDB
+
+- Création d'une connexion DuckDB
+- Installation et charger les extensions spatiales (car DVF et les données carroyées sont des données spatiales).
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+con <- dbConnect(duckdb::duckdb())
+dbExecute(con, "INSTALL spatial;")
+dbExecute(con, "LOAD spatial;")
+
+```
+
+
+
+# Partie 1 : Prix immobiliers à Malakoff et à Montrouge
+
+
+### Description des données DVF
+
+```{r}
+describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('dvf.parquet')")
+print(describe_dvf)
+
+preview <- dbGetQuery(con, "SELECT * FROM read_parquet('dvf.parquet') LIMIT 10")
+print(preview)
+
+dbGetQuery(con, "SELECT DISTINCT nature_mutation FROM read_parquet('dvf.parquet')")
+
+dbGetQuery(con, "
+        SELECT
+            MIN(valeur_fonciere) AS min_valeur,
+            MAX(valeur_fonciere) AS max_valeur
+        FROM read_parquet('dvf.parquet')
+           ")
+```
+
+Requête de calcul des prix médians des transactions à Malakoff et à Montrouge : 
+
+- Filtre des seules transactions effectuées à Montrouge ou Malakoff
+- Calculs groupés de la médiane par communes des montants des transactions
+
+```{r}
+query1 <- glue("
+    FROM read_parquet('dvf.parquet')
+    SELECT
+        code_commune,
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY valeur_fonciere) AS mediane_valeur_fonciere
+    WHERE code_commune IN ('{cog_malakoff}', '{cog_montrouge}')
+    GROUP BY code_commune
+")
+
+result1 <- dbGetQuery(con, query1)
+print(result1)
+
+```
+
+
+Conclusion : les biens vendus à Montrouge (dans notre base) ont une médiane un peu plus élevée qu'à Malakoff.
+
+
+
+# Partie 2 : les prix immobiliers à Malakoff, dans le centre et en-dehors.
+
+```{r}
+query2 <- glue("
+    FROM read_parquet('dvf.parquet')
+    SELECT
+        code_commune,
+        valeur_fonciere,
+        ST_AsText(geometry) AS geom_text
+    WHERE code_commune = '{cog_malakoff}'
+")
+
+transactions_malakoff <- dbGetQuery(con, query2)
+
+transactions_malakoff <- sf::st_as_sf(transactions_malakoff, wkt = "geom_text", crs = 2154) |>
+  rename(geometry=geom_text)
+
+bool_mask <- transactions_malakoff |> sf::st_transform(4326) |> sf::st_intersects(triangle, sparse = FALSE)
+
+in_triangle <- transactions_malakoff[bool_mask,]
+out_triangle <- transactions_malakoff[!bool_mask,]
+
+in_triangle$valeur_fonciere |> median()
+out_triangle$valeur_fonciere |> median()
+```
+
+
+# Partie 3 
+
+```{r}
+describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('carreaux.parquet')")
+print(describe_dvf)
+
+preview <- dbGetQuery(con, "SELECT * FROM read_parquet('carreaux.parquet') LIMIT 10")
+print(preview)
+
+malakoff_2154 <- sf::st_transform(malakoff, 2154)
+malakoff_wkt <- sf::st_as_text(sf::st_geometry(malakoff_2154))
+
+geo_query <- glue("
+  FROM read_parquet('carreaux.parquet')
+  SELECT
+      *, ST_AsText(geometry) AS geom_text
+  WHERE ST_Intersects(
+      geometry,
+      ST_GeomFromText('{malakoff_wkt}')
+  )
+")
+
+carr_malakoff <- dbGetQuery(con, geo_query)
+
+
+carr_malakoff <-
+  carr_malakoff |>
+  sf::st_as_sf(wkt = "geom_text", crs = 2154) |>
+  select(-geometry) |>
+  rename(geometry=geom_text)
+
+
+carr_malakoff |> mapview()
+
+carr_malakoff |> summarise(sum(men_pauv)/sum(men))
+
+
+
+montrouge_2154 <- sf::st_transform(montrouge, 2154)
+montrouge_wkt <- sf::st_as_text(sf::st_geometry(montrouge_2154))
+
+geo_query <- glue("
+  FROM read_parquet('carreaux.parquet')
+  SELECT
+      *, ST_AsText(geometry) AS geom_text
+  WHERE ST_Intersects(
+      geometry,
+      ST_GeomFromText('{montrouge_wkt}')
+  )
+")
+
+carr_montrouge <- dbGetQuery(con, geo_query)
+
+
+carr_montrouge <-
+  carr_montrouge |>
+  sf::st_as_sf(wkt = "geom_text", crs = 2154) |>
+  select(-geometry) |>
+  rename(geometry=geom_text)
+
+
+carr_montrouge |> mapview()
+
+carr_montrouge |> summarise(sum(men_pauv)/sum(men))
+```
+
