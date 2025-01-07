@@ -10,3 +10,4 @@ plotnine
 xlrd
 jupyter
 pyarrow
+loguru

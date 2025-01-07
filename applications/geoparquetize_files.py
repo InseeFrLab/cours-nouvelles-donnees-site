@@ -72,6 +72,19 @@ except Exception as e:
     logger.error(f"Error converting object columns: {e}")
     raise
 
+logger.info("Shrink fields to simplify re-using.")
+try:
+    gdf = gdf[gdf['type_local'].isin(["Appartement", "Maison"])]
+    gdf = gdf[gdf['valeur_fonciere'].notna()]
+    gdf = gdf[(gdf['valeur_fonciere'] > 10000) & (gdf['valeur_fonciere'] < 10000000)]
+    gdf = gdf[gdf['nature_mutation'] == "Vente"]
+    gdf = gdf[gdf['longitude'].notna() | gdf['latitude'].notna()]
+    gdf = gdf[gdf['nombre_pieces_principales'] > 0]
+    gdf = gdf.drop_duplicates(subset='id_mutation')
+except Exception as e:
+    logger.error(f"Error simplifying dvf data: {e}")
+    raise
+
 logger.info("Reprojecting GeoDataFrame to EPSG:2154.")
 gdf = gdf.to_crs(2154)
 
