@@ -28,7 +28,7 @@ import pandas as pd
 from wordcloud import WordCloud
 
 DATA_PATH = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet"
-NAF_PATH = "https://www.insee.fr/fr/statistiques/fichier/2120875/naf2008_liste_n5.xls"
+NAF_PATH = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls"
 naf = pd.read_excel(NAF_PATH, skiprows = 2)
 naf['Code'] = naf['Code'].str.replace(".","")
 train = pd.read_parquet(DATA_PATH)
