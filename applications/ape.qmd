@@ -317,7 +317,7 @@ de 200 cas).
 :::
 
 ```{python}
-#| train-test-split
+#| label: train-test-split
 import warnings
 from sklearn.model_selection import train_test_split
 
