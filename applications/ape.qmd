@@ -317,6 +317,7 @@ de 200 cas).
 :::
 
 ```{python}
+#| train-test-split
 import warnings
 from sklearn.model_selection import train_test_split
 
@@ -347,12 +348,14 @@ def write_training_data(df, params, training_data_path=None):
 
 
 ```{python}
+#| label: write-as-txt
 # Write training data in a .txt file (fasttext-specific)
 training_data_path = write_training_data(df_train, params, pathlib.Path(str(data_path.absolute()) + "/training_data.txt"))
 ```
 
 
 ```{python}
+#| label: fasttext-training
 import fasttext
 
 # Train the fasttext model
@@ -369,6 +372,7 @@ model.save_model("model.bin")
 
 
 ```{python}
+#| label: fasttext-predict
 list_libs = ["vendeur d'huitres", "boulanger"]
 
 results = model.predict(list_libs, k = 3)
