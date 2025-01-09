@@ -363,7 +363,7 @@ import fasttext
 model = fasttext.train_supervised(
             training_data_path,
             **params,
-            lr=0.5,
+            lr=0.2,
             verbose=2
         )
 ```
