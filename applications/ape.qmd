@@ -320,6 +320,8 @@ de 200 cas).
 import warnings
 from sklearn.model_selection import train_test_split
 
+df = df.dropna(subset = [Y, TEXT_FEATURE])
+
 X_train, X_test, y_train, y_test = train_test_split(
             df[TEXT_FEATURE],
             df[Y],
