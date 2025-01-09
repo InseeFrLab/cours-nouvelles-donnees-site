@@ -255,6 +255,7 @@ Voici les paramètres qui seront utiles pour le prochain exercice.
 
 ```{python}
 #| echo: true
+#| label: create-training-text-example
 import pathlib
 
 params = {
@@ -367,6 +368,7 @@ model = fasttext.train_supervised(
 ```
 
 ```{python}
+#| label: save-model
 model.save_model("model.bin")
 ```
 
@@ -391,12 +393,13 @@ df['Label'] = df['Label'].str.replace(r'__label__', '')
 ```
 
 ```{python}
+# label: merge-to-check
 df.merge(naf, left_on = "Label", right_on="Code")
 ```
 
 
 ```{python}
-# Question 6
+# label: question6
 output_column = "prediction"
 predictions = pd.DataFrame(
     {
