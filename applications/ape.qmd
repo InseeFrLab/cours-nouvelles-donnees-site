@@ -356,6 +356,7 @@ training_data_path = write_training_data(df_train, params, pathlib.Path(str(data
 
 
 ```{python}
+#| eval: false
 #| label: fasttext-training
 import fasttext
 
@@ -369,12 +370,14 @@ model = fasttext.train_supervised(
 ```
 
 ```{python}
+#| eval: false
 #| label: save-model
 model.save_model("model.bin")
 ```
 
 
 ```{python}
+#| eval: false
 #| label: fasttext-predict
 list_libs = ["vendeur d'huitres", "boulanger"]
 
@@ -394,12 +397,14 @@ df['Label'] = df['Label'].str.replace(r'__label__', '')
 ```
 
 ```{python}
+#| eval: false
 # label: merge-to-check
 df.merge(naf, left_on = "Label", right_on="Code")
 ```
 
 
 ```{python}
+#| eval: false
 # label: question6
 output_column = "prediction"
 predictions = pd.DataFrame(
@@ -417,6 +422,7 @@ df_test['prediction'] = predictions['prediction'].astype(str).str.replace(r'__la
 ```
 
 ```{python}
+#| eval: false
 from sklearn.metrics import accuracy_score
 accuracy_score(df_test['nace'], df_test['prediction'])
 
@@ -433,6 +439,7 @@ aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True)
 ```
 
 ```{python}
+#| eval: false
 from plotnine import *
 
 ggplot(
