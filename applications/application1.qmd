@@ -47,9 +47,16 @@ cog_montrouge <- "92049"
 
 ### Import et visualisation des contours géographiques : 
 
+```{r}
+#| echo: false
+#| output: false
+download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/triangle.geojson", "triangle.geojson")
+download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/malakoff.geojson", "malakoff.geojson")
+download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/montrouge.geojson", "montrouge.geojson")
+download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet", "dvf.parquet")
+```
 
 ```{r}
-
 triangle <- sf::st_read("triangle.geojson", quiet=TRUE)
 malakoff <- sf::st_read("malakoff.geojson", quiet=TRUE)
 montrouge <- sf::st_read("montrouge.geojson", quiet=TRUE)
