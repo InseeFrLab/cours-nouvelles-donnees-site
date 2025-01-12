@@ -17,6 +17,7 @@ format: html
   - Le "Triangle d'or" de Malakoff (autrement dit, son centre-ville à peu de choses près)
 
 ```{r}
+#| output: false
 system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet dvf.parquet")
 system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet carreaux.parquet")
 system("mc cp s3/projet-formation/nouvelles-sources/data/triangle.geojson triangle.geojson")
