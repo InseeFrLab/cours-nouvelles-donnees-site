@@ -28,7 +28,7 @@ import pandas as pd
 from wordcloud import WordCloud
 
 DATA_PATH = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet"
-NAF_PATH = "https://www.insee.fr/fr/statistiques/fichier/2120875/naf2008_liste_n5.xls"
+NAF_PATH = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls"
 naf = pd.read_excel(NAF_PATH, skiprows = 2)
 naf['Code'] = naf['Code'].str.replace(".","")
 train = pd.read_parquet(DATA_PATH)
@@ -255,6 +255,7 @@ Voici les paramètres qui seront utiles pour le prochain exercice.
 
 ```{python}
 #| echo: true
+#| label: create-training-text-example
 import pathlib
 
 params = {
@@ -317,8 +318,11 @@ de 200 cas).
 :::
 
 ```{python}
+#| label: train-test-split
 import warnings
 from sklearn.model_selection import train_test_split
+
+df = df.dropna(subset = [Y, TEXT_FEATURE])
 
 X_train, X_test, y_train, y_test = train_test_split(
             df[TEXT_FEATURE],
@@ -345,28 +349,36 @@ def write_training_data(df, params, training_data_path=None):
 
 
 ```{python}
+#| label: write-as-txt
 # Write training data in a .txt file (fasttext-specific)
 training_data_path = write_training_data(df_train, params, pathlib.Path(str(data_path.absolute()) + "/training_data.txt"))
 ```
 
 
 ```{python}
+#| eval: false
+#| label: fasttext-training
 import fasttext
 
 # Train the fasttext model
 model = fasttext.train_supervised(
             training_data_path,
             **params,
+            lr=0.005,
             verbose=2
         )
 ```
 
 ```{python}
+#| eval: false
+#| label: save-model
 model.save_model("model.bin")
 ```
 
 
 ```{python}
+#| eval: false
+#| label: fasttext-predict
 list_libs = ["vendeur d'huitres", "boulanger"]
 
 results = model.predict(list_libs, k = 3)
@@ -385,12 +397,15 @@ df['Label'] = df['Label'].str.replace(r'__label__', '')
 ```
 
 ```{python}
+#| eval: false
+# label: merge-to-check
 df.merge(naf, left_on = "Label", right_on="Code")
 ```
 
 
 ```{python}
-# Question 6
+#| eval: false
+# label: question6
 output_column = "prediction"
 predictions = pd.DataFrame(
     {
@@ -407,6 +422,7 @@ df_test['prediction'] = predictions['prediction'].astype(str).str.replace(r'__la
 ```
 
 ```{python}
+#| eval: false
 from sklearn.metrics import accuracy_score
 accuracy_score(df_test['nace'], df_test['prediction'])
 
@@ -423,6 +439,7 @@ aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True)
 ```
 
 ```{python}
+#| eval: false
 from plotnine import *
 
 ggplot(
