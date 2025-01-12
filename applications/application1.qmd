@@ -54,6 +54,7 @@ download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/malakoff.geojson", "malakoff.geojson")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montrouge.geojson", "montrouge.geojson")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet", "dvf.parquet")
+download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet", "carreaux.parquet")
 ```
 
 
