@@ -1,6 +1,6 @@
 on:
   push:
-    branches: revision2025
+    branches: main
 
 name: Render and Publish
 
