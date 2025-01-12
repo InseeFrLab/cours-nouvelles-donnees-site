@@ -17,6 +17,7 @@ website:
         menu: 
           - geolocalized_data.qmd
           - geolocalized_data_exemples.qmd
+          - applications/application1.qmd
       - text: "Analyse textuelle"
         menu:
           - textes.qmd
@@ -45,6 +46,7 @@ website:
         contents:
           - geolocalized_data.qmd
           - geolocalized_data_exemples.qmd
+          - applications/application1.qmd
       - section: "Analyse textuelle"
         contents:
           - textes.qmd
