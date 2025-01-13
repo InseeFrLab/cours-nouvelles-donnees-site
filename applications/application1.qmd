@@ -3,7 +3,10 @@ title: "Application 1 - Données spatiales"
 format: html
 ---
 
-# Préparation de l'environnement
+<a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?name=Funathon%202024%20-%20Sujet%202&version=1.15.26&autoLaunch=false&networking.user.enabled=true&git.repository=«https%3A%2F%2Fgithub.com%2FInseeFrLab%2Ffunathon2024_sujet2.git»&onyxia.friendlyName=«config-funathon2024»&kubernetes.role=«admin»&git.cache=«36000»" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSP%20Cloud-Ouvrir_dans_RStudio-blue?logo=rstudio&amp;logoColor=blue" alt="Onyxia"></a>
+
+Les données ont été préparées en amont de ce TD. 
+
 
 
 
@@ -16,14 +19,6 @@ format: html
   - La commune de Montrouge
   - Le "Triangle d'or" de Malakoff (autrement dit, son centre-ville à peu de choses près)
 
-```{r}
-#| output: false
-system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet dvf.parquet")
-system("mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet carreaux.parquet")
-system("mc cp s3/projet-formation/nouvelles-sources/data/triangle.geojson triangle.geojson")
-system("mc cp s3/projet-formation/nouvelles-sources/data/malakoff.geojson malakoff.geojson")
-system("mc cp s3/projet-formation/nouvelles-sources/data/montrouge.geojson montrouge.geojson")
-```
 
 ### Chargement des libraries nécessaires : 
 
@@ -47,17 +42,6 @@ cog_montrouge <- "92049"
 
 
 ### Import et visualisation des contours géographiques : 
-
-```{r}
-#| echo: false
-#| output: false
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/triangle.geojson", "triangle.geojson")
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/malakoff.geojson", "malakoff.geojson")
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montrouge.geojson", "montrouge.geojson")
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet", "dvf.parquet")
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet", "carreaux.parquet")
-```
-
 
 
 ```{r}
