@@ -13,4 +13,4 @@ data/
 *.csv
 *.sqlite
 *.log
-*.gpkg
+*.gpkgdata/
