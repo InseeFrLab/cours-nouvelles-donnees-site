@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="exploration-du-jeu-de-données">Exploration du jeu de données</h2>
 <p>Ce tutoriel se propose d’illustrer la problématique de la classification automatique par le biais de l’algorithme d’apprentissage supervisé <code>fastText</code> à partir des données issues des déclarations Sirene.</p>
 <p>Le code pour lire les données est directement fourni:</p>
-<div id="859779c7" class="cell" data-execution_count="1">
+<div id="e3197e80" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
@@ -545,6 +545,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell markdown">
 <div class="alert alert-success" role="alert">
 <h3 class="alert-heading anchored"><i class="fa-solid fa-pencil"></i> Exercice 1 </h3>
+<ol start="0" type="1">
+<li>Lancer le code ci-dessous pour préparer votre environnement de travail :</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python <span class="op">-</span>m spacy download fr_core_news_sm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt_tab'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li><p>Créer une fonction pour compter le nombre de textes contenant une séquence de caractères donnée dans le corpus. La tester avec <em>“data science”</em> et <em>“boulanger”</em>.</p></li>
 <li><p>Faire une fonction pour afficher le <em>wordcloud</em> de notre corpus dans son ensemble et de certaines catégories pour comprendre la nature de notre corpus.</p></li>
@@ -554,28 +562,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>
 Aide
 </summary>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"fr_core_news_sm"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="co">#liste de stopwords</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to remove stopwords</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_single_letters(text):</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">1</span>]</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'text' column</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'text_clean'</span>] <span class="op">=</span> (train[<span class="st">'text'</span>]</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_stopwords)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_single_letters)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"fr_core_news_sm"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="co">#liste de stopwords</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to remove stopwords</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_single_letters(text):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">1</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'text' column</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'text_clean'</span>] <span class="op">=</span> (train[<span class="st">'text'</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_stopwords)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_single_letters)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="4" type="1">
 <li>Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage.</li>
@@ -583,9 +591,9 @@ Aide
 </div>
 </div>
 <p>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</p>
-<div id="561c6d1c" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="494a2903" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nombre d'occurrences de la séquence 'data science': 54
 Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
@@ -647,7 +655,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
-<div id="5384075d" class="cell" data-execution_count="5">
+<div id="3b5c3159" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -657,7 +665,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d’entre elles ? Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.</p>
-<div id="5e698266" class="cell" data-execution_count="6">
+<div id="87655b86" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -666,7 +674,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 </div>
-<div id="0b1d668e" class="cell" data-execution_count="7">
+<div id="4ee0e7a5" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -683,21 +691,21 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 <p>Pour cela, récupérer les fichiers suivants:</p>
 <ul>
 <li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py"><code>constants.py</code></a></li>
-<li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py"><code>preprocessor.py</code></a></li>
+<li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py"><code>processor.py</code></a></li>
 <li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py"><code>utils.py</code></a></li>
 </ul>
 <p>et mettre ceux-ci dans le même dossier que votre <em>notebook</em> <code>Jupyter</code>.</p>
 <p>Le code de nettoyage est directement fourni:</p>
-<div id="b7f70590" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocess data before training and testing</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>TEXT_FEATURE <span class="op">=</span> <span class="st">"text"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="st">"nace"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> preprocessor.clean_text(train, TEXT_FEATURE).drop(<span class="st">'text_clean'</span>, axis <span class="op">=</span> <span class="st">"columns"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5229c715" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocess data before training and testing</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>TEXT_FEATURE <span class="op">=</span> <span class="st">"text"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="st">"nace"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> preprocessor.clean_text(train, TEXT_FEATURE).drop(<span class="st">'text_clean'</span>, axis <span class="op">=</span> <span class="st">"columns"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -735,26 +743,26 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 <p>Nous allons commencer à entraîner un modèle dont le plongement de mot est de faible dimension. Voici les paramètres qui seront utiles pour le prochain exercice.</p>
 <div id="create-training-text-example" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dim"</span>: <span class="dv">25</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label_prefix"</span>: <span class="st">"__label__"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> pathlib.Path(<span class="st">"./data"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>data_path.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_training_data(df, params, training_data_path<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    warnings.filterwarnings(<span class="st">"ignore"</span>, <span class="st">"Setuptools is replacing distutils."</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> training_data_path <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        training_data_path <span class="op">=</span> get_root_path() <span class="op">/</span> <span class="st">"data/training_data.txt"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(training_data_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, item <span class="kw">in</span> df.iterrows():</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>            formatted_item <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>params[<span class="st">'label_prefix'</span>]<span class="sc">}{</span>item[Y]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>item[TEXT_FEATURE]<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">file</span>.write(<span class="ss">f"</span><span class="sc">{</span>formatted_item<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> training_data_path.as_posix()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dim"</span>: <span class="dv">25</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label_prefix"</span>: <span class="st">"__label__"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> pathlib.Path(<span class="st">"./data"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>data_path.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_training_data(df, params, training_data_path<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    warnings.filterwarnings(<span class="st">"ignore"</span>, <span class="st">"Setuptools is replacing distutils."</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> training_data_path <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        training_data_path <span class="op">=</span> get_root_path() <span class="op">/</span> <span class="st">"data/training_data.txt"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(training_data_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, item <span class="kw">in</span> df.iterrows():</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            formatted_item <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>params[<span class="st">'label_prefix'</span>]<span class="sc">}{</span>item[Y]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>item[TEXT_FEATURE]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">file</span>.write(<span class="ss">f"</span><span class="sc">{</span>formatted_item<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> training_data_path.as_posix()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
 <div class="alert alert-success" role="alert">
@@ -763,14 +771,14 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 <li>Découper notre échantillon complet en <em>train</em> et <em>test</em>.</li>
 <li><code>fastText</code> effectue son entraînement à partir d’objets stockés dans un <code>.txt</code>. Utiliser la fonction <code>write_training_data</code> de la manière suivante pour l’écrire.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write training data in a .txt file (fasttext-specific)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>training_data_path <span class="op">=</span> write_training_data(df_train, params, pathlib.Path(<span class="bu">str</span>(data_path.absolute()) <span class="op">+</span> <span class="st">"/training_data.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write training data in a .txt file (fasttext-specific)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>training_data_path <span class="op">=</span> write_training_data(df_train, params, pathlib.Path(<span class="bu">str</span>(data_path.absolute()) <span class="op">+</span> <span class="st">"/training_data.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li><p>Avec l’aide de la documentation de la librairie <code>Python</code>, entraîner votre modèle de classification.</p></li>
+<li><p>Avec l’aide de la documentation de la librairie <code>FastText</code>, entraîner votre modèle de classification.</p></li>
 <li><p>Sauvegarder le modèle sous forme de binaire, cela pourra éventuellement servir ultérieurement.</p></li>
 <li><p>Renvoyer les trois catégories les plus probables pour les nouveaux libellés suivants:</p></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Sur l’ensemble du jeu de test, renvoyer la meilleure prédiction pour chaque descriptif d’activités. Evaluer la performance globale et la performance classe par classe, par exemple en calculant le rappel (pour les classes de plus de 200 cas).</li>
 </ol>
