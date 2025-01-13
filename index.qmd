@@ -4,6 +4,7 @@ title: "Données émergentes (ENSAI)"
 
 Ce site web centralise les contenus du cours de Master de l'ENSAI sur les données émergentes
 
-:::{.callout-note}
-Ce site est encore dans une version très provisoire. Le contenu peut ainsi être amené à évoluer rapidement
+
+:::{.callout-important}
+Le contenu de ce site est partiellement redondant avec le contenu des slides. Ces dernières sont plus récentes, elles sont donc à privilégier. 
 :::
