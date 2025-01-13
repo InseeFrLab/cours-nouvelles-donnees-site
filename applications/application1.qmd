@@ -458,12 +458,12 @@ Ainsi, nous allons :
 Pour commencer, on décrit les données carroyées comme précédemment :
 
 ```{r}
-describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('carreaux.parquet')")
+describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('data/carreaux.parquet')")
 describe_dvf
 ```
 
 ```{r}
-preview <- dbGetQuery(con, "SELECT * FROM read_parquet('carreaux.parquet') LIMIT 10")
+preview <- dbGetQuery(con, "SELECT * FROM read_parquet('data/carreaux.parquet') LIMIT 10")
 preview
 ```
 
