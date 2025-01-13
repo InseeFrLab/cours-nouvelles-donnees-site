@@ -49,6 +49,16 @@ les enjeux du nettoyage de texte.
 <h3 class="alert-heading"><i class="fa-solid fa-pencil"></i> Exercice 1 </h3>
 ```
 
+0. Lancer le code ci-dessous pour préparer votre environnement de travail :
+
+```{.python}
+import spacy
+!python -m spacy download fr_core_news_sm
+import nltk
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+```
+
 1. Créer une fonction pour compter le nombre de textes contenant une séquence de caractères
 donnée dans le corpus. La tester avec _"data science"_ et _"boulanger"_.
 
@@ -229,7 +239,7 @@ notamment raciniser nos mots.
 Pour cela, récupérer les fichiers suivants:
 
 - [`constants.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py)
-- [`preprocessor.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py)
+- [`processor.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py)
 - [`utils.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py)
 
 et mettre ceux-ci dans le même dossier que votre _notebook_ `Jupyter`.
@@ -294,7 +304,7 @@ de la manière suivante pour l'écrire.
 training_data_path = write_training_data(df_train, params, pathlib.Path(str(data_path.absolute()) + "/training_data.txt"))
 ```
 
-3. Avec l'aide de la documentation de la librairie `Python`, entraîner
+3. Avec l'aide de la documentation de la librairie `FastText`, entraîner
 votre modèle de classification.
 
 4. Sauvegarder le modèle sous forme de binaire, cela pourra éventuellement
