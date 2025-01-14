@@ -11,13 +11,22 @@ notebook au sein de l'environnement `SSP Cloud` suivant:
 
 <a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABpython-datascience%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2Ftomseimandi%2Finit-scripts%2Fmain%2Fcours-ensai.sh%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
+Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE. 
+
+
 ## Exploration du jeu de données
 
 Ce tutoriel se propose d'illustrer la problématique de
 la classification automatique par le biais de
 l'algorithme d'apprentissage
-supervisé `fastText`
+supervisé `FastText`, développé par Meta,
 à partir des données issues des déclarations Sirene. 
+
+L'idée de ce tutoriel est de classer des déclarations d'entreprise dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
+
+Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l'activité d'une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement _ad hoc_ qui permettent d'extraire une information à partir de libellés textuels. Historiquement l'Insee utilisait des règles déterministes de classement à partir d'un algorithme nommé [Sicore](https://www.insee.fr/fr/information/4497076?sommaire=4497095), une IA symbolique qui classait à partir de règles métiers préconfigurée. 
+
+Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d'investissement intéressante pour l'Insee. L'objet de ce TD est d'illustrer la démarche adoptée avec cette approche à partir d'un modèle un peu plus simple que celui mis en oeuvre à l'Insee mais reprenant les principales caractéristiques de celui-ci. 
 
 Le code pour lire les données est directement fourni:
 
@@ -43,11 +52,8 @@ dans un corpus de données textuelles. La démarche
 n'est pas particulièrement originale mais permet d'illustrer 
 les enjeux du nettoyage de texte. 
 
-::: {.cell .markdown}
-```{=html}
-<div class="alert alert-success" role="alert">
-<h3 class="alert-heading"><i class="fa-solid fa-pencil"></i> Exercice 1 </h3>
-```
+::: {.exercise}
+## Exercice 1
 
 0. Lancer le code ci-dessous pour préparer votre environnement de travail :
 
@@ -105,9 +111,7 @@ train['text_clean'] = (train['text']
 
 4. Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage.
 
-```{=html}
-</div>
-```
+
 :::
 
 Dans une démarche exploratoire,
