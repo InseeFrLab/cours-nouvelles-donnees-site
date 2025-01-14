@@ -469,11 +469,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Cette application illustrera certains apports des outils du NLP pour la codification automatique des déclarations d’activité dans la nomenclature des activités françaises. On pourra coder dans un notebook au sein de l’environnement <code>SSP Cloud</code> suivant:</p>
 <p><a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABpython-datascience%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2Ftomseimandi%2Finit-scripts%2Fmain%2Fcours-ensai.sh%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
+<p>Ce tutoriel n’a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, <em>embedding</em>, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de <a href="https://pythonds.linogaliana.fr/content/NLP/"><code>Python</code> pour la <em>data science</em></a> de l’ENSAE.</p>
 <section id="exploration-du-jeu-de-données" class="level2">
 <h2 class="anchored" data-anchor-id="exploration-du-jeu-de-données">Exploration du jeu de données</h2>
-<p>Ce tutoriel se propose d’illustrer la problématique de la classification automatique par le biais de l’algorithme d’apprentissage supervisé <code>fastText</code> à partir des données issues des déclarations Sirene.</p>
+<p>Ce tutoriel se propose d’illustrer la problématique de la classification automatique par le biais de l’algorithme d’apprentissage supervisé <code>FastText</code>, développé par Meta, à partir des données issues des déclarations Sirene.</p>
+<p>L’idée de ce tutoriel est de classer des déclarations d’entreprise dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L’Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l’un des principaux cas d’application du NLP pour l’Institut dans des domaines aussi divers que la classification dans une nomenclature d’activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.</p>
+<p>Comment passe-t-on d’une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l’activité d’une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement <em>ad hoc</em> qui permettent d’extraire une information à partir de libellés textuels. Historiquement l’Insee utilisait des règles déterministes de classement à partir d’un algorithme nommé <a href="https://www.insee.fr/fr/information/4497076?sommaire=4497095">Sicore</a>, une IA symbolique qui classait à partir de règles métiers préconfigurée.</p>
+<p>Avec l’avènement du <em>machine learning</em>, la possibilité d’entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d’investissement intéressante pour l’Insee. L’objet de ce TD est d’illustrer la démarche adoptée avec cette approche à partir d’un modèle un peu plus simple que celui mis en oeuvre à l’Insee mais reprenant les principales caractéristiques de celui-ci.</p>
 <p>Le code pour lire les données est directement fourni:</p>
-<div id="e3197e80" class="cell" data-execution_count="1">
+<div id="b6e48ca9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
@@ -542,9 +546,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Le premier exercice a vocation à illustrer la manière classique de rentrer dans un corpus de données textuelles. La démarche n’est pas particulièrement originale mais permet d’illustrer les enjeux du nettoyage de texte.</p>
-<div class="cell markdown">
-<div class="alert alert-success" role="alert">
-<h3 class="alert-heading anchored"><i class="fa-solid fa-pencil"></i> Exercice 1 </h3>
+<div class="callout callout-style-default callout-exercise callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercice 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <ol start="0" type="1">
 <li>Lancer le code ci-dessous pour préparer votre environnement de travail :</li>
 </ol>
@@ -590,8 +603,9 @@ Aide
 </ol>
 </div>
 </div>
+</div>
 <p>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</p>
-<div id="494a2903" class="cell" data-execution_count="3">
+<div id="c8b62f9d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -655,7 +669,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
-<div id="3b5c3159" class="cell" data-execution_count="5">
+<div id="855f82d4" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -665,7 +679,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d’entre elles ? Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.</p>
-<div id="87655b86" class="cell" data-execution_count="6">
+<div id="a3fd2871" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -674,7 +688,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 </div>
-<div id="4ee0e7a5" class="cell" data-execution_count="7">
+<div id="f8f67cc6" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -696,7 +710,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </ul>
 <p>et mettre ceux-ci dans le même dossier que votre <em>notebook</em> <code>Jupyter</code>.</p>
 <p>Le code de nettoyage est directement fourni:</p>
-<div id="5229c715" class="cell" data-execution_count="9">
+<div id="54b537e6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
