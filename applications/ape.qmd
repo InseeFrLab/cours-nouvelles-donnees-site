@@ -292,11 +292,7 @@ def write_training_data(df, params, training_data_path=None):
     return training_data_path.as_posix()
 ```
 
-::: {.cell .markdown}
-```{=html}
-<div class="alert alert-success" role="alert">
-<h3 class="alert-heading"><i class="fa-solid fa-pencil"></i> Exercice 2 </h3>
-```
+::: {.exercise}
 
 1. Découper notre échantillon complet en _train_ et _test_.
 2. `fastText` effectue son entraînement à partir d'objets stockés
@@ -326,9 +322,6 @@ pour chaque descriptif d'activités. Evaluer la performance globale
 et la performance classe par classe, par exemple en calculant le rappel (pour les classes de plus
 de 200 cas). 
 
-```{=html}
-</div>
-```
 :::
 
 ```{python}
@@ -378,7 +371,7 @@ import fasttext
 model = fasttext.train_supervised(
             training_data_path,
             **params,
-            lr=0.005,
+            lr=0.5,
             verbose=2
         )
 ```

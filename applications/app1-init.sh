@@ -1,7 +1,9 @@
 #!/bin/bash
 
 mkdir -p appli1
+chown -R onyxia:users appli1
 cd appli1
+
 echo "data/" >> .gitignore
 git init
 git branch -m main
