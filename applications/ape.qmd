@@ -1,7 +1,12 @@
 ---
-title: "Application 1"
+title: "Application 1: classification automatique de textes"
 echo: false
 output-dir: _site
+filters:
+- custom-callout
+format: 
+   html:
+     df-print: paged
 ---
 
 Cette application illustrera certains apports des outils du 
@@ -52,7 +57,7 @@ dans un corpus de données textuelles. La démarche
 n'est pas particulièrement originale mais permet d'illustrer 
 les enjeux du nettoyage de texte. 
 
-::: {.exercise}
+::: {.exercice}
 ## Exercice 1
 
 0. Lancer le code ci-dessous pour préparer votre environnement de travail :
@@ -292,10 +297,10 @@ def write_training_data(df, params, training_data_path=None):
     return training_data_path.as_posix()
 ```
 
-::: {.exercise}
+::: {.exercice}
 
 1. Découper notre échantillon complet en _train_ et _test_.
-2. `fastText` effectue son entraînement à partir d'objets stockés
+2. `FastText` effectue son entraînement à partir d'objets stockés
 dans un `.txt`. Utiliser la fonction `write_training_data` 
 de la manière suivante pour l'écrire.
 
