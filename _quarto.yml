@@ -16,13 +16,11 @@ website:
       - text: "Données géolocalisées"
         menu: 
           - geolocalized_data.qmd
-          - geolocalized_data_exemples.qmd
           - applications/application1.qmd
       - text: "Analyse textuelle"
         menu:
           - textes.qmd
           - applications/ape.qmd
-          - textes_exemples.qmd
       - text: "Analyse d'images"
         menu:
           - images.qmd
