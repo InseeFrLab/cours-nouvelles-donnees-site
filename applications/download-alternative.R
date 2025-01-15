@@ -1,6 +1,8 @@
 # Define base URL for downloads
 base_url <- "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/"
 
+dir.create("data")
+
 # Download the files
 download.file(url = paste0(base_url, "geoparquet/dvf.parquet"),
               destfile = "data/dvf.parquet")
