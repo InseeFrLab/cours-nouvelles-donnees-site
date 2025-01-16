@@ -14,7 +14,10 @@ NLP pour la codification automatique des déclarations d'activité
 dans la nomenclature des activités françaises. On pourra coder dans un 
 notebook au sein de l'environnement `SSP Cloud` suivant:
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABpython-datascience%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2Ftomseimandi%2Finit-scripts%2Fmain%2Fcours-ensai.sh%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?name=vscode-python&version=2.1.23&s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+
+<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?name=jupyter-python&version=2.1.22&s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (Jupyter)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+
 
 Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE. 
 
