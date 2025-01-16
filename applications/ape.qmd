@@ -7,6 +7,7 @@ filters:
 format: 
    html:
      df-print: paged
+echo: true
 ---
 
 Cette application illustrera certains apports des outils du 

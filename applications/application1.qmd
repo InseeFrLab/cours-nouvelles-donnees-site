@@ -9,6 +9,7 @@ filters:
 format: 
    html:
      df-print: paged
+echo: true
 ---
 
 <a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?name=Appli1&version=2.1.17&s3=region-ec97c721&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fapp1-init.sh»&networking.user.enabled=true&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSP%20Cloud-Ouvrir_dans_RStudio-blue?logo=rstudio&amp;logoColor=blue" alt="Onyxia"></a>
@@ -210,7 +211,7 @@ Cet exercice nous fera rentrer progressivement dans les données à partir de qu
 A la question 1, vous devriez avoir :
 
 ```{r}
-#| echo: false
+#| echo: true
 preview_q1 <- dbGetQuery(con, "SELECT * FROM read_parquet('data/dvf.parquet') LIMIT 10")
 preview_q1_bis <- table_logement %>% head(10)
 preview_q1
@@ -219,7 +220,7 @@ preview_q1
 A la question 2, la liste des colonnes donnera plutôt
 
 ```{r}
-#| echo: false
+#| echo: true
 describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('data/dvf.parquet')")
 table_logement %>% colnames(.)
 ```
@@ -228,7 +229,7 @@ Que contient le champ `nature_mutation` ? (il a été filtré au ventes classiqu
 
 
 ```{r}
-#| echo: false
+#| echo: true
 unique_nature_mutation <- dbGetQuery(con, "SELECT DISTINCT nature_mutation FROM read_parquet('data/dvf.parquet')")
 unique_nature_mutation_bis <- table_logement %>% distinct(nature_mutation)
 unique_nature_mutation_bis
@@ -237,7 +238,7 @@ unique_nature_mutation_bis
 A la question 4, vous devriez obtenir des statistiques similaires à celles-ci :
 
 ```{r}
-#| echo: false
+#| echo: true
 stats_q4 <- dbGetQuery(con, "
         SELECT
             MIN(valeur_fonciere) AS min_valeur,
@@ -269,7 +270,7 @@ Avec l'approche SQL vous devriez obtenir
 
 
 ```{r}
-#| echo: false
+#| echo: true
 query1 <- glue("
     FROM read_parquet('data/dvf.parquet')
     SELECT
@@ -287,7 +288,7 @@ print(result1)
 On peut se rassurer, on obtient la même chose l'approche `dplyr` :
 
 ```{r}
-#| echo: false
+#| echo: true
 table_logement %>%
   filter(code_commune %in% c(cog_malakoff, cog_montrouge)) %>% 
   group_by(code_commune) %>%
@@ -357,7 +358,7 @@ Cela donne un vecteur de booléen, on peut donc identifier les transactions dans
 Ci-dessous le dataframe brut extrait via Duckdb (réponse 1).
 
 ```{r}
-#| echo: false
+#| echo: true
 query2 <- glue("
     FROM read_parquet('data/dvf.parquet')
     SELECT
@@ -375,7 +376,7 @@ transactions_malakoff
 Ci-dessous, le dataframe transformé en objet `sf` et prêt pour les opérations spatiales (réponse 2) : 
 
 ```{r}
-#| echo: false
+#| echo: true
 transactions_malakoff <- 
   sf::st_as_sf(transactions_malakoff, wkt = "geom_text", crs = 2154) |>
   rename(geometry=geom_text)
@@ -387,7 +388,7 @@ Une fois les données prêtes, on intersecte les points avec le triangle représ
 
 
 ```{r}
-#| echo: false
+#| echo: true
 bool_mask <- transactions_malakoff |> 
   sf::st_transform(4326) |> 
   sf::st_intersects(triangle, sparse = FALSE)
@@ -517,7 +518,7 @@ mapview(carr_malakoff) + mapview(sf::st_boundary(malakoff))
 Le masque des carreaux de Montrouge est le suivant :
 
 ```{r}
-#| echo: false
+#| echo: true
 montrouge_2154 <- sf::st_transform(montrouge, 2154)
 montrouge_wkt <- sf::st_as_text(sf::st_geometry(montrouge_2154))
 
@@ -545,7 +546,7 @@ mapview(carr_montrouge) + mapview(sf::st_boundary(montrouge))
 On obtient, _in fine_, les statistiques suivantes
 
 ```{r}
-#| echo: false
+#| echo: true
 mean_menpauvres_malakoff <- round(100 * sum(carr_malakoff$men_pauv) / sum(carr_malakoff$men), 2)
 mean_menpauvres_montrouge <- round(100 * sum(carr_montrouge$men_pauv) / sum(carr_montrouge$men), 2)
 
