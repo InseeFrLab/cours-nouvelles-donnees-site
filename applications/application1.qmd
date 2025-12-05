@@ -112,6 +112,8 @@ cog_montrouge <- "92049"
 
 L'import des contours en {{< fa brands r-project >}} se fait assez naturellement grâce à [`sf`](https://r-spatial.github.io/sf/).
 
+
+
 ```{r}
 triangle <- sf::st_read("data/triangle.geojson", quiet=TRUE)
 malakoff <- sf::st_read("data/malakoff.geojson", quiet=TRUE)
@@ -155,11 +157,10 @@ Cette connexion `duckdb` peut être utilisée de plusieurs manières. En premier
 ```{r}
 #| label: show-dbquery-principle
 #| output: false
+
 out <- dbGetQuery(
   con,
-  glue(  
     'SELECT * EXCLUDE (geometry) FROM read_parquet("data/dvf.parquet") LIMIT 5'
-  )
 )
 out
 ```
@@ -169,14 +170,14 @@ La chaîne d'exécution ressemble ainsi à celle-ci :
 
 ![](https://raw.githubusercontent.com/linogaliana/parquet-recensement-tutomate/main/img/duckdb-delegation1.png){fig-align="center"}
 
-Même si `DuckDB` simplifie l'utilisation du SQL en proposant de nombreux verbes auxquels on est familier en `R` ou `Python`, SQL n'est néanmoins pas toujours le langage le plus pratique pour chaîner des opérations nombreuses. Pour ce type de besoin,  le `tidyverse` offre une grammaire riche et cohérente. Il est tout à fait possible d'interfacer une base `duckdb` au `tidyverse`. On pourra donc utiliser nos verbes préférés (`mutate`, `filter`, etc.) sur un objet `duckdb` : une phase préliminaire de traduction en SQL sera automatiquement mise en oeuvre :
+Même si `DuckDB` simplifie l'utilisation du SQL en proposant de nombreux verbes auxquels nous sommes familier en `R` ou `Python`, SQL n'est néanmoins pas toujours le langage le plus pratique pour chaîner des opérations nombreuses. Pour ce type de besoin,  le `tidyverse` offre une grammaire riche et cohérente. Il est tout à fait possible d'interfacer une base `duckdb` au `tidyverse`. Nous pourrons donc utiliser nos verbes préférés (`mutate`, `filter`, etc.) sur un objet `duckdb` : une phase préliminaire de traduction en SQL sera automatiquement mise en oeuvre :
 
 ![](https://raw.githubusercontent.com/linogaliana/parquet-recensement-tutomate/main/img/duckdb-delegation2.png){fig-align="center"}
 
 ```{r}
 #| message: false
 #| label: create-connections
-table_logement <- tbl(con, glue('read_parquet("data/dvf.parquet")'))
+table_logement <- tbl(con, 'read_parquet("data/dvf.parquet")')
 table_logement %>% head(5)
 ```
 
@@ -189,18 +190,18 @@ Tentons, par une première série d'exercices, de comparer la médiane des prix 
 
 Dans cette partie, nous allons pouvoir faire nos traitements de données avec SQL et/ou `tidyverse`. Cela illustre l'une des forces de duckdb, à savoir son excellente intégration avec d'autres écosystèmes dont nous sommes familiers.
 
-Lorsque nous irons sur l'aspect spatial, on devra passer en SQL pur, l'écosystème tidyverse n'étant pas encore finalisé pour le traitement de données spatiales avec `duckdb`. 
+Lorsque nous irons sur l'aspect spatial, nous passerons en SQL pur, l'écosystème tidyverse n'étant pas encore finalisé pour le traitement de données spatiales avec `duckdb`. 
 
 
 ## Premières requêtes SQL : description des données DVF
 
-Tout d'abord, il convient de se familiariser avec les données. Les requêtes proposées pour l'exercice 1 permettent d'obtenir des informations primordiale de manière très rapide et sans nécessité de charger l'ensemble des données dans la mémoire vive.
+Tout d'abord, il convient de se familiariser avec les données. Les requêtes proposées pour l'exercice 1 permettent d'obtenir des informations primordiales de manière très rapide et sans nécessité de charger l'ensemble des données dans la mémoire vive.
 
 
 ::: {.exercice}
 ## Exercice 1
 
-Cet exercice nous fera rentrer progressivement dans les données à partir de quelques requêtes basiques.
+Cet exercice nous fera entrer progressivement dans les données à partir de quelques requêtes basiques.
 
 1. Lire les 10 premières lignes des données par l'approche SQL et par l'approche tidyverse.
 2. Afficher les noms des colonnes selon les deux approches.
@@ -208,7 +209,8 @@ Cet exercice nous fera rentrer progressivement dans les données à partir de qu
 4. Calculer les bornes min et max des prix des transactions selon ces deux approches.
 :::
 
-A la question 1, vous devriez avoir :
+À la question 1, vous devriez avoir :
+
 
 ```{r}
 #| echo: true
@@ -218,6 +220,7 @@ preview_q1
 ```
 
 A la question 2, la liste des colonnes donnera plutôt
+
 
 ```{r}
 #| echo: true
@@ -253,29 +256,30 @@ stats_q4_bis <- table_logement %>%
 stats_q4_bis
 ```
 
-Nous venons de voir comment faire quelques requêtes basiques sur un geoparquet avec `duckdb` et l'équivalence entre les approches SQL et tidyverse. La dernière question était déjà une introduction au calcul à la volée de statistiques descriptives, ajoutons quelques statistiques avec ce nouvel exercice. 
+Nous venons de voir comment faire quelques requêtes basiques sur un fichier .parquet avec `duckdb` et l'équivalence entre les approches SQL et tidyverse. La dernière question était déjà une introduction au calcul à la volée de statistiques descriptives, ajoutons quelques statistiques avec ce nouvel exercice. 
 
 ::: {.exercice}
 ## Exercice 2 : statistiques descriptives sur la dimension attributaire
 
 Ne garder que les seules transactions effectuées à Montrouge ou Malakoff et faire une médiane par communes des montants des transactions
 
-_Faire ceci avec SQL et dplyr_[^chatGPT]
+_Faire ceci avec SQL et dplyr_[^IA]
 
 :::
 
-[^chatGPT] : Vous avez le droit d'utiliser `chatGPT` ou `Claude` ou vous IA assistante préférée ! Mais ne prenez pas pour argent comptant ce qu'elle vous propose.
+[^IA] : Vous avez le droit d'utiliser votre assistant IA préféré ! Mais ne prenez pas pour argent comptant ce qu'il vous propose.
 
 Avec l'approche SQL vous devriez obtenir
 
 
 ```{r}
 #| echo: true
+setwd("../../appli1/")
 query1 <- glue("
-    FROM read_parquet('data/dvf.parquet')
     SELECT
         code_commune,
-        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY valeur_fonciere) AS mediane_valeur_fonciere
+        MEDIAN(valeur_fonciere) AS mediane_valeur_fonciere
+    FROM read_parquet('data/dvf.parquet')
     WHERE code_commune IN ('{cog_malakoff}', '{cog_montrouge}')
     GROUP BY code_commune
 ")
@@ -301,7 +305,7 @@ On peut en conclure que les biens vendus à Montrouge (dans notre base) ont une 
 
 # Partie 2 : les prix immobiliers à Malakoff, dans le centre et en-dehors.
 
-À présent, nous souhaitons avoir des informations sur les transactions effectuées dans le « fameux » Triangle d'Or de Malakoff (plus prosaïquement, dans son centre-ville commerçant).
+À présent, nous souhaitons avoir des informations sur les transactions effectuées dans le « glorieux » Triangle d'Or de Malakoff (plus prosaïquement, dans son centre-ville commerçant).
 
 Comme il n'est pas possible de distinguer cette zone par requêtes attributaires, nous proposons de : 
 
@@ -332,7 +336,7 @@ WHERE ...
 
 1. En vous inspirant du _template_ ci-dessus, créer un _dataframe_ `transactions_malakoff` qui recense les transactions dans cette charmante bourgade. 
 
-2. A ce niveau, les transactions extraites sont maintenant chargées en mémoire et on les transforme dans un format qui facilite leur manipulation en R via le package `sf`.
+2. À ce niveau, les transactions extraites sont maintenant chargées en mémoire et on les transforme dans un format qui facilite leur manipulation en R via le package `sf`.
 
 
 ```{.r}
@@ -359,6 +363,7 @@ Ci-dessous le dataframe brut extrait via Duckdb (réponse 1).
 
 ```{r}
 #| echo: true
+
 query2 <- glue("
     FROM read_parquet('data/dvf.parquet')
     SELECT
@@ -459,7 +464,7 @@ Ainsi, nous allons :
 - Filtrer les données par intersections géographiques des carreaux et des communes, à l'aide de `DuckDB`
 - Faire les calculs localement après l'extraction des carreaux d'intérêt.
 
-Pour commencer, on décrit les données carroyées comme précédemment :
+Pour commencer, nous décrivons les données carroyées comme précédemment :
 
 ```{r}
 describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('data/carreaux.parquet')")
@@ -471,7 +476,7 @@ preview <- dbGetQuery(con, "SELECT * FROM read_parquet('data/carreaux.parquet') 
 preview
 ```
 
-On va faire une petite transformation de données préliminaire à cet exercice afin que la géométrie de Malakoff soit reconnue par `DuckDB`. 
+On va faire une petite transformation de données préliminaire à cet exercice afin que la géométrie du contour de Malakoff soit reconnue par `DuckDB`. 
 
 ```{r}
 malakoff_2154 <- sf::st_transform(malakoff, 2154)
