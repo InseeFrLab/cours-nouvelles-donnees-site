@@ -1,34 +1,39 @@
 on:
   pull_request:
     branches: main
-
 name: Render and Publish
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev
+      - uses: r-lib/actions/setup-r@v2
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
       - name: Install python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'pip' # caching pip dependencies
         
-      - name: Install python Dependencies
+      - name: Install python dependencies
         run: |
           pip install pybind11
           pip install wheel setuptools pip --upgrade
           pip install -r requirements.txt
-
       - name: Download NLP requirements
         run: ./download_nlp_reqs.sh
-      
-      - name: Setup R
-        uses: r-lib/actions/setup-r@v2
-        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -38,29 +43,14 @@ jobs:
           # version: 0.9.600
       
       # add software dependencies here
-
       # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
       # the appropriate block below
       
-      - name: Render
-        uses: quarto-dev/quarto-actions/render@v2
-
-      - name: Install npm
-        uses: actions/setup-node@v2          
-        with:
-          node-version: '14'   
-          
-      # - name: Deploy to Netlify
-      #   # NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID added in the repo's secrets
-      #   env:
+      # - name: Publish to Netlify (and render)
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: netlify
       #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      #     BRANCHE_REF: ${{ github.event.pull_request.head.ref }}
-      #   run: |
-      #     npm init -y
-      #     npm install --unsafe-perm=true netlify-cli -g
-      #     netlify init
-      #     netlify deploy --alias=${BRANCHE_REF} --dir="_site" --message "Preview deploy"      
         
       # - name: Publish to RStudio Connect (and render)
       #   uses: quarto-dev/quarto-actions/publish@v2
@@ -68,11 +58,9 @@ jobs:
       #     target: connect
       #     CONNECT_SERVER: enter-the-server-url-here
       #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
-
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
-      
