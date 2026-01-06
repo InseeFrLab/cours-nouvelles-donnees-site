@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/application1.html</loc>
-    <lastmod>2025-01-16T09:38:59.703Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/ape.html</loc>
-    <lastmod>2025-01-16T09:38:59.703Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/textes_exemples.html</loc>
-    <lastmod>2025-01-16T09:38:59.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/administratives.html</loc>
-    <lastmod>2025-01-16T09:38:59.702Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/index.html</loc>
-    <lastmod>2025-01-16T09:38:59.761Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/introduction.html</loc>
-    <lastmod>2025-01-16T09:38:59.761Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/textes.html</loc>
-    <lastmod>2025-01-16T09:38:59.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/administratives_exemples.html</loc>
-    <lastmod>2025-01-16T09:38:59.703Z</lastmod>
-  </url>
-  <url>
     <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/geolocalized_data.html</loc>
-    <lastmod>2025-01-16T09:38:59.704Z</lastmod>
+    <lastmod>2026-01-06T14:30:58.070Z</lastmod>
   </url>
   <url>
     <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/series_temporelles.html</loc>
-    <lastmod>2025-01-16T09:38:59.762Z</lastmod>
+    <lastmod>2026-01-06T14:30:58.129Z</lastmod>
   </url>
   <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/nowcasting_exemples.html</loc>
-    <lastmod>2025-01-16T09:38:59.761Z</lastmod>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/textes.html</loc>
+    <lastmod>2026-01-06T14:30:58.129Z</lastmod>
   </url>
   <url>
     <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/geolocalized_data_exemples.html</loc>
-    <lastmod>2025-01-16T09:38:59.704Z</lastmod>
+    <lastmod>2026-01-06T14:30:58.071Z</lastmod>
   </url>
   <url>
-    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/images.html</loc>
-    <lastmod>2025-01-16T09:38:59.751Z</lastmod>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/textes_exemples.html</loc>
+    <lastmod>2026-01-06T14:30:58.129Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/index.html</loc>
+    <lastmod>2026-01-06T14:30:58.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/application1.html</loc>
+    <lastmod>2026-01-06T14:30:58.070Z</lastmod>
   </url>
   <url>
     <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/images_exemples.html</loc>
-    <lastmod>2025-01-16T09:38:59.752Z</lastmod>
+    <lastmod>2026-01-06T14:30:58.118Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/ape.html</loc>
+    <lastmod>2026-01-06T14:30:58.070Z</lastmod>
   </url>
   <url>
     <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/data.html</loc>
-    <lastmod>2025-01-16T09:38:59.703Z</lastmod>
+    <lastmod>2026-01-06T14:30:58.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/administratives_exemples.html</loc>
+    <lastmod>2026-01-06T14:30:58.069Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/administratives.html</loc>
+    <lastmod>2026-01-06T14:30:58.069Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/images.html</loc>
+    <lastmod>2026-01-06T14:30:58.118Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/introduction.html</loc>
+    <lastmod>2026-01-06T14:30:58.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InseeFrLab.github.io/cours-nouvelles-donnees-site/nowcasting_exemples.html</loc>
+    <lastmod>2026-01-06T14:30:58.128Z</lastmod>
   </url>
 </urlset>
