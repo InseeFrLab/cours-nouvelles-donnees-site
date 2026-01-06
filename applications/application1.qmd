@@ -316,10 +316,10 @@ Via `DuckDB`, calculer la médiane des prix des transactions à l'intérieur et 
 
 Démarche : 
 
-- 2.1 : Transformer l'objet sf `triangle` en WKT après l'avoir reprojeté en Lambert 2154 (même système de projection que les transactions DVF, voir @tip-geom).
-- 2.2 : Faire un filtre attributaire sur la commune de Malakoff.
-- 2.3 : Créer une colonne "in_triangle" booléenne et égale à TRUE pour les transactions présentes dans le triangle (utiliser la colonne "geometry", au format WKB, voir @tip-wkb).
-- 2.4 : Calculer les médianes en groupant sur la variable "in_triangle".
+- 3.1 : Transformer l'objet sf `triangle` en WKT après l'avoir reprojeté en Lambert 2154 (même système de projection que les transactions DVF, voir @tip-geom).
+- 3.2 : Faire un filtre attributaire sur la commune de Malakoff.
+- 3.3 : Créer une colonne "in_triangle" booléenne et égale à TRUE pour les transactions présentes dans le triangle (utiliser la colonne "geometry", au format WKB, voir @tip-wkb).
+- 3.4 : Calculer les médianes en groupant sur la variable "in_triangle".
 :::
 
 
@@ -334,7 +334,7 @@ En revanche, le triangle est disponible sous forme d'objet `sf` (propre à notre
 ::: {#tip-geom .callout-tip}
 ## Projection géographique
 
-Pour se mettre dans des conditions proches du réel, nous mettons à disposition le triangle dans un système de projection différent des transactions. Cette situation arrive couramment en pratique et elle nécéssite de faire des reprojections adaptées avant tout opération géométrique entre deux sources de données spatiales.
+Pour se mettre dans des conditions proches du réel, nous mettons à disposition le triangle dans un système de projection différent des transactions. Cette situation arrive couramment en pratique et elle nécéssite de faire des reprojections adaptées avant toute opération géométrique entre deux sources de données spatiales.
 :::
 
 3.1 : aide à la reprojection du Triangle
@@ -380,7 +380,11 @@ transactions_malakoff
 Une fois que chaque transaction est identifiée comme étant à l'intérieur ou à l'extérieur du Triangle, le calcul de la médiane des prix se fait simplement par group_by (ici avec `dplyr`).
 
 ```{r}
-medians_in_out <- transactions_malakoff %>% group_by(in_triangle) %>% summarise(median = median(valeur_fonciere))
+#| echo: true
+
+medians_in_out <- transactions_malakoff %>% 
+  group_by(in_triangle) %>% 
+  summarise(median = median(valeur_fonciere))
 
 median_in <- medians_in_out %>% filter(in_triangle) %>% pull(median)
 median_out <- medians_in_out %>% filter(!in_triangle) %>% pull(median)
@@ -388,6 +392,26 @@ median_out <- medians_in_out %>% filter(!in_triangle) %>% pull(median)
 print(glue("Médiane des prix dans le Triangle d'Or de Malakoff : ", median_in))
 print(glue("Médiane des prix dans le reste de Malakoff : ", median_out))
 ```
+
+Quête secondaire : calculer directement les médianes avec une seul requête SQL.
+
+```{r}
+#| echo: true
+#| 
+requete <- glue("
+  SELECT
+    ST_Within(geometry, ST_GeomFromText('{triangle_wkt}')) as in_triangle,
+    MEDIAN(valeur_fonciere) as mediane_valeur_fonciere,
+    COUNT(*) as nb_transactions
+  FROM read_parquet('data/dvf.parquet')
+  WHERE code_commune = '{cog_malakoff}'
+  GROUP BY in_triangle
+")
+
+medianes_par_zone <- dbGetQuery(con, requete)
+medianes_par_zone
+```
+
 
 La médiane des prix est un peu plus élevée dans le Triangle qu'en dehors. On peut aller au-delà et étudier la distribution des transactions. Bien que la taille d'échantillon soit réduite, on a ainsi une idée de la diversité des prix dans cette bucolique commune de Malakoff.
 
