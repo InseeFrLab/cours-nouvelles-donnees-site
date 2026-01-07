@@ -1,8 +1,9 @@
 #!/bin/bash
 
-mkdir -p appli1
+mkdir appli1
 cd appli1
 
+mkdir data
 echo "data/" >> .gitignore
 
 curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet --output data/dvf.parquet
