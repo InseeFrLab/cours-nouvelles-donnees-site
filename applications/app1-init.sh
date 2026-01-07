@@ -1,12 +1,9 @@
 #!/bin/bash
 
 mkdir -p appli1
-chown -R onyxia:users appli1
 cd appli1
 
 echo "data/" >> .gitignore
-git init
-git branch -m main
 
 curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet --output data/dvf.parquet
 curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet --output data/carreaux.parquet
