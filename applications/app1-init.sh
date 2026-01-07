@@ -8,8 +8,8 @@ echo "data/" >> .gitignore
 git init
 git branch -m main
 
-mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet data/dvf.parquet
-mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet data/carreaux.parquet
-mc cp s3/projet-formation/nouvelles-sources/data/triangle.geojson data/triangle.geojson
-mc cp s3/projet-formation/nouvelles-sources/data/malakoff.geojson data/malakoff.geojson
-mc cp s3/projet-formation/nouvelles-sources/data/montrouge.geojson data/montrouge.geojson
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet --output data/dvf.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet --output data/carreaux.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/triangle.geojson --output data/triangle.geojson
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/malakoff.geojson --output data/malakoff.geojson
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montrouge.geojson --output data/montrouge.geojson
