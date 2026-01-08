@@ -6,7 +6,7 @@ custom-callout:
     color: "pink"
 filters:
 - custom-callout
-format: 
+format:
    html:
      df-print: paged
 echo: true
@@ -18,30 +18,36 @@ echo: true
 ::: {.callout-important collapse="true"}
 ## Préparer son environnement pour ce TD
 
-Les données ont été préparées en amont de ce TD. Un lien de lancement rapide est disponible ci-dessus qui met à disposition un environnement prêt à l'emploi sur le [SSPCloud](https://datalab.sspcloud.fr/). 
+Les données ont été préparées en amont de ce TD. Un lien de lancement rapide est disponible ci-dessus qui met à disposition un environnement prêt à l'emploi sur le [SSPCloud](https://datalab.sspcloud.fr/).
 
 Après avoir cliqué sur le bouton, il convient de créer un projet `RStudio` depuis le dossier `appli1` (`File > New Project`) :
 
 ![](/applications/new_project.png)
 
-`Git` est normalement préconfiguré dans ce dossier, vous pourrez donc _pusher_ votre travail sur `Github` si vous créez un dépôt dessus. 
+`Git` est normalement préconfiguré dans ce dossier, vous pourrez donc _pusher_ votre travail sur `Github` si vous créez un dépôt dessus.
 
-Si la récupération des données a échoué pour une raison _x_ ou _y_, vous pouvez lancer la récupération des données en copiant ce code dans un terminal 
+Si la récupération des données a échoué pour une raison _x_ ou _y_, vous pouvez lancer la récupération des données en copiant ce code dans un terminal
 
 ```{.bash}
 #!/bin/bash
 
-mkdir -p appli1
+mkdir appli1
 cd appli1
-echo "data/" >> .gitignore
+
+# Initializing git repo and renaming branch to main
 git init
 git branch -m main
 
-mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet data/dvf.parquet
-mc cp s3/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet data/carreaux.parquet
-mc cp s3/projet-formation/nouvelles-sources/data/triangle.geojson data/triangle.geojson
-mc cp s3/projet-formation/nouvelles-sources/data/malakoff.geojson data/malakoff.geojson
-mc cp s3/projet-formation/nouvelles-sources/data/montrouge.geojson data/montrouge.geojson
+mkdir data
+echo "data/" >> .gitignore
+
+# Download data from S3
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet --output data/dvf.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet --output data/carreaux.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/triangle.geojson --output data/triangle.geojson
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/malakoff.geojson --output data/malakoff.geojson
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montrouge.geojson --output data/montrouge.geojson
+
 ```
 
 ```{r}
@@ -75,7 +81,7 @@ A travers 3 applications, nous verrons comment requêter et exploiter des donné
 
 ## Information sur les données
 
-En premier lieu, ce TD utilise une source administrative nommée __DVF__ (_« Demandes de Valeurs Foncières »_). 
+En premier lieu, ce TD utilise une source administrative nommée __DVF__ (_« Demandes de Valeurs Foncières »_).
 
 - Les données DVF recensent l'ensemble des ventes de biens fonciers réalisées au cours des dernières années, en métropole et dans les départements et territoires d'outre-mer — sauf à Mayotte et en Alsace-Moselle. Les biens concernés peuvent être bâtis (appartement et maison) ou non bâtis (parcelles et exploitations). Les données sont produites par la Direction générale des finances publiques (DGFip). Elles proviennent des actes enregistrés chez les notaires et des informations contenues dans le cadastre. Cette base a été filtrée de manière à être la plus pédagogique possible pour cette formation.
 
@@ -94,7 +100,7 @@ L'objectif de ce TD est d'illustrer la manière dont peuvent être traitées des
 
 ## Préparation de l'environnement
 
-Les librairies suivantes seront utilisées dans ce TD, vous pouvez d'ores et déjà les charger dans votre environnement. 
+Les librairies suivantes seront utilisées dans ce TD, vous pouvez d'ores et déjà les charger dans votre environnement.
 
 ```{r}
 #| output: false
@@ -110,9 +116,9 @@ Si celles-ci ne sont pas installées, vous pouvez faire en console un `install.p
 
 ::: {#note-bp-install .callout-note}
 
-Les installations de _packages_ sont à faire en console mais ne doivent pas être écrites dans le code. Bien que ce ne soit pas l'objet de ce cours, il est utile de suivre les bonnes pratiques recommandées à l'Insee et plus largement dans le monde {{< fa brands r-project >}}. 
+Les installations de _packages_ sont à faire en console mais ne doivent pas être écrites dans le code. Bien que ce ne soit pas l'objet de ce cours, il est utile de suivre les bonnes pratiques recommandées à l'Insee et plus largement dans le monde {{< fa brands r-project >}}.
 
-Pour en savoir plus, vous pourrez explorer [le portail de formation aux bonnes pratiques](https://inseefrlab.github.io/formation-bonnes-pratiques-git-R/). 
+Pour en savoir plus, vous pourrez explorer [le portail de formation aux bonnes pratiques](https://inseefrlab.github.io/formation-bonnes-pratiques-git-R/).
 
 :::
 
@@ -150,7 +156,7 @@ mapview(montrouge)
 
 ## Préparation de DuckDB
 
-En principe, `duckdb` fonctionne à la manière d'une base de données. Autrement dit, on définit une base de données et effectue des requêtes (SQL ou verbes `tidyverse`) dessus. Pour créer une base de données, il suffit de faire un `read_parquet` avec le chemin du fichier.  
+En principe, `duckdb` fonctionne à la manière d'une base de données. Autrement dit, on définit une base de données et effectue des requêtes (SQL ou verbes `tidyverse`) dessus. Pour créer une base de données, il suffit de faire un `read_parquet` avec le chemin du fichier.
 
 La base de données se crée tout simplement de la manière suivante :
 
@@ -163,7 +169,7 @@ dbExecute(con, "INSTALL spatial;")
 dbExecute(con, "LOAD spatial;")
 ```
 
-Nous verrons ultérieurement pourquoi nous avons besoin de cette extension spatiale. 
+Nous verrons ultérieurement pourquoi nous avons besoin de cette extension spatiale.
 
 Cette connexion `duckdb` peut être utilisée de plusieurs manières. En premier lieu, par le biais d'une requête SQL. `dbGetQuery` permet d'avoir le résultat sous forme de _dataframe_ puisque la requête est déléguée à l'utilitaire `duckdb` qui est embarqué dans les fichiers de la librairie :
 
@@ -203,7 +209,7 @@ Tentons, par une première série d'exercices, de comparer la médiane des prix 
 
 Dans cette partie, nous allons pouvoir faire nos traitements de données avec SQL et/ou `tidyverse`. Cela illustre l'une des forces de duckdb, à savoir son excellente intégration avec d'autres écosystèmes dont nous sommes familiers.
 
-Lorsque nous irons sur l'aspect spatial, nous passerons en SQL pur, l'écosystème tidyverse n'étant pas encore finalisé pour le traitement de données spatiales avec `duckdb`. 
+Lorsque nous irons sur l'aspect spatial, nous passerons en SQL pur, l'écosystème tidyverse n'étant pas encore finalisé pour le traitement de données spatiales avec `duckdb`.
 
 
 ## Premières requêtes SQL : description des données DVF
@@ -218,7 +224,7 @@ Cet exercice nous fera entrer progressivement dans les données à partir de que
 
 1. Lire les 10 premières lignes des données par l'approche SQL et par l'approche tidyverse.
 2. Afficher les noms des colonnes selon les deux approches.
-3. Regarder les valeurs uniques de la colonne `nature_mutation` selon les deux approches. 
+3. Regarder les valeurs uniques de la colonne `nature_mutation` selon les deux approches.
 4. Calculer les bornes min et max des prix des transactions selon ces deux approches.
 :::
 
@@ -241,7 +247,7 @@ describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('data/dvf.p
 table_logement %>% colnames(.)
 ```
 
-Que contient le champ `nature_mutation` ? (il a été filtré au ventes classiques pour simplifié cette application ; les vraies données sont plus riches).
+Que contient le champ `nature_mutation` ? (il a été filtré aux ventes classiques pour simplifier cette application ; les vraies données sont plus riches).
 
 
 ```{r}
@@ -269,14 +275,14 @@ stats_q4_bis <- table_logement %>%
 stats_q4_bis
 ```
 
-Nous venons de voir comment faire quelques requêtes basiques sur un fichier .parquet avec `duckdb` et l'équivalence entre les approches SQL et tidyverse. La dernière question était déjà une introduction au calcul à la volée de statistiques descriptives, ajoutons quelques statistiques avec ce nouvel exercice. 
+Nous venons de voir comment faire quelques requêtes basiques sur un fichier .parquet avec `duckdb` et l'équivalence entre les approches SQL et tidyverse. La dernière question était déjà une introduction au calcul à la volée de statistiques descriptives, ajoutons quelques statistiques avec ce nouvel exercice.
 
 ::: {.exercice}
 ## Exercice 2 : statistiques descriptives sur la dimension attributaire
 
 Ne garder que les seules transactions effectuées à Montrouge ou Malakoff et faire une médiane par commune des montants des transactions
 
-_Faire ceci avec SQL et dplyr_. 
+_Faire ceci avec SQL et dplyr_.
 
 (Vous avez le droit d'utiliser votre assistant IA préféré ! Mais ne prenez pas pour argent comptant ce qu'il vous propose)
 
@@ -306,7 +312,7 @@ On peut se rassurer, on obtient la même chose l'approche `dplyr` :
 ```{r}
 #| echo: true
 table_logement %>%
-  filter(code_commune %in% c(cog_malakoff, cog_montrouge)) %>% 
+  filter(code_commune %in% c(cog_malakoff, cog_montrouge)) %>%
   group_by(code_commune) %>%
   summarise(mediane_valeur_fonciere = median(valeur_fonciere, na.rm = TRUE))
 ```
@@ -316,12 +322,12 @@ On peut en conclure que les biens vendus à Montrouge (dans notre base) ont une 
 
 # Partie 2 : Part de ménages pauvres à Malakoff et à Montrouge
 
-Pour finir, on se place dans le cas où : 
+Pour finir, on se place dans le cas où :
 
 - On souhaite extraire des informations d'un fichier volumineux (les données carroyées de l'Insee).
 - Mais il n'est pas possible de filtrer les données par des requêtes attributaires (par exemple, il n'est pas possible de faire `code_commune = 92049`).
 
-Ainsi, nous allons : 
+Ainsi, nous allons :
 
 - Utiliser les contours géographiques des deux communes
 - Filtrer les données par intersections géographiques des carreaux et des communes, à l'aide de `DuckDB`
@@ -339,7 +345,7 @@ preview <- dbGetQuery(con, "SELECT * FROM read_parquet('data/carreaux.parquet') 
 preview
 ```
 
-On va faire une petite transformation de données préliminaire à cet exercice afin que la géométrie du contour de Malakoff soit reconnue par `DuckDB`. 
+On va faire une petite transformation de données préliminaire à cet exercice afin que la géométrie du contour de Malakoff soit reconnue par `DuckDB`.
 
 ```{r}
 malakoff_2154 <- sf::st_transform(malakoff, 2154)
@@ -371,7 +377,7 @@ carr_malakoff <-
 On peut les visualiser de la manière suivante
 
 ```{r}
-mapview(carr_malakoff) + mapview(sf::st_boundary(malakoff)) 
+mapview(carr_malakoff) + mapview(sf::st_boundary(malakoff))
 ```
 
 
@@ -408,7 +414,7 @@ carr_montrouge <-
   select(-geometry) |>
   rename(geometry=geom_text)
 
-mapview(carr_montrouge) + mapview(sf::st_boundary(montrouge)) 
+mapview(carr_montrouge) + mapview(sf::st_boundary(montrouge))
 ```
 
 On obtient, _in fine_, les statistiques suivantes
@@ -429,7 +435,7 @@ print(glue("Part de ménages pauvres dans les carreaux de Montrouge : ", mean_me
 
 À présent, nous souhaitons avoir des informations sur les transactions effectuées dans le « glorieux » Triangle d'Or de Malakoff (plus prosaïquement, dans son centre-ville commerçant).
 
-Il n'est pas possible de distinguer cette zone par requêtes attributaires : il n'existe pas de colonne permettant de distinguer cette zone : 
+Il n'est pas possible de distinguer cette zone par requêtes attributaires : il n'existe pas de colonne permettant de distinguer cette zone :
 
 
 ::: {.exercice}
@@ -437,7 +443,7 @@ Il n'est pas possible de distinguer cette zone par requêtes attributaires : il 
 
 Via `DuckDB`, calculer la médiane des prix des transactions à l'intérieur et à l'extérieur du Triangle.
 
-Démarche : 
+Démarche :
 
 - 4.1 : Transformer l'objet sf^[le package sf (simple features) permet de définir et exploiter des données spatiales facilement] `triangle` en WKT après l'avoir reprojeté en Lambert 2154 (même système de projection que les transactions DVF, voir @tip-geom).
 - 4.2 : Faire un filtre attributaire sur la commune de Malakoff.
@@ -465,7 +471,7 @@ En revanche, le triangle est disponible sous forme d'objet `sf` (propre à notre
 4.1 : aide à la reprojection du Triangle
 
 ```{r}
-triangle_wkt <- triangle %>% 
+triangle_wkt <- triangle %>%
   sf::st_transform(2154) %>%  # Reprojection
   sf::st_geometry() %>%  # Extraction de la seule dimension spatiale
   sf::st_as_text()  # Transformation en WKT
@@ -477,7 +483,7 @@ Pour l'exercice 4.2, nous aurons besoin de la structure de requête suivante pou
 
 ```{.r}
 ST_Within(
-  ..., # nom de la colonne spatiale du fichier des transactions 
+  ..., # nom de la colonne spatiale du fichier des transactions
   ST_GeomFromText(...)  # Coordonnées du triangle en WKT
 ) as in_triangle
 ```
@@ -506,8 +512,8 @@ Une fois que chaque transaction est identifiée comme étant à l'intérieur ou 
 ```{r}
 #| echo: false
 
-medians_in_out <- transactions_malakoff %>% 
-  group_by(in_triangle) %>% 
+medians_in_out <- transactions_malakoff %>%
+  group_by(in_triangle) %>%
   summarise(median = median(valeur_fonciere))
 
 median_in <- medians_in_out %>% filter(in_triangle) %>% pull(median)
@@ -561,15 +567,15 @@ ggplot(
   theme_minimal()
 ```
 
-Tout ceci ne nous dit rien de la différence entre les biens dans le triangle et en dehors de celui-ci. Nous n'avons fait aucun contrôle sur les caractéristiques des biens. Nous laissons les curieux explorer la mine d'or qu'est cette base. 
+Tout ceci ne nous dit rien de la différence entre les biens dans le triangle et en dehors de celui-ci. Nous n'avons fait aucun contrôle sur les caractéristiques des biens. Nous laissons les curieux explorer la mine d'or qu'est cette base.
 
 
 
 # Conclusion
 
-Nous avons donc réussi à lire des données avec `DuckDB` et à faire des statistiques dessus. Pourquoi est-ce pertinent de passer par `DuckDB` ? Car ce package permet de faire ceci de manière très efficace sur de gros volumes de données. Il passe très bien à l'échelle. 
+Nous avons donc réussi à lire des données avec `DuckDB` et à faire des statistiques dessus. Pourquoi est-ce pertinent de passer par `DuckDB` ? Car ce package permet de faire ceci de manière très efficace sur de gros volumes de données. Il passe très bien à l'échelle.
 
-A noter que notre démarche est une introduction à ce sujet bien plus large qu'est l'analyse géographique. Notre approche serait améliorable sur plusieurs plans : 
+A noter que notre démarche est une introduction à ce sujet bien plus large qu'est l'analyse géographique. Notre approche serait améliorable sur plusieurs plans :
 
 - rationalisation des requêtes,
 - pertinence statistique des résultats
