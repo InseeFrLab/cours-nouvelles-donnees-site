@@ -23,7 +23,7 @@ de neurone actuels est le perceptron qui date de 1957, etc.[^1]
 Néanmoins, le fait que certaines entreprises du net
 basent leur _business model_ sur le traitement
 et la valorisation de la donnée
-textuelle, notamment Google, Facebook et Twitter, a amené 
+textuelle, notamment Google, Facebook et X, a amené 
 à renouveler le domaine. 
 
 [^1]: Pour remonter plus loin dans la ligne du temps des
@@ -40,13 +40,13 @@ de données officielles ne demandent pas exclusivement
 d'informations sous le forme de texte. Les premières informations
 demandées sont généralement un état civil, une adresse, etc.
 C'est ensuite, en fonction du thème de l'enquête, que d'autres
-informations textuelles seront collectées: un nom
+informations textuelles seront collectées : un nom
 d'entreprise, un titre de profession, etc. Les données
 administratives elles-aussi comportent souvent des informations
 textuelles. Ces données défient l'analyse statistique car
 cette dernière, qui vise à détecter des grandes structures
 à partir d'observations multiples, doit s'adapter à la différence
-des données textuelles: le langage est un champ où
+des données textuelles : le langage est un champ où
 certaines des notions usuelles de la statistique (distance, similarité notamment)
 doivent être revues.
 
@@ -67,7 +67,7 @@ afin d'en extraire des informations ponctuelles (du texte, des nombres...). Elle
 
 ## Enjeux pour la statistique publique
 
-Le *webscraping* présente un certain nombre d'enjeux en termes de légalité, qui ne seront pas enseignés dans ce cours. En particulier, la Commission nationale de l'informatique et des libertés (CNIL) a publié en 2020 de nouvelles directives sur le *webscraping* reprécisant qu'aucune donnée ne peut être réutilisée à l'insu de la personne à laquelle elle appartient.
+Le *webscraping* présente un certain nombre d'enjeux légaux, qui ne seront pas enseignés dans ce cours. En particulier, la Commission nationale de l'informatique et des libertés (CNIL) a publié en 2020 de nouvelles directives sur le *webscraping* reprécisant qu'aucune donnée ne peut être réutilisée à l'insu de la personne à laquelle elle appartient.
 
 Le *webscraping* est un domaine où la reproductibilité est compliquée à mettre en oeuvre. Une page *web* évolue
 régulièrement et d'une page web à l'autre, la structure peut
@@ -81,8 +81,8 @@ au bout de quelques semaines. Il apparaît
 préférable de privilégier les API
 qui sont un accès en apparence plus compliqué mais en fait plus fiable à moyen terme.
 Cette difficulté à construire une extraction de données pérenne par
-_webscraping_ une illustration du principe _"there is no free lunch"_.
-La donnée est au cœur du business model de nombreux acteurs, il est donc logique qu'ils essaient de restreindre la moisson de leurs données. 
+_webscraping_ est une illustration du principe _"there is no free lunch"_.
+La donnée est au cœur du business model de nombreux acteurs, il est donc logique que des restrictions au moissonnage soient mises en place. 
 
 Les APIs sont un mode d'accès de plus en plus généralisé à des données.
 Cela permet un lien direct entre fournisseurs et utilisateurs de données,
@@ -114,7 +114,7 @@ de continuité.
 
 `Python` est le langage le plus utilisé
 par les _scrappers_. 
-`BeautifulSoup` sera suffisant quand vous voudrez travailler sur des pages HTML statiques. Dès que les informations que vous recherchez sont générées via l'exécution de scripts [`Javascript`](https://fr.wikipedia.org/wiki/JavaScript), il vous faudra passer par des outils comme [`Selenium`](https://selenium-python.readthedocs.io/).
+`BeautifulSoup` sera suffisant quand vous voudrez travailler sur des pages HTML statiques. Dès que les informations que vous recherchez sont générées via l'exécution de scripts [`Javascript`](https://fr.wikipedia.org/wiki/JavaScript), il vous faudra passer par des outils comme [`Selenium`](https://selenium-python.readthedocs.io/) ou [`Playwright`](https://scrapfly.io/blog/posts/web-scraping-with-playwright-and-python).
 De même, si vous ne connaissez pas l'URL, il faudra passer par un framework comme [`Scrapy`](https://scrapy.org/), qui passe facilement d'une page à une autre ("crawl"). Scrapy est plus complexe à manipuler que `BeautifulSoup` : si vous voulez plus de détails, rendez-vous sur la page du [tutoriel `Scrapy`](https://doc.scrapy.org/en/latest/intro/tutorial.html).
 Pour plus de détails, voir le [TP sur le webscraping en 2e année de l'ENSAE](https://pythonds.linogaliana.fr/webscraping/).
 
@@ -129,13 +129,12 @@ le sujet, notamment de respecter les instructions dans
 # Réseaux sociaux
 
 Les réseaux sociaux sont l'une des sources textuelles
-les plus 
-communes. C'est leur usage à des fins commerciales
+les plus communes. C'est leur usage à des fins commerciales
 qui a amené les entreprises du net à renouveler
 le champ de l'analyse textuelles qui bénéficie
 au-delà de leur champ d'origine. 
 
-On rentre un peu plus en détail sur ces données dans le chapitre **Nowcasting**.
+Nous entrons un peu plus en détail sur ces données dans le chapitre **Nowcasting**.
 
 # Les modèles de langage 
 
@@ -149,20 +148,20 @@ ou la similarité de sens entre deux phrases.
 
 ## Du bag of words aux modèles de langage
 
-L'objectif du _Natural Langage Processing_ (NLP)
+L'objectif du traitement du langage naturel (ou _Natural Langage Processing_ - NLP)
 est de transformer une information de très haute
 dimension (une langue est un objet éminemment complexe)
 en information à dimension plus limitée qui peut
 être exploitée par un ordinateur.
 
 La première approche pour entrer dans l'analyse d'un 
-texte est généralement l'approche bag of words ou topic modeling.
+texte est généralement l'approche _bag of words_ ou _topic modeling_.
 Dans la première, il s'agit
 de formaliser un texte sous forme d'un ensemble de mots
 où on va piocher plus ou moins fréquemment dans un sac de 
 mots possibles.
 Dans la seconde, il s'agit de modéliser le processus de choix
-de mots en deux étapes (modèle de mélange): d'abord un choix
+de mots en deux étapes (modèle de mélange) : d'abord un choix
 de thème puis, au sein de ce thème, un choix de mots plus ou
 moins fréquents selon le thème.
 
@@ -172,7 +171,7 @@ des thèmes. Néanmoins, il s'agit d'une matrice très creuse: même
 un texte au vocabulaire très riche n'explore qu'une petite partie
 du dictionnaire des mots possibles. 
 
-L’idée derrière les _embeddings_ est de proposer une information plus
+L’idée derrière les plongements lexicaux (_embeddings_) est de proposer une information plus
 condensée qui permet néanmoins de capturer les grandes structures
 d'un texte. Il s'agit par exemple de résumer l'ensemble
 d'un corpus en un nombre relativement restreint de dimensions. Ces
@@ -180,8 +179,7 @@ dimensions ne sont pas prédéterminées mais plutôt inférées
 par un modèle qui essaie de trouver la meilleure partition 
 des dimensions pour rapprocher les termes équivalents.
 Chacune de ces dimensions va représenter un facteur latent, c’est à dire une variable inobservée, de la même manière que les composantes principales produites par une ACP.
-Techniquement,
-au lieu de représenter les documents par des vecteurs sparse de très grande dimension (la taille du vocabulaire) comme on l’a fait jusqu’à présent, on va les représenter par des vecteurs denses (continus) de dimension réduite (en général, autour de 100-300).
+Techniquement, au lieu de représenter les documents par des vecteurs sparse de très grande dimension (la taille du vocabulaire) comme on l’a fait jusqu’à présent, on va les représenter par des vecteurs denses (continus) de dimension réduite (en général, autour de 100-300).
 
 ## Intérêt des modèles de langage
 
@@ -216,6 +214,7 @@ Chaque mot est représenté par un vecteur de taille fixe (comprenant $n$ nombre
 de façon à ce que deux mots dont le sens est proche possèdent des représentations numériques proches. Ainsi les mots « chat » et « chaton » devraient avoir des vecteurs de plongement assez similaires, eux-mêmes également assez proches de celui du mot « chien » et plus éloignés de la représentation du mot « maison ».
 
 _Comment ces modèles sont-ils entraînés ?_
+
 Via une tâche de prédiction résolue par un réseau de neurones simple.
 L'idée fondamentale est que la signification d'un mot se comprend
 en regardant les mots qui apparaissent fréquemment dans son voisinage.
@@ -273,7 +272,7 @@ La publication par l'organisation [Open AI](https://openai.com/) de
 son modèle de génération de contenu créatif [Dall-E-2](https://openai.com/dall-e-2/)
 (un jeu de mot mélangeant Dali et Wall-E) a créé un bruit inédit dans
 le monde de la _data-science_.
-Un compte Twitter ([Weird Dall-E Mini Generations](https://twitter.com/weirddalle))
+Un compte X ([Weird Dall-E Mini Generations](https://twitter.com/weirddalle))
 propose de nombreuses générations de contenu drôles ou incongrues. 
 Le bloggeur tech Casey Newton a pu parler d'une 
 [révolution créative dans le monde de l'IA](https://www.platformer.news/p/how-dall-e-could-power-a-creative).
