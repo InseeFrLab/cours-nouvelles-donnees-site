@@ -108,6 +108,7 @@ de continuité.
 
 ## Exemples dans la statistique publique
 
+- Projet Jocas : scrapping des offres d'emplois.
 
 
 ## Implémentations
@@ -233,52 +234,42 @@ Illustration des *word embeddings*.
 
 ## Les modèles de langage aujourd'hui
 
-La méthode de construction d’un plongement lexical présentée ci-dessus est celle de l’algorithme [`Word2Vec`](https://fr.wikipedia.org/wiki/Word2vec).
-Il s’agit d’un modèle _open-source_ développé par une équipe de `Google` en 2013.
-`Word2Vec` a été le pionnier en termes de modèles de plongement lexical.
+Les modèles de langage aujourd’hui
 
-Le modèle [`GloVe`](https://nlp.stanford.edu/projects/glove/) constitue un autre exemple [@pennington2014glove]. Développé en 2014 à Stanford,
-ce modèle ne repose pas sur des réseaux de neurones mais sur la construction d’une grande matrice de co-occurrences de mots. Pour chaque mot, il s’agit de calculer les fréquences d’apparition des autres mots dans une fenêtre de taille fixe autour de lui. La matrice de co-occurrences obtenue est ensuite factorisée par une décomposition en valeurs singulières.
-Il est également possible de produire des plongements de mots à partir du [modèle de langage `BERT`](https://jalammar.github.io/illustrated-bert/), développé par `Google` en 2019, dont il existe des déclinaisons dans différentes langues, notamment en Français (les
-modèles [`CamemBERT`](https://camembert-model.fr/) ou [`FlauBERT`](https://github.com/getalp/Flaubert)).
+La méthode de construction d’un plongement lexical présentée précédemment correspond à celle de l’algorithme [`Word2Vec`](https://fr.wikipedia.org/wiki/Word2vec), un modèle _open-source_ développé par une équipe de `Google` en 2013.
+`Word2Vec` a constitué une avancée majeure en introduisant des représentations vectorielles denses apprises à partir des contextes d’apparition des mots, et a joué un rôle pionnier dans le développement des modèles de plongement lexical modernes.
 
-Enfin, le modèle [`FastText`](https://fasttext.cc/), développé en 2016 par une équipe de `Facebook`, fonctionne de façon similaire à `Word2Vec` mais se distingue particulièrement sur deux points :
+Le modèle [`GloVe`](https://nlp.stanford.edu/projects/glove/) constitue une autre approche historique importante [@pennington2014glove]. Développé en 2014 à Stanford, il repose sur l’exploitation globale des statistiques de co-occurrences entre mots dans un corpus, via la construction puis l’optimisation d’une matrice de co-occurrences. Contrairement à `Word2Vec`, `GloVe` n’est pas formulé comme un réseau de neurones prédictif, mais comme un problème d’optimisation visant à approximer ces statistiques globales.
 
-*   En plus des mots eux-mêmes, le modèle apprend des représentations pour les n-grams de caractères (sous-séquences de caractères de taille \\(n\\), par exemple _« tar »_, _« art »_ et _« rte »_ sont les trigrammes du mot _« tarte »_), ce qui le rend notamment robuste aux variations d’orthographe ;
-*   Le modèle a été optimisé pour que son entraînement soit particulièrement rapide.
+À partir de la fin des années 2010, les modèles de langage fondés sur l’architecture *Transformer* ont profondément modifié l’approche des plongements lexicaux. Le modèle de langage [`BERT`](https://jalammar.github.io/illustrated-bert/), développé par `Google` en 2019 [@devlin2018bert], produit des plongements contextualisés, c’est-à-dire dépendants du contexte d’apparition du mot dans la phrase, contrairement aux modèles statiques comme `Word2Vec` ou `GloVe`. Plusieurs déclinaisons multilingues ou spécialisées ont depuis été développées, notamment pour le français, telles que [`CamemBERT`](https://camembert-model.fr/) ou [`FlauBERT`](https://github.com/getalp/Flaubert).
 
-Le modèle `GPT-3` (acronyme de Generative Pre-trained Transformer 3)
-a aujourd'hui le vent en poupe. Celui-ci 
-a été développé par la société `OpenAI` et rendu 
-public en 2020 [@brown2020language]. 
-GPT-3 est le plus gros modèle de langage jamais entraîné avec 175 milliards de paramètres. Il sert de brique de base à plusieurs applications
-utilisant l'analyse textuelle pour synthétiser, à partir d'une 
-instruction, des éléments importants et
-proposer un texte cohérent. `Github Copilot` l'utilise pour transformer
-une instruction en proposition de code, à partir d'un grand
-corpus de code open source. `Algolia` l'utilise pour transformer une 
-instruction en mots clés de recherche afin d'améliorer
-la pertinence des résultats.
+Le modèle [`FastText`](https://fasttext.cc/), développé en 2016 par une équipe de `Facebook AI Research`, s’inscrit dans la continuité de `Word2Vec` tout en introduisant des améliorations importantes. En plus des mots, il apprend des représentations de sous-unités lexicales, en particulier des n-grams de caractères (sous-séquences de caractères de taille \\(n\\), par exemple _« tar »_, _« art »_ et _« rte »_ sont les trigrammes du mot _« tarte »_), mais également des n-grams de mots. Cette modélisation rend le modèle plus robuste aux variations morphologiques, aux fautes d’orthographe, aux mots rares et à certaines expressions multi-mots. Son implémentation a également été optimisée pour permettre un entraînement rapide sur de grands corpus.
 
-En ce moment, le champ du _prompt engineering_ est en effervescence. 
-Les modèles de langage comme GPT-3 permettent en effet d'extraire
-les éléments qui permettent de mieux discriminer les thèmes
-d'un texte. 
+Plus récemment, les modèles de langage génératifs de grande taille (*Large Language Models*, LLMs), basés sur l’architecture Transformer, ont marqué un changement d’échelle. Le modèle `GPT-3` (*Generative Pre-trained Transformer 3*), développé par la société `OpenAI` et rendu public en 2020 [@brown2020language], compte 175 milliards de paramètres et a servi de point de départ à de nombreuses applications industrielles. Ces modèles sont aujourd’hui utilisés pour la génération de texte, de code, le résumé automatique ou l’assistance conversationnelle, par exemple dans `GitHub Copilot`.
+
+Au-delà de la famille des modèles GPT, d’autres grands modèles de langage ont été développés par différents acteurs industriels et académiques, tels que `Claude` (Anthropic), `Mistral`, `Grok` (xAI) ou les modèles utilisés par `Perplexity`. Bien qu’ils reposent sur des principes architecturaux similaires, ces modèles diffèrent par leur taille, leurs données d’entraînement, leurs objectifs d’optimisation et leurs domaines d’application.
+
+Dans ce contexte, le champ du _prompt engineering_ s’est fortement développé. Il regroupe un ensemble de pratiques visant à formuler efficacement des instructions textuelles afin d’exploiter les capacités des modèles de langage de grande taille, notamment pour extraire des informations pertinentes, discriminer les thèmes d’un texte ou guider la génération de contenus, sans recourir à un entraînement spécifique supplémentaire.
 
 
-## Utilisation dans un processus de créatoin de contenu créatif 
+## Utilisation dans un processus de création de contenu créatif 
 
 La publication par l'organisation [Open AI](https://openai.com/) de
-son modèle de génération de contenu créatif [Dall-E-2](https://openai.com/dall-e-2/)
-(un jeu de mot mélangeant Dali et Wall-E) a créé un bruit inédit dans
-le monde de la _data-science_.
+ses premiers modèles de génération d’images à partir de texte, en particulier
+[DALL·E 2](https://openai.com/dall-e-2/)
+(un jeu de mots mêlant Dali et WALL·E), a suscité un intérêt médiatique et scientifique inédit
+autour des usages créatifs de l’intelligence artificielle.
+Ces modèles ont contribué à rendre visibles au grand public les capacités génératives
+des modèles d’apprentissage profond, au-delà des tâches traditionnelles de classification ou de prédiction.
+
 Un compte X ([Weird Dall-E Mini Generations](https://twitter.com/weirddalle))
-propose de nombreuses générations de contenu drôles ou incongrues. 
-Le bloggeur tech Casey Newton a pu parler d'une 
-[révolution créative dans le monde de l'IA](https://www.platformer.news/p/how-dall-e-could-power-a-creative).
+a ainsi proposé de nombreuses générations d’images à la fois surprenantes,
+drôles ou incongrues, illustrant le potentiel créatif — mais aussi les limites —
+de ces modèles. Le blogueur tech Casey Newton a notamment évoqué une
+[révolution créative dans le monde de l’IA](https://www.platformer.news/p/how-dall-e-could-power-a-creative),
+liée à la démocratisation de ces outils auprès d’artistes, de designers et de créateurs de contenu.
 
-
-La @fig-shiba montre un exemple d'image générée par DALL-E-2.
+La @fig-shiba montre un exemple d’image générée par `DALL·E 2`.
 
 ::: {#fig-shiba}
 ![](https://upload.wikimedia.org/wikipedia/commons/2/2b/A_Shiba_Inu_dog_wearing_a_beret_and_black_turtleneck_DALLE2.jpg){ width=70% }
@@ -286,56 +277,73 @@ La @fig-shiba montre un exemple d'image générée par DALL-E-2.
 _"A Shiba Inu dog wearing a beret and black turtleneck"_
 :::
 
-Les modèles générateurs d'image
-`DallE` et `Stable Diffusion` peuvent, schématiquement,
-être décomposés en deux niveaux de réseaux de neurones:
+Les modèles générateurs d’images tels que `DALL·E`, `Stable Diffusion` ou leurs successeurs
+reposent, schématiquement, sur une architecture en plusieurs étapes :
 
-- le contenu de la phrase est analysé par un modèle de langage comme `GPT-3` ;
-- les éléments importants de la phrase (recontextualisés) sont ensuite transformés en image à partir de
-modèles entraînés à reconnaître des images.
+- le contenu textuel de la requête est analysé et encodé par un modèle de langage
+de grande taille (par exemple un modèle de la famille `GPT` ou un encodeur de type Transformer) ;
+- cette représentation latente du texte est ensuite utilisée pour guider un modèle
+génératif d’images, entraîné sur de vastes corpus image–texte, afin de produire
+une image cohérente avec la description fournie.
 
 ![](https://raw.githubusercontent.com/patrickvonplaten/scientific_images/master/stable_diffusion.png){ fig-align="center" }
 
-`Stable Diffusion` est une version plus accessible que `DALL-E` pour les
-utilisateurs de `Python`.
+`Stable Diffusion` constitue une alternative plus ouverte et plus accessible que `DALL·E`,
+notamment pour les utilisateurs de `Python`, car il peut être exécuté localement
+ou via des plateformes open source, et adapté à des usages spécifiques
+(par exemple par *fine-tuning* ou contrôle du style).
 
 ![](https://huggingface.co/blog/assets/98_stable_diffusion/stable_diffusion_12_1.png){ fig-align="center" }
 
-Si vous êtes intéressés par ce type de modèle, vous pouvez
-[tester les exemples du cours de Python de l'ENSAE](https://pythonds.linogaliana.fr/dalle/). Vous pouvez tester
-__"Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat scene"__
-pour générer une image comme celle-ci dessous ou chercher à obtenir
-l'image de votre choix:
+Si vous êtes intéressés par ce type de modèles, vous pouvez
+[tester les exemples du cours de Python de l’ENSAE](https://pythonds.linogaliana.fr/dalle/).
+Par exemple, l’instruction  
+__"Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat scene"__  
+permet de générer une image telle que celle présentée ci-dessous, ou bien
+d’explorer librement vos propres descriptions textuelles :
 
 ![](https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/chuck.png){ fig-align="center" }
 
-# Modèles de langage dans la statistique publique
+::: {.callout-note}
 
-L'analyse textuelle dans la statistique publique intervient 
-principalement à deux niveaux:
+**Encadré – Enjeux et craintes dans le monde créatif**
 
-- pour apparier des sources à partir de champs textuels qui
-ne sont pas nécessairement identiques ;
-- pour catégoriser des données dans une nomenclature normalisée
-à partir de champs libres.
+Le développement rapide des modèles génératifs suscite de fortes inquiétudes dans les industries culturelles et créatives.
+Les artistes, auteurs et musiciens s’interrogent sur l’utilisation de leurs œuvres pour l’entraînement de ces modèles,
+souvent sans consentement explicite ni rémunération. Des craintes portent également sur la substitution partielle
+de la création humaine par des contenus générés automatiquement (images, musiques, scénarios),
+ainsi que sur les implications juridiques en matière de droits d’auteur et de propriété intellectuelle.
+:::
 
-## Catégorisation
 
-A `l’Insee`, plusieurs modèles de classification de libellés textuels dans des nomenclatures reposent sur l’algorithme de plongement lexical [`FastText`](https://fasttext.cc/). 
-Les derniers mis en oeuvre sont les suivants:
 
-1. catégorisation des professions dans la nomenclature des PCS ;
-2. catégorisation des entreprises dans la nomenclature d'activité APE ;
-3. catégorisation des produits dans la nomenclature des COICOP.
 
-Les deux premiers devraient servir prochainement à la production de statistiques
-officielles. Le troisième est une expérimentation encore en cours. 
+## Modèles de langage dans la statistique publique
 
-## Appariements
+Au sein de la statistique publique, le principal cas d'usage de l'analyse textuelle est la codification automatique.
+La codification automatique consiste à classer des libellés textuels dans des nomenclatures officielles (et généralement hiérarchiques).
 
-![Source: @galiana2022.](img/images/img_appariements.png){ fig-align="center" width=80% }
+Voici les principaux projets de codification automatique à ce jour :
+
+- catégorisation des professions des individus dans la nomenclature des PCS (*Professions et catégories socioprofessionnelles en France*) ;
+- catégorisation de l'activité des entreprises dans la nomenclature d'activité APE (*Activité principale des entreprises* issue de la Nomenclature des activités françaises) ;
+- catégorisation des produits de consommation dans la nomenclature COICOP (*Classification of Individual Consumption by Purpose*).
+- Catégorisation des causes de décès à partir des certificats de décès.
+- catégorisation des compétences dans les annonces d'offres d'emploi.
+- etc.
+
+A `l’Insee`, plusieurs modèles de classification de libellés textuels dans des nomenclatures reposent sur l’algorithme de plongement lexical [`FastText`](https://fasttext.cc/). Bien que l'Insee sorte progressivement de l'utilisation de cet librairie (dont la maintenance a cessé), les fondements méthodologiques restent au coeur du nouvel outil développé et maintenu en interne : [`torchTextClassifiers`](https://github.com/InseeFrLab/torchTextClassifiers)
+
+
+- pour apparier des sources à partir de champs textuels qui ne sont pas nécessairement identiques ;
+- pour catégoriser des données dans une nomenclature normalisée à partir de champs libres.
+
 
 # Conclusion
+
+Les données textuelles, de plus en plus disponibles, offrent des opportunités inédites pour la statistique publique, mais nécessitent des méthodes adaptées. Leur analyse, autrefois limitée à des outils simples, s’appuie désormais sur des modèles avancés (embeddings, classification automatique) pour structurer et exploiter ces informations non organisées.
+Le webscraping et les API permettent d’accéder à ces données, mais posent des défis techniques (reproductibilité, évolutivité) et éthiques (respect des droits, qualité). Les modèles de langage modernes transforment ces textes en données exploitables, facilitant la codification automatique (nomenclatures PCS, APE, etc.) et l’analyse sémantique.
+Cependant, leur utilisation exige de concilier innovation et rigueur méthodologique, notamment pour garantir la fiabilité des résultats et la protection des données. Ce champ reste en évolution, avec un potentiel majeur pour automatiser et enrichir les processus statistiques.
 
 # References
 
