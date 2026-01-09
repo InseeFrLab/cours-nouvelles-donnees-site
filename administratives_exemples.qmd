@@ -2,28 +2,37 @@
 title: "Quelques exemples approfondis de données administratives"
 ---
 
-# Exemples 
+# Exemples
 
-4 exemples de nature différente:
+Voici 4 exemples de nature différente:
 
-- la DSN: base de gestion transmise à l'Insee et la DARES pour la production ;
+- la déclaration sociale nominative (DSN): base de gestion transmise à l'Insee et la DARES pour la production ;
 - Sirene: répertoire géré par l'Insee, utilisé par d'autres acteurs ;
 - Fidéli: agrégation et mise en cohérence de plusieurs sources ;
 - SNDS: mise en cohérence de données de gestion hospitalières et de l'assurance maladie, enjeu encore plus fort de confidentialité ;
 
 :::{.callout-note}
 ## Les autres répertoires de la statistique publique
+La statistique publique gère de nombreux autres répertoires que vous pouvez croiser parfois
+dans votre quotidien.
 
+En voici d'autres :
 - Filosofi (Fichier localisé social et fiscal): répertoire de synthèse des sources fiscales ;
 - La Base permanente des équipements (BPE): répertoire d'équipements et services.
+- le répertoire national d'identification des personnes physiques (RNIPP) : répertoire géré par l'Insee qui identifie, à partir des actes d'état civil, les personnes en France et leur attribue un numéro, plus connu sous le nom de "numéro de sécurité sociale"
+- le Répertoire national des identifiants élèves, étudiants et apprentis : géré par le SSM Enseignement supérieur et Recherche,
+ce registre attribue un numéro unique à tous les élèves (le fameux numéro INE).
+
 :::
 
-## La DSN
+## La déclaration sociale nominative (DSN)
 
 :::{.callout-note}
 ## Les DADS et la DSN
-
-Descriptions sur le site de l'Insee de la [Déclaration annuelle de données sociales](https://www.insee.fr/fr/metadonnees/source/serie/s1163) (DADS) et de la [Déclaration sociale nominative](https://www.insee.fr/fr/information/3647025?sommaire=3647035) (DSN).
+La DSN est venue moderniser et remplacer la DADS, qui n'est aujourd'hui plus utilisée.
+Plus d'informations sur le site de l'Insee :
+-  la [Déclaration annuelle de données sociales](https://www.insee.fr/fr/metadonnees/source/serie/s1163) (DADS) ;
+-  la [Déclaration sociale nominative](https://www.insee.fr/fr/information/3647025?sommaire=3647035) (DSN).
 :::
 
 La Déclaration sociale nominative est aujourd'hui le mode d'échanges de données sociales des entreprises vers l'administration, et concerne toutes les entreprises du secteur privé. Elle résulte d'un projet de simplification administrative qui s’est étalé sur près de dix ans : la collecte des données est adossée au processus générateur de la collecte des cotisations sociales, c’est-à-dire au processus de paie [@Humbert2018]. En plus de réduire la charge imposée aux entreprise, la DSN garantit une bien meilleure qualité et l'exhaustivité de l’information recueillie.
@@ -65,16 +74,16 @@ Autres challenges liés à l'exploitation statistique:
 
 Le Système national d’identification et du répertoire des entreprises et de leurs établissements (Sirene) est un répertoire administré par l’Insee qui centralise de l'information sur chacun des 32 millions d'établissements (dont 13 millions d'établissements actifs) existant en France. En particulier, il attribue un numéro SIREN aux entreprises, organismes et associations ainsi qu'un numéro SIRET aux établissements de ces entités.
 
-L’utilité du numéro SIRET est multiple. S’il constitue avant tout la preuve juridique de l’existence d’un établissement, il permet également d’effectuer un certain nombre de démarches commerciales et administratives. 
+L’utilité du numéro SIRET est multiple. S’il constitue avant tout la preuve juridique de l’existence d’un établissement, il permet également d’effectuer un certain nombre de démarches commerciales et administratives.
 
-Ainsi, il sert à : 
+Ainsi, il sert à :
 
 - Émettre des factures, mais aussi des documents commerciaux. En effet, il est obligatoire de faire apparaître le numéro sur chacun de ces documents. En outre, si l’entreprise à un site internet, le numéro doit apparaître dans les mentions légales ;
 - Obtenir des informations officielles sur les sociétés. Grâce au SIRET, tout prestataire ou client peut vérifier la fiabilité des données que l’entreprise lui fournit, via une recherche sur internet notamment ;
 - Prouver l’existence légale de la compagnie. Ce numéro permet en effet de l’identifier auprès de ses clients, prestataires, co-contractants et par l’administration fiscale ;
-- Produire des statistiques à partir de la base Sirene et du numéro SIRET. En effet, ces deux éléments donnent accès à des informations capitales que l’INSEE peut réutiliser et analyser.  
+- Produire des statistiques à partir de la base Sirene et du numéro SIRET. En effet, ces deux éléments donnent accès à des informations capitales que l’INSEE peut réutiliser et analyser.
 
-Pour la statistique publique, Sirene met à disposition des utilisateurs un code APE (pour activité principale exercée) choisi dans la Nomenclature d'activité française (NAF) pour chaque établissement (APET) et pour chaque entreprise (APEN), ainsi que sa localisation, sa catégorie juridique, son effectif salarié et l’historique des mouvements (création, cessation, etc.). Le répertoire SIRENE est aussi la base de référence pour toutes les études et enquêtes statistiques sur les entreprises. 
+Pour la statistique publique, Sirene met à disposition des utilisateurs un code APE (pour activité principale exercée) choisi dans la Nomenclature d'activité française (NAF) pour chaque établissement (APET) et pour chaque entreprise (APEN), ainsi que sa localisation, sa catégorie juridique, son effectif salarié et l’historique des mouvements (création, cessation, etc.). Le répertoire SIRENE est aussi la base de référence pour toutes les études et enquêtes statistiques sur les entreprises.
 
 ## Fidéli
 
@@ -92,7 +101,7 @@ Fidéli fournit des possibilités d'études poussées sur des sujets extrêmemen
 - Caractérisation spatiale de la vulnérabilité sociale à la hausse des températures en milieu urbain ;
 - Evaluation de l’impact de la majoration de la taxe d’habitation sur les résidences secondaires...
 
-## SNDS
+## Le système national des données de santé (SNDS)
 
 Le Système national des données de santé (SNDS) est un entrepôt de données médico-administratives pseudonymisées couvrant l'ensemble de la population française et contenant l'ensemble des soins présentés au remboursement. Le SNDS peut être vu comme un appariement des grandes bases médico-administratives nationales, notamment :
 
