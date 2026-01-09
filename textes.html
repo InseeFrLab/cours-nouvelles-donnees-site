@@ -458,12 +458,8 @@ window.Quarto = {
   <li><a href="#du-bag-of-words-aux-modèles-de-langage" id="toc-du-bag-of-words-aux-modèles-de-langage" class="nav-link" data-scroll-target="#du-bag-of-words-aux-modèles-de-langage">Du bag of words aux modèles de langage</a></li>
   <li><a href="#intérêt-des-modèles-de-langage" id="toc-intérêt-des-modèles-de-langage" class="nav-link" data-scroll-target="#intérêt-des-modèles-de-langage">Intérêt des modèles de langage</a></li>
   <li><a href="#les-modèles-de-langage-aujourdhui" id="toc-les-modèles-de-langage-aujourdhui" class="nav-link" data-scroll-target="#les-modèles-de-langage-aujourdhui">Les modèles de langage aujourd’hui</a></li>
-  <li><a href="#utilisation-dans-un-processus-de-créatoin-de-contenu-créatif" id="toc-utilisation-dans-un-processus-de-créatoin-de-contenu-créatif" class="nav-link" data-scroll-target="#utilisation-dans-un-processus-de-créatoin-de-contenu-créatif">Utilisation dans un processus de créatoin de contenu créatif</a></li>
-  </ul></li>
-  <li><a href="#modèles-de-langage-dans-la-statistique-publique" id="toc-modèles-de-langage-dans-la-statistique-publique" class="nav-link" data-scroll-target="#modèles-de-langage-dans-la-statistique-publique">Modèles de langage dans la statistique publique</a>
-  <ul class="collapse">
-  <li><a href="#catégorisation" id="toc-catégorisation" class="nav-link" data-scroll-target="#catégorisation">Catégorisation</a></li>
-  <li><a href="#appariements" id="toc-appariements" class="nav-link" data-scroll-target="#appariements">Appariements</a></li>
+  <li><a href="#utilisation-dans-un-processus-de-création-de-contenu-créatif" id="toc-utilisation-dans-un-processus-de-création-de-contenu-créatif" class="nav-link" data-scroll-target="#utilisation-dans-un-processus-de-création-de-contenu-créatif">Utilisation dans un processus de création de contenu créatif</a></li>
+  <li><a href="#modèles-de-langage-dans-la-statistique-publique" id="toc-modèles-de-langage-dans-la-statistique-publique" class="nav-link" data-scroll-target="#modèles-de-langage-dans-la-statistique-publique">Modèles de langage dans la statistique publique</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -493,8 +489,8 @@ window.Quarto = {
 
 
 <p>Les données textuelles sont aujourd’hui parmi les types de données les plus prometteurs pour la statistique publique et l’un des champs les plus actifs de la recherche en <em>data science</em>. Pour cause, de plus en plus de services existent sur le <em>web</em> qui conduisent à la collecte de données textuelles. En outre, des nouvelles méthodes pour collecter et traiter ces traces numériques particulières ont été développées dans les dernières années.</p>
-<p>Une partie des méthodes d’analyse qui appartiennent à la palette des compétences des <em>data scientists</em> spécialistes du traitement de données textuelles sont en réalité assez anciennes. Par exemple, la <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">distance de Levensthein</a> a été proposée pour la première fois en 1965, l’ancêtre des réseaux de neurone actuels est le perceptron qui date de 1957, etc.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Néanmoins, le fait que certaines entreprises du net basent leur <em>business model</em> sur le traitement et la valorisation de la donnée textuelle, notamment Google, Facebook et Twitter, a amené à renouveler le domaine.</p>
-<p>La statistique publique s’appuie également sur la collecte et le traitement de données textuelles. Les collectes de données officielles ne demandent pas exclusivement d’informations sous le forme de texte. Les premières informations demandées sont généralement un état civil, une adresse, etc. C’est ensuite, en fonction du thème de l’enquête, que d’autres informations textuelles seront collectées: un nom d’entreprise, un titre de profession, etc. Les données administratives elles-aussi comportent souvent des informations textuelles. Ces données défient l’analyse statistique car cette dernière, qui vise à détecter des grandes structures à partir d’observations multiples, doit s’adapter à la différence des données textuelles: le langage est un champ où certaines des notions usuelles de la statistique (distance, similarité notamment) doivent être revues.</p>
+<p>Une partie des méthodes d’analyse qui appartiennent à la palette des compétences des <em>data scientists</em> spécialistes du traitement de données textuelles sont en réalité assez anciennes. Par exemple, la <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">distance de Levensthein</a> a été proposée pour la première fois en 1965, l’ancêtre des réseaux de neurone actuels est le perceptron qui date de 1957, etc.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Néanmoins, le fait que certaines entreprises du net basent leur <em>business model</em> sur le traitement et la valorisation de la donnée textuelle, notamment Google, Facebook et X, a amené à renouveler le domaine.</p>
+<p>La statistique publique s’appuie également sur la collecte et le traitement de données textuelles. Les collectes de données officielles ne demandent pas exclusivement d’informations sous le forme de texte. Les premières informations demandées sont généralement un état civil, une adresse, etc. C’est ensuite, en fonction du thème de l’enquête, que d’autres informations textuelles seront collectées : un nom d’entreprise, un titre de profession, etc. Les données administratives elles-aussi comportent souvent des informations textuelles. Ces données défient l’analyse statistique car cette dernière, qui vise à détecter des grandes structures à partir d’observations multiples, doit s’adapter à la différence des données textuelles : le langage est un champ où certaines des notions usuelles de la statistique (distance, similarité notamment) doivent être revues.</p>
 <p>Ce chapitre propose un panorama très incomplet de l’apport des données non structurées, principalement textuelles, pour la statistique et l’analyse de données. Nous évoquerons plusieurs sources ou méthodes de collecte. Nous ferons quelques détours par des exemples pour aller plus loin.</p>
 <section id="webscraping" class="level1">
 <h1>Webscraping</h1>
@@ -504,35 +500,38 @@ window.Quarto = {
 </section>
 <section id="enjeux-pour-la-statistique-publique" class="level2">
 <h2 class="anchored" data-anchor-id="enjeux-pour-la-statistique-publique">Enjeux pour la statistique publique</h2>
-<p>Le <em>webscraping</em> présente un certain nombre d’enjeux en termes de légalité, qui ne seront pas enseignés dans ce cours. En particulier, la Commission nationale de l’informatique et des libertés (CNIL) a publié en 2020 de nouvelles directives sur le <em>webscraping</em> reprécisant qu’aucune donnée ne peut être réutilisée à l’insu de la personne à laquelle elle appartient.</p>
+<p>Le <em>webscraping</em> présente un certain nombre d’enjeux légaux, qui ne seront pas enseignés dans ce cours. En particulier, la Commission nationale de l’informatique et des libertés (CNIL) a publié en 2020 de nouvelles directives sur le <em>webscraping</em> reprécisant qu’aucune donnée ne peut être réutilisée à l’insu de la personne à laquelle elle appartient.</p>
 <p>Le <em>webscraping</em> est un domaine où la reproductibilité est compliquée à mettre en oeuvre. Une page <em>web</em> évolue régulièrement et d’une page web à l’autre, la structure peut être très différente ce qui rend certains codes difficilement généralisables. Par conséquent, la meilleure manière d’avoir un programme fonctionnel est de comprendre la structure d’une page web et dissocier les éléments exportables à d’autres cas d’usages des requêtes <em>ad hoc</em>.</p>
-<p>Un code qui fonctionne aujourd’hui peut ainsi très bien ne plus fonctionner au bout de quelques semaines. Il apparaît préférable de privilégier les API qui sont un accès en apparence plus compliqué mais en fait plus fiable à moyen terme. Cette difficulté à construire une extraction de données pérenne par <em>webscraping</em> une illustration du principe <em>“there is no free lunch”</em>. La donnée est au cœur du business model de nombreux acteurs, il est donc logique qu’ils essaient de restreindre la moisson de leurs données.</p>
+<p>Un code qui fonctionne aujourd’hui peut ainsi très bien ne plus fonctionner au bout de quelques semaines. Il apparaît préférable de privilégier les API qui sont un accès en apparence plus compliqué mais en fait plus fiable à moyen terme. Cette difficulté à construire une extraction de données pérenne par <em>webscraping</em> est une illustration du principe <em>“there is no free lunch”</em>. La donnée est au cœur du business model de nombreux acteurs, il est donc logique que des restrictions au moissonnage soient mises en place.</p>
 <p>Les APIs sont un mode d’accès de plus en plus généralisé à des données. Cela permet un lien direct entre fournisseurs et utilisateurs de données, un peu sous la forme d’un contrat. Si les données sont ouvertes avec restrictions, on utilise des clés d’authentification. Avec les API, on structure sa demande de données sous forme de requête paramétrée (source désirée, nombre de lignes, champs…) et le fournisseur de données y répond, généralement sous la forme d’un résultat au format <code>JSON</code>. <code>Python</code> et <code>JavaScript</code> sont deux outils très populaires pour récupérer de la donnée selon cette méthode. Pour plus de détails, vous pouvez explorer le <a href="https://pythonds.linogaliana.fr/api/">chapitre sur les API dans le cours de <code>Python</code> de l’ENSAE</a>.</p>
 <p>On n’est pas à l’abri de mauvaises surprises avec les APIs (indisponibilité, limite atteinte de requêtes…) mais cela permet un lien plus direct avec la dernière donnée publiée par un producteur. L’avantage de l’API est qu’il s’agit d’un service du fournisseur de données, qui en tant que service va amener un producteur à essayer de répondre à une demande dans la mesure du possible. Le <em>webscraping</em> étant un mode d’accès à la donnée plus opportuniste, où le réel objectif du producteur de données n’est pas de fournir de la donnée mais une page <em>web</em>, il n’y a aucune garantie de service ou de continuité.</p>
 </section>
 <section id="exemples-dans-la-statistique-publique" class="level2">
 <h2 class="anchored" data-anchor-id="exemples-dans-la-statistique-publique">Exemples dans la statistique publique</h2>
+<ul>
+<li>Projet Jocas : scrapping des offres d’emplois.</li>
+</ul>
 </section>
 <section id="implémentations" class="level2">
 <h2 class="anchored" data-anchor-id="implémentations">Implémentations</h2>
-<p><code>Python</code> est le langage le plus utilisé par les <em>scrappers</em>. <code>BeautifulSoup</code> sera suffisant quand vous voudrez travailler sur des pages HTML statiques. Dès que les informations que vous recherchez sont générées via l’exécution de scripts <a href="https://fr.wikipedia.org/wiki/JavaScript"><code>Javascript</code></a>, il vous faudra passer par des outils comme <a href="https://selenium-python.readthedocs.io/"><code>Selenium</code></a>. De même, si vous ne connaissez pas l’URL, il faudra passer par un framework comme <a href="https://scrapy.org/"><code>Scrapy</code></a>, qui passe facilement d’une page à une autre (“crawl”). Scrapy est plus complexe à manipuler que <code>BeautifulSoup</code> : si vous voulez plus de détails, rendez-vous sur la page du <a href="https://doc.scrapy.org/en/latest/intro/tutorial.html">tutoriel <code>Scrapy</code></a>. Pour plus de détails, voir le <a href="https://pythonds.linogaliana.fr/webscraping/">TP sur le webscraping en 2e année de l’ENSAE</a>.</p>
+<p><code>Python</code> est le langage le plus utilisé par les <em>scrappers</em>. <code>BeautifulSoup</code> sera suffisant quand vous voudrez travailler sur des pages HTML statiques. Dès que les informations que vous recherchez sont générées via l’exécution de scripts <a href="https://fr.wikipedia.org/wiki/JavaScript"><code>Javascript</code></a>, il vous faudra passer par des outils comme <a href="https://selenium-python.readthedocs.io/"><code>Selenium</code></a> ou <a href="https://scrapfly.io/blog/posts/web-scraping-with-playwright-and-python"><code>Playwright</code></a>. De même, si vous ne connaissez pas l’URL, il faudra passer par un framework comme <a href="https://scrapy.org/"><code>Scrapy</code></a>, qui passe facilement d’une page à une autre (“crawl”). Scrapy est plus complexe à manipuler que <code>BeautifulSoup</code> : si vous voulez plus de détails, rendez-vous sur la page du <a href="https://doc.scrapy.org/en/latest/intro/tutorial.html">tutoriel <code>Scrapy</code></a>. Pour plus de détails, voir le <a href="https://pythonds.linogaliana.fr/webscraping/">TP sur le webscraping en 2e année de l’ENSAE</a>.</p>
 <p>Les utilisateurs de <code>R</code> privilégieront <code>httr</code> and <code>rvest</code> qui sont les packages les plus utilisés. Il est intéressant d’accorder de l’attention à <a href="https://github.com/dmi3kno/polite"><code>polite</code></a>. Ce package vise à récupérer des données en suivant les <a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01">recommandations de bonnes pratiques</a> sur le sujet, notamment de respecter les instructions dans <code>robots.txt</code> (<em>“The three pillars of a polite session are seeking permission, taking slowly and never asking twice”</em>).</p>
 </section>
 </section>
 <section id="réseaux-sociaux" class="level1">
 <h1>Réseaux sociaux</h1>
 <p>Les réseaux sociaux sont l’une des sources textuelles les plus communes. C’est leur usage à des fins commerciales qui a amené les entreprises du net à renouveler le champ de l’analyse textuelles qui bénéficie au-delà de leur champ d’origine.</p>
-<p>On rentre un peu plus en détail sur ces données dans le chapitre <strong>Nowcasting</strong>.</p>
+<p>Nous entrons un peu plus en détail sur ces données dans le chapitre <strong>Nowcasting</strong>.</p>
 </section>
 <section id="les-modèles-de-langage" class="level1">
 <h1>Les modèles de langage</h1>
 <p>Un modèle de langage est un modèle statistique qui modélise la distribution de séquences de mots, plus généralement de séquences de symboles discrets (lettres, phonèmes, mots), dans une langue naturelle. Un des objectifs de ces modèles est de pouvoir transformer des objets (textes) situés dans un espace d’origine de très grande dimension, qui de plus utilise des éléments contextuels, en informations situés dans un espace de dimension réduite. Il s’agit ainsi de transformer des éléments d’un corpus, par exemple des mots, en vecteurs multidimensionnels sur lequel on peut ensuite par exemple appliquer des opérations arithmétiques. Un modèle de langage peut par exemple servir à prédire le mot suivant une séquence de mots ou la similarité de sens entre deux phrases.</p>
 <section id="du-bag-of-words-aux-modèles-de-langage" class="level2">
 <h2 class="anchored" data-anchor-id="du-bag-of-words-aux-modèles-de-langage">Du bag of words aux modèles de langage</h2>
-<p>L’objectif du <em>Natural Langage Processing</em> (NLP) est de transformer une information de très haute dimension (une langue est un objet éminemment complexe) en information à dimension plus limitée qui peut être exploitée par un ordinateur.</p>
-<p>La première approche pour entrer dans l’analyse d’un texte est généralement l’approche bag of words ou topic modeling. Dans la première, il s’agit de formaliser un texte sous forme d’un ensemble de mots où on va piocher plus ou moins fréquemment dans un sac de mots possibles. Dans la seconde, il s’agit de modéliser le processus de choix de mots en deux étapes (modèle de mélange): d’abord un choix de thème puis, au sein de ce thème, un choix de mots plus ou moins fréquents selon le thème.</p>
+<p>L’objectif du traitement du langage naturel (ou <em>Natural Langage Processing</em> - NLP) est de transformer une information de très haute dimension (une langue est un objet éminemment complexe) en information à dimension plus limitée qui peut être exploitée par un ordinateur.</p>
+<p>La première approche pour entrer dans l’analyse d’un texte est généralement l’approche <em>bag of words</em> ou <em>topic modeling</em>. Dans la première, il s’agit de formaliser un texte sous forme d’un ensemble de mots où on va piocher plus ou moins fréquemment dans un sac de mots possibles. Dans la seconde, il s’agit de modéliser le processus de choix de mots en deux étapes (modèle de mélange) : d’abord un choix de thème puis, au sein de ce thème, un choix de mots plus ou moins fréquents selon le thème.</p>
 <p>Dans ces deux approches, l’objet central est la matrice document-terme. Elle formalise les fréquences d’occurrence de mots dans des textes ou des thèmes. Néanmoins, il s’agit d’une matrice très creuse: même un texte au vocabulaire très riche n’explore qu’une petite partie du dictionnaire des mots possibles.</p>
-<p>L’idée derrière les <em>embeddings</em> est de proposer une information plus condensée qui permet néanmoins de capturer les grandes structures d’un texte. Il s’agit par exemple de résumer l’ensemble d’un corpus en un nombre relativement restreint de dimensions. Ces dimensions ne sont pas prédéterminées mais plutôt inférées par un modèle qui essaie de trouver la meilleure partition des dimensions pour rapprocher les termes équivalents. Chacune de ces dimensions va représenter un facteur latent, c’est à dire une variable inobservée, de la même manière que les composantes principales produites par une ACP. Techniquement, au lieu de représenter les documents par des vecteurs sparse de très grande dimension (la taille du vocabulaire) comme on l’a fait jusqu’à présent, on va les représenter par des vecteurs denses (continus) de dimension réduite (en général, autour de 100-300).</p>
+<p>L’idée derrière les plongements lexicaux (<em>embeddings</em>) est de proposer une information plus condensée qui permet néanmoins de capturer les grandes structures d’un texte. Il s’agit par exemple de résumer l’ensemble d’un corpus en un nombre relativement restreint de dimensions. Ces dimensions ne sont pas prédéterminées mais plutôt inférées par un modèle qui essaie de trouver la meilleure partition des dimensions pour rapprocher les termes équivalents. Chacune de ces dimensions va représenter un facteur latent, c’est à dire une variable inobservée, de la même manière que les composantes principales produites par une ACP. Techniquement, au lieu de représenter les documents par des vecteurs sparse de très grande dimension (la taille du vocabulaire) comme on l’a fait jusqu’à présent, on va les représenter par des vecteurs denses (continus) de dimension réduite (en général, autour de 100-300).</p>
 </section>
 <section id="intérêt-des-modèles-de-langage" class="level2">
 <h2 class="anchored" data-anchor-id="intérêt-des-modèles-de-langage">Intérêt des modèles de langage</h2>
@@ -552,7 +551,8 @@ Figure&nbsp;1: Schéma illustratif de <code>word2vec</code>.
 <p>La magie va même plus loin : le modèle captera aussi qu’il existe un facteur latent de type <em>“genre”</em>, et va permettre de construire un espace sémantique dans lequel les relations arithmétiques entre vecteurs ont du sens ; par exemple (voir <a href="#fig-embeddings" class="quarto-xref">Figure&nbsp;2</a>) :</p>
 <p><span class="math display">\[\text{king} - \text{man} + \text{woman} ≈ \text{queen}\]</span></p>
 <p>Chaque mot est représenté par un vecteur de taille fixe (comprenant <span class="math inline">\(n\)</span> nombres), de façon à ce que deux mots dont le sens est proche possèdent des représentations numériques proches. Ainsi les mots « chat » et « chaton » devraient avoir des vecteurs de plongement assez similaires, eux-mêmes également assez proches de celui du mot « chien » et plus éloignés de la représentation du mot « maison ».</p>
-<p><em>Comment ces modèles sont-ils entraînés ?</em> Via une tâche de prédiction résolue par un réseau de neurones simple. L’idée fondamentale est que la signification d’un mot se comprend en regardant les mots qui apparaissent fréquemment dans son voisinage. Pour un mot donné, on va donc essayer de prédire les mots qui apparaissent dans une fenêtre autour du mot cible.</p>
+<p><em>Comment ces modèles sont-ils entraînés ?</em></p>
+<p>Via une tâche de prédiction résolue par un réseau de neurones simple. L’idée fondamentale est que la signification d’un mot se comprend en regardant les mots qui apparaissent fréquemment dans son voisinage. Pour un mot donné, on va donc essayer de prédire les mots qui apparaissent dans une fenêtre autour du mot cible.</p>
 <p>En répétant cette tâche de nombreuses fois et sur un corpus suffisamment varié, on obtient finalement des <em>embeddings</em> pour chaque mot du vocabulaire, qui présentent les propriétés discutées précédemment.</p>
 <div id="fig-embeddings" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -567,20 +567,20 @@ Figure&nbsp;2: Illustration des <em>word embeddings</em>.
 </section>
 <section id="les-modèles-de-langage-aujourdhui" class="level2">
 <h2 class="anchored" data-anchor-id="les-modèles-de-langage-aujourdhui">Les modèles de langage aujourd’hui</h2>
-<p>La méthode de construction d’un plongement lexical présentée ci-dessus est celle de l’algorithme <a href="https://fr.wikipedia.org/wiki/Word2vec"><code>Word2Vec</code></a>. Il s’agit d’un modèle <em>open-source</em> développé par une équipe de <code>Google</code> en 2013. <code>Word2Vec</code> a été le pionnier en termes de modèles de plongement lexical.</p>
-<p>Le modèle <a href="https://nlp.stanford.edu/projects/glove/"><code>GloVe</code></a> constitue un autre exemple <span class="citation" data-cites="pennington2014glove">(<a href="#ref-pennington2014glove" role="doc-biblioref">Pennington, Socher, and Manning 2014</a>)</span>. Développé en 2014 à Stanford, ce modèle ne repose pas sur des réseaux de neurones mais sur la construction d’une grande matrice de co-occurrences de mots. Pour chaque mot, il s’agit de calculer les fréquences d’apparition des autres mots dans une fenêtre de taille fixe autour de lui. La matrice de co-occurrences obtenue est ensuite factorisée par une décomposition en valeurs singulières. Il est également possible de produire des plongements de mots à partir du <a href="https://jalammar.github.io/illustrated-bert/">modèle de langage <code>BERT</code></a>, développé par <code>Google</code> en 2019, dont il existe des déclinaisons dans différentes langues, notamment en Français (les modèles <a href="https://camembert-model.fr/"><code>CamemBERT</code></a> ou <a href="https://github.com/getalp/Flaubert"><code>FlauBERT</code></a>).</p>
-<p>Enfin, le modèle <a href="https://fasttext.cc/"><code>FastText</code></a>, développé en 2016 par une équipe de <code>Facebook</code>, fonctionne de façon similaire à <code>Word2Vec</code> mais se distingue particulièrement sur deux points :</p>
-<ul>
-<li>En plus des mots eux-mêmes, le modèle apprend des représentations pour les n-grams de caractères (sous-séquences de caractères de taille \(n\), par exemple <em>« tar »</em>, <em>« art »</em> et <em>« rte »</em> sont les trigrammes du mot <em>« tarte »</em>), ce qui le rend notamment robuste aux variations d’orthographe ;</li>
-<li>Le modèle a été optimisé pour que son entraînement soit particulièrement rapide.</li>
-</ul>
-<p>Le modèle <code>GPT-3</code> (acronyme de Generative Pre-trained Transformer 3) a aujourd’hui le vent en poupe. Celui-ci a été développé par la société <code>OpenAI</code> et rendu public en 2020 <span class="citation" data-cites="brown2020language">(<a href="#ref-brown2020language" role="doc-biblioref">Brown et al. 2020</a>)</span>. GPT-3 est le plus gros modèle de langage jamais entraîné avec 175 milliards de paramètres. Il sert de brique de base à plusieurs applications utilisant l’analyse textuelle pour synthétiser, à partir d’une instruction, des éléments importants et proposer un texte cohérent. <code>Github Copilot</code> l’utilise pour transformer une instruction en proposition de code, à partir d’un grand corpus de code open source. <code>Algolia</code> l’utilise pour transformer une instruction en mots clés de recherche afin d’améliorer la pertinence des résultats.</p>
-<p>En ce moment, le champ du <em>prompt engineering</em> est en effervescence. Les modèles de langage comme GPT-3 permettent en effet d’extraire les éléments qui permettent de mieux discriminer les thèmes d’un texte.</p>
+<p>Les modèles de langage aujourd’hui</p>
+<p>La méthode de construction d’un plongement lexical présentée précédemment correspond à celle de l’algorithme <a href="https://fr.wikipedia.org/wiki/Word2vec"><code>Word2Vec</code></a>, un modèle <em>open-source</em> développé par une équipe de <code>Google</code> en 2013. <code>Word2Vec</code> a constitué une avancée majeure en introduisant des représentations vectorielles denses apprises à partir des contextes d’apparition des mots, et a joué un rôle pionnier dans le développement des modèles de plongement lexical modernes.</p>
+<p>Le modèle <a href="https://nlp.stanford.edu/projects/glove/"><code>GloVe</code></a> constitue une autre approche historique importante <span class="citation" data-cites="pennington2014glove">(<a href="#ref-pennington2014glove" role="doc-biblioref">Pennington, Socher, and Manning 2014</a>)</span>. Développé en 2014 à Stanford, il repose sur l’exploitation globale des statistiques de co-occurrences entre mots dans un corpus, via la construction puis l’optimisation d’une matrice de co-occurrences. Contrairement à <code>Word2Vec</code>, <code>GloVe</code> n’est pas formulé comme un réseau de neurones prédictif, mais comme un problème d’optimisation visant à approximer ces statistiques globales.</p>
+<p>À partir de la fin des années 2010, les modèles de langage fondés sur l’architecture <em>Transformer</em> ont profondément modifié l’approche des plongements lexicaux. Le modèle de langage <a href="https://jalammar.github.io/illustrated-bert/"><code>BERT</code></a>, développé par <code>Google</code> en 2019 <span class="citation" data-cites="devlin2018bert">(<a href="#ref-devlin2018bert" role="doc-biblioref"><strong>devlin2018bert?</strong></a>)</span>, produit des plongements contextualisés, c’est-à-dire dépendants du contexte d’apparition du mot dans la phrase, contrairement aux modèles statiques comme <code>Word2Vec</code> ou <code>GloVe</code>. Plusieurs déclinaisons multilingues ou spécialisées ont depuis été développées, notamment pour le français, telles que <a href="https://camembert-model.fr/"><code>CamemBERT</code></a> ou <a href="https://github.com/getalp/Flaubert"><code>FlauBERT</code></a>.</p>
+<p>Le modèle <a href="https://fasttext.cc/"><code>FastText</code></a>, développé en 2016 par une équipe de <code>Facebook AI Research</code>, s’inscrit dans la continuité de <code>Word2Vec</code> tout en introduisant des améliorations importantes. En plus des mots, il apprend des représentations de sous-unités lexicales, en particulier des n-grams de caractères (sous-séquences de caractères de taille \(n\), par exemple <em>« tar »</em>, <em>« art »</em> et <em>« rte »</em> sont les trigrammes du mot <em>« tarte »</em>), mais également des n-grams de mots. Cette modélisation rend le modèle plus robuste aux variations morphologiques, aux fautes d’orthographe, aux mots rares et à certaines expressions multi-mots. Son implémentation a également été optimisée pour permettre un entraînement rapide sur de grands corpus.</p>
+<p>Plus récemment, les modèles de langage génératifs de grande taille (<em>Large Language Models</em>, LLMs), basés sur l’architecture Transformer, ont marqué un changement d’échelle. Le modèle <code>GPT-3</code> (<em>Generative Pre-trained Transformer 3</em>), développé par la société <code>OpenAI</code> et rendu public en 2020 <span class="citation" data-cites="brown2020language">(<a href="#ref-brown2020language" role="doc-biblioref">Brown et al. 2020</a>)</span>, compte 175 milliards de paramètres et a servi de point de départ à de nombreuses applications industrielles. Ces modèles sont aujourd’hui utilisés pour la génération de texte, de code, le résumé automatique ou l’assistance conversationnelle, par exemple dans <code>GitHub Copilot</code>.</p>
+<p>Au-delà de la famille des modèles GPT, d’autres grands modèles de langage ont été développés par différents acteurs industriels et académiques, tels que <code>Claude</code> (Anthropic), <code>Mistral</code>, <code>Grok</code> (xAI) ou les modèles utilisés par <code>Perplexity</code>. Bien qu’ils reposent sur des principes architecturaux similaires, ces modèles diffèrent par leur taille, leurs données d’entraînement, leurs objectifs d’optimisation et leurs domaines d’application.</p>
+<p>Dans ce contexte, le champ du <em>prompt engineering</em> s’est fortement développé. Il regroupe un ensemble de pratiques visant à formuler efficacement des instructions textuelles afin d’exploiter les capacités des modèles de langage de grande taille, notamment pour extraire des informations pertinentes, discriminer les thèmes d’un texte ou guider la génération de contenus, sans recourir à un entraînement spécifique supplémentaire.</p>
 </section>
-<section id="utilisation-dans-un-processus-de-créatoin-de-contenu-créatif" class="level2">
-<h2 class="anchored" data-anchor-id="utilisation-dans-un-processus-de-créatoin-de-contenu-créatif">Utilisation dans un processus de créatoin de contenu créatif</h2>
-<p>La publication par l’organisation <a href="https://openai.com/">Open AI</a> de son modèle de génération de contenu créatif <a href="https://openai.com/dall-e-2/">Dall-E-2</a> (un jeu de mot mélangeant Dali et Wall-E) a créé un bruit inédit dans le monde de la <em>data-science</em>. Un compte Twitter (<a href="https://twitter.com/weirddalle">Weird Dall-E Mini Generations</a>) propose de nombreuses générations de contenu drôles ou incongrues. Le bloggeur tech Casey Newton a pu parler d’une <a href="https://www.platformer.news/p/how-dall-e-could-power-a-creative">révolution créative dans le monde de l’IA</a>.</p>
-<p>La <a href="#fig-shiba" class="quarto-xref">Figure&nbsp;3</a> montre un exemple d’image générée par DALL-E-2.</p>
+<section id="utilisation-dans-un-processus-de-création-de-contenu-créatif" class="level2">
+<h2 class="anchored" data-anchor-id="utilisation-dans-un-processus-de-création-de-contenu-créatif">Utilisation dans un processus de création de contenu créatif</h2>
+<p>La publication par l’organisation <a href="https://openai.com/">Open AI</a> de ses premiers modèles de génération d’images à partir de texte, en particulier <a href="https://openai.com/dall-e-2/">DALL·E 2</a> (un jeu de mots mêlant Dali et WALL·E), a suscité un intérêt médiatique et scientifique inédit autour des usages créatifs de l’intelligence artificielle. Ces modèles ont contribué à rendre visibles au grand public les capacités génératives des modèles d’apprentissage profond, au-delà des tâches traditionnelles de classification ou de prédiction.</p>
+<p>Un compte X (<a href="https://twitter.com/weirddalle">Weird Dall-E Mini Generations</a>) a ainsi proposé de nombreuses générations d’images à la fois surprenantes, drôles ou incongrues, illustrant le potentiel créatif — mais aussi les limites — de ces modèles. Le blogueur tech Casey Newton a notamment évoqué une <a href="https://www.platformer.news/p/how-dall-e-could-power-a-creative">révolution créative dans le monde de l’IA</a>, liée à la démocratisation de ces outils auprès d’artistes, de designers et de créateurs de contenu.</p>
+<p>La <a href="#fig-shiba" class="quarto-xref">Figure&nbsp;3</a> montre un exemple d’image générée par <code>DALL·E 2</code>.</p>
 <div id="fig-shiba" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-shiba-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -591,68 +591,73 @@ Figure&nbsp;3: <em>“A Shiba Inu dog wearing a beret and black turtleneck”</e
 </figcaption>
 </figure>
 </div>
-<p>Les modèles générateurs d’image <code>DallE</code> et <code>Stable Diffusion</code> peuvent, schématiquement, être décomposés en deux niveaux de réseaux de neurones:</p>
+<p>Les modèles générateurs d’images tels que <code>DALL·E</code>, <code>Stable Diffusion</code> ou leurs successeurs reposent, schématiquement, sur une architecture en plusieurs étapes :</p>
 <ul>
-<li>le contenu de la phrase est analysé par un modèle de langage comme <code>GPT-3</code> ;</li>
-<li>les éléments importants de la phrase (recontextualisés) sont ensuite transformés en image à partir de modèles entraînés à reconnaître des images.</li>
+<li>le contenu textuel de la requête est analysé et encodé par un modèle de langage de grande taille (par exemple un modèle de la famille <code>GPT</code> ou un encodeur de type Transformer) ;</li>
+<li>cette représentation latente du texte est ensuite utilisée pour guider un modèle génératif d’images, entraîné sur de vastes corpus image–texte, afin de produire une image cohérente avec la description fournie.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://raw.githubusercontent.com/patrickvonplaten/scientific_images/master/stable_diffusion.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p><code>Stable Diffusion</code> est une version plus accessible que <code>DALL-E</code> pour les utilisateurs de <code>Python</code>.</p>
+<p><code>Stable Diffusion</code> constitue une alternative plus ouverte et plus accessible que <code>DALL·E</code>, notamment pour les utilisateurs de <code>Python</code>, car il peut être exécuté localement ou via des plateformes open source, et adapté à des usages spécifiques (par exemple par <em>fine-tuning</em> ou contrôle du style).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://huggingface.co/blog/assets/98_stable_diffusion/stable_diffusion_12_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>Si vous êtes intéressés par ce type de modèle, vous pouvez <a href="https://pythonds.linogaliana.fr/dalle/">tester les exemples du cours de Python de l’ENSAE</a>. Vous pouvez tester <strong>“Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat scene”</strong> pour générer une image comme celle-ci dessous ou chercher à obtenir l’image de votre choix:</p>
+<p>Si vous êtes intéressés par ce type de modèles, vous pouvez <a href="https://pythonds.linogaliana.fr/dalle/">tester les exemples du cours de Python de l’ENSAE</a>. Par exemple, l’instruction<br>
+<strong>“Chuck Norris fighting against Zeus on Mount Olympus in an epic Mortal Kombat scene”</strong><br>
+permet de générer une image telle que celle présentée ci-dessous, ou bien d’explorer librement vos propres descriptions textuelles :</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://minio.lab.sspcloud.fr/lgaliana/generative-art/pythonds/chuck.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Encadré – Enjeux et craintes dans le monde créatif</strong></p>
+<p>Le développement rapide des modèles génératifs suscite de fortes inquiétudes dans les industries culturelles et créatives. Les artistes, auteurs et musiciens s’interrogent sur l’utilisation de leurs œuvres pour l’entraînement de ces modèles, souvent sans consentement explicite ni rémunération. Des craintes portent également sur la substitution partielle de la création humaine par des contenus générés automatiquement (images, musiques, scénarios), ainsi que sur les implications juridiques en matière de droits d’auteur et de propriété intellectuelle.</p>
+</div>
+</div>
 </section>
-</section>
-<section id="modèles-de-langage-dans-la-statistique-publique" class="level1">
-<h1>Modèles de langage dans la statistique publique</h1>
-<p>L’analyse textuelle dans la statistique publique intervient principalement à deux niveaux:</p>
+<section id="modèles-de-langage-dans-la-statistique-publique" class="level2">
+<h2 class="anchored" data-anchor-id="modèles-de-langage-dans-la-statistique-publique">Modèles de langage dans la statistique publique</h2>
+<p>Au sein de la statistique publique, le principal cas d’usage de l’analyse textuelle est la codification automatique. La codification automatique consiste à classer des libellés textuels dans des nomenclatures officielles (et généralement hiérarchiques).</p>
+<p>Voici les principaux projets de codification automatique à ce jour :</p>
+<ul>
+<li>catégorisation des professions des individus dans la nomenclature des PCS (<em>Professions et catégories socioprofessionnelles en France</em>) ;</li>
+<li>catégorisation de l’activité des entreprises dans la nomenclature d’activité APE (<em>Activité principale des entreprises</em> issue de la Nomenclature des activités françaises) ;</li>
+<li>catégorisation des produits de consommation dans la nomenclature COICOP (<em>Classification of Individual Consumption by Purpose</em>).</li>
+<li>Catégorisation des causes de décès à partir des certificats de décès.</li>
+<li>catégorisation des compétences dans les annonces d’offres d’emploi.</li>
+<li>etc.</li>
+</ul>
+<p>A <code>l’Insee</code>, plusieurs modèles de classification de libellés textuels dans des nomenclatures reposent sur l’algorithme de plongement lexical <a href="https://fasttext.cc/"><code>FastText</code></a>. Bien que l’Insee sorte progressivement de l’utilisation de cet librairie (dont la maintenance a cessé), les fondements méthodologiques restent au coeur du nouvel outil développé et maintenu en interne : <a href="https://github.com/InseeFrLab/torchTextClassifiers"><code>torchTextClassifiers</code></a></p>
 <ul>
 <li>pour apparier des sources à partir de champs textuels qui ne sont pas nécessairement identiques ;</li>
 <li>pour catégoriser des données dans une nomenclature normalisée à partir de champs libres.</li>
 </ul>
-<section id="catégorisation" class="level2">
-<h2 class="anchored" data-anchor-id="catégorisation">Catégorisation</h2>
-<p>A <code>l’Insee</code>, plusieurs modèles de classification de libellés textuels dans des nomenclatures reposent sur l’algorithme de plongement lexical <a href="https://fasttext.cc/"><code>FastText</code></a>. Les derniers mis en oeuvre sont les suivants:</p>
-<ol type="1">
-<li>catégorisation des professions dans la nomenclature des PCS ;</li>
-<li>catégorisation des entreprises dans la nomenclature d’activité APE ;</li>
-<li>catégorisation des produits dans la nomenclature des COICOP.</li>
-</ol>
-<p>Les deux premiers devraient servir prochainement à la production de statistiques officielles. Le troisième est une expérimentation encore en cours.</p>
-</section>
-<section id="appariements" class="level2">
-<h2 class="anchored" data-anchor-id="appariements">Appariements</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/images/img_appariements.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Source: <span class="citation" data-cites="galiana2022">Galiana and Suarez Castillo (<a href="#ref-galiana2022" role="doc-biblioref">2022</a>)</span>.</figcaption>
-</figure>
-</div>
 </section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
+<p>Les données textuelles, de plus en plus disponibles, offrent des opportunités inédites pour la statistique publique, mais nécessitent des méthodes adaptées. Leur analyse, autrefois limitée à des outils simples, s’appuie désormais sur des modèles avancés (embeddings, classification automatique) pour structurer et exploiter ces informations non organisées. Le webscraping et les API permettent d’accéder à ces données, mais posent des défis techniques (reproductibilité, évolutivité) et éthiques (respect des droits, qualité). Les modèles de langage modernes transforment ces textes en données exploitables, facilitant la codification automatique (nomenclatures PCS, APE, etc.) et l’analyse sémantique. Cependant, leur utilisation exige de concilier innovation et rigueur méthodologique, notamment pour garantir la fiabilité des résultats et la protection des données. Ce champ reste en évolution, avec un potentiel majeur pour automatiser et enrichir les processus statistiques.</p>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-brown2020language" class="csl-entry" role="listitem">
 Brown, Tom, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>Advances in Neural Information Processing Systems</em> 33: 1877–1901.
-</div>
-<div id="ref-galiana2022" class="csl-entry" role="listitem">
-Galiana, Lino, and Milena Suarez Castillo. 2022. <span>“Fuzzy Matching on Big-Data: An Illustration with Scanner and Crowd-Sourced Nutritional Datasets.”</span> In <em>Proceedings of the 2022 ACM Conference on Information Technology for Social Good</em>, 331–37. GoodIT ’22. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/3524458.3547244">https://doi.org/10.1145/3524458.3547244</a>.
 </div>
 <div id="ref-pennington2014glove" class="csl-entry" role="listitem">
 Pennington, Jeffrey, Richard Socher, and Christopher D Manning. 2014. <span>“Glove: Global Vectors for Word Representation.”</span> In <em>Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)</em>, 1532–43.
@@ -1086,7 +1091,7 @@ Pennington, Jeffrey, Richard Socher, and Christopher D Manning. 2014. <span>“G
   <div class="nav-footer">
     <div class="nav-footer-left">
 <ol start="3" type="a">
-<li>2022, Lino Galiana and Tom Seimandi</li>
+<li>2026, Galiana.L, Seimandi.T, Pramil.J, Toulemonde.N</li>
 </ol>
 </div>   
     <div class="nav-footer-center">
