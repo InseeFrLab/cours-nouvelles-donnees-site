@@ -12,6 +12,6 @@ curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf20
 pip install wordcloud
 pip install xlrd
 pip install spacy
-pip install torch --index-url https://download.pytorch.org/whl/cpu
+#pip install torch --index-url https://download.pytorch.org/whl/cpu
 pip install pytorch_lightning
 pip install torchTextClassifiers[huggingface]
