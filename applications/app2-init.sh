@@ -13,6 +13,8 @@ curl -O https://raw.githubusercontent.com/InseeFrLab/cours-nouvelles-donnees-sit
 pip install wordcloud
 pip install xlrd
 pip install spacy
-#pip install torch --index-url https://download.pytorch.org/whl/cpu
+pip install nltk
+pip install unidecode
 pip install pytorch_lightning
 pip install torchTextClassifiers[huggingface]
+pip install scikit-learn

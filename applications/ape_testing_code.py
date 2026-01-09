@@ -1,51 +1,44 @@
 
-# pip install wordcloud
-# pip install xlrd
-# pip install spacy
-# python -m spacy download fr_core_news_sm
-# pip install torch --index-url https://download.pytorch.org/whl/cpu
-# pip install pytorch_lightning
-# pip install torchTextClassifiers
-# pip install torchTextClassifiers[huggingface]
-
 import matplotlib.pyplot as plt
 import pandas as pd
 from wordcloud import WordCloud
-
-DATA_PATH = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet"
-NAF_PATH = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls"
-naf = pd.read_excel(NAF_PATH, skiprows = 2)
+import os
+import nltk
+import spacy
+nltk.download('stopwords')
+os.chdir("ape")
+naf = pd.read_excel("data/naf.parquet", skiprows = 2)
 naf['Code'] = naf['Code'].str.replace(".","")
-train = pd.read_parquet(DATA_PATH)
+train = pd.read_parquet("data/data.parquet")
 train = train.merge(naf, left_on = "nace", right_on = "Code")
 train.head(5)
 
 
-# import spacy
-# import nltk
-# from nltk.tokenize import word_tokenize
+# Part 1 ----------------------------------------------------------------
 
-# nltk.download('punkt_tab')
-# nltk.download('stopwords')
+from nltk.tokenize import word_tokenize
 
-# nlp = spacy.load("fr_core_news_sm")
+nltk.download('punkt_tab')
+nltk.download('stopwords')
 
-# # Function to remove stopwords
-# def remove_stopwords(text):
-#     word_tokens = word_tokenize(text)
-#     filtered_text = [word for word in word_tokens if word.lower() not in stop_words]
-#     return ' '.join(filtered_text)
+nlp = spacy.load("fr_core_news_sm")
 
-# def remove_single_letters(text):
-#     word_tokens = word_tokenize(text)
-#     filtered_text = [word for word in word_tokens if len(word) > 1]
-#     return ' '.join(filtered_text)
+# Function to remove stopwords
+def remove_stopwords(text):
+    word_tokens = word_tokenize(text)
+    filtered_text = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_text)
 
-# # Apply the function to the 'text' column
-# # train['text_clean'] = (train['text']
-# #     .apply(remove_stopwords)
-# #     .apply(remove_single_letters)
-# # )
+def remove_single_letters(text):
+    word_tokens = word_tokenize(text)
+    filtered_text = [word for word in word_tokens if len(word) > 1]
+    return ' '.join(filtered_text)
+
+# Apply the function to the 'text' column
+# train['text_clean'] = (train['text']
+#     .apply(remove_stopwords)
+#     .apply(remove_single_letters)
+# )
 
 # train_data=train.copy()
 
@@ -100,23 +93,19 @@ train.head(5)
 # from nltk.tokenize import word_tokenize
 # import spacy
 
-# nlp = spacy.load("fr_core_news_sm")
-# stop_words = nlp.Defaults.stop_words
+nlp = spacy.load("fr_core_news_sm")
+stop_words = nlp.Defaults.stop_words
 
-# stop_words = set(stop_words)
+stop_words = set(stop_words)
 
-# train['text_clean'] = (train['text']
-#     .apply(remove_stopwords)
-#     .apply(remove_single_letters)
-# )
+train['text_clean'] = (train['text']
+    .apply(remove_stopwords)
+    .apply(remove_single_letters)
+)
 
 
 
-# - [`constants.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py)
-# - [`processor.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py)
-# - [`utils.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py)
 
-# pip install unidecode
 from processor import Preprocessor
 preprocessor = Preprocessor()
 
@@ -129,14 +118,6 @@ df.head(2)
 
 
 import pathlib
-
-params = {
-    "dim": 25,
-    "label_prefix": "__label__"
-}
-
-
-
 import warnings
 from sklearn.model_selection import train_test_split
 
@@ -175,11 +156,17 @@ type(X_train)
 
 
 # Step 3: Create and Train Tokenizer
+from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
+from torchTextClassifiers import ModelConfig, TrainingConfig, torchTextClassifiers
+from torchTextClassifiers.tokenizers import WordPieceTokenizer
+
+
 tokenizer = WordPieceTokenizer(vocab_size=5000, output_dim=128)
 tokenizer.train(X_train.tolist())
 
 
 # Step 4: Configure Model for 3 Classes
+import numpy as np
 unique_values, counts = np.unique(y, return_counts=True)
 num_unique = len(unique_values)
 
@@ -218,70 +205,3 @@ predictions = result["prediction"].squeeze().numpy()
 # Step 8: Evaluate
 accuracy = (predictions == y_test).mean()
 print(f"Test accuracy: {accuracy:.3f}")
-
-
-
-# Tuto meilame 
-
-
-
-import os
-import numpy as np
-import torch
-from pytorch_lightning import seed_everything
-from torchTextClassifiers import ModelConfig, TrainingConfig, torchTextClassifiers
-from torchTextClassifiers.tokenizers import WordPieceTokenizer
-
-
-SEED = 42
-os.environ['PYTHONHASHSEED'] = str(SEED)
-seed_everything(SEED, workers=True)
-torch.backends.cudnn.deterministic = True
-torch.use_deterministic_algorithms(True, warn_only=True)
-
-X_train = np.array([
-    # Negative (class 0)
-    "This product is terrible and I hate it completely.",
-    "Worst purchase ever. Total waste of money.",
-    "Absolutely awful quality. Very disappointed.",
-    "Poor service and terrible product quality.",
-    "I regret buying this. Complete failure.",
-
-    # Neutral (class 1)
-    "The product is okay, nothing special though.",
-    "It works but could be better designed.",
-    "Average quality for the price point.",
-    "Not bad but not great either.",
-    "It's fine, meets basic expectations.",
-
-    # Positive (class 2)
-    "Excellent product! Highly recommended!",
-    "Amazing quality and great customer service.",
-    "Perfect! Exactly what I was looking for.",
-    "Outstanding value and excellent performance.",
-    "Love it! Will definitely buy again."
-])
-
-y_train = np.array([0, 0, 0, 0, 0,  # negative
-                    1, 1, 1, 1, 1,  # neutral
-                    2, 2, 2, 2, 2]) # positive
-
-# Validation data
-X_val = np.array([
-    "Bad quality, not recommended.",
-    "It's okay, does the job.",
-    "Great product, very satisfied!"
-])
-y_val = np.array([0, 1, 2])
-
-# Test data
-X_test = np.array([
-    "This is absolutely horrible!",
-    "It's an average product, nothing more.",
-    "Fantastic! Love every aspect of it!",
-    "Really poor design and quality.",
-    "Works well, good value for money.",
-    "Outstanding product with amazing features!"
-])
-y_test = np.array([0, 1, 2, 0, 1, 2])
-
