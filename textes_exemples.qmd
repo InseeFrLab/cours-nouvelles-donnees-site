@@ -1,5 +1,5 @@
 ---
-title: "Application 2"
+title: "Pour aller plus loin - préparation des données et Elastic Search (facultatif)"
 ---
 
 L'objectif de ce TP est d'explorer les aspects suivants du traitement
@@ -8,7 +8,7 @@ du langage naturel:
 - _Preprocessing_
 - `ElasticSearch`: indexation et requêtage
 
-Il est disponible sur [cette page](https://pythonds.linogaliana.fr/elastic/) en version _web_ 
+Il est disponible sur [cette page](https://pythonds.linogaliana.fr/elastic/) en version _web_
 et peut être ouvert sur l'environnement
 `SSPCloud` où `ElasticSearch` est disponible en cliquant sur le bouton suivant:
 
