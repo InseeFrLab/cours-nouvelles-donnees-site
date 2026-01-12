@@ -68,12 +68,12 @@
   {
     "objectID": "images_exemples.html",
     "href": "images_exemples.html",
-    "title": "Pour aller plus loin - Application sur le traitement d’images (facultatif)",
+    "title": "Pour aller plus loin (facultatif) - Application sur le traitement d’images",
     "section": "",
     "text": "L’objectif de ce TP est d’explorer l’exploitation d’images à l’aide de modèles de Deep Learning, avec une application sur les images satellitaires pour la statistique publique.\nLe TP peut être lancé sur le SSP Cloud en cliquant sur le bouton suivant:\n\nLe notebook classification_oiseau.ipynb traite un problème simple de classification d’image, à regarder dans un premier temps. Le notebook donnees_satellite.ipynb traite ensuite un problème de segmentation sémantique sur des images satellitaires, qui permet d’obtenir des cartes de couverture du territoire pouvant être utilisées pour produire des statistiques officielles.\nUn second bouton si l’installation de Pytorch est trop longue:",
     "crumbs": [
       "Analyse d'images",
-      "Pour aller plus loin - Application sur le traitement d'images (facultatif)"
+      "Pour aller plus loin (facultatif) - Application sur le traitement d'images"
     ]
   },
   {
@@ -444,7 +444,7 @@
     "href": "index.html",
     "title": "Données émergentes (ENSAI)",
     "section": "",
-    "text": "Ce site web centralise les contenus du cours de Master de l’ENSAI sur les données émergentes\n\n\n\n\n\n\nImportant\n\n\n\nLe contenu de ce site est partiellement redondant avec le contenu des slides. Ces dernières sont plus récentes, elles sont donc à privilégier.",
+    "text": "Ce site web centralise les contenus du cours de Master de l’ENSAI sur les données émergentes.\n\n\n\n\n\n\nImportant\n\n\n\nLe contenu de ce site est partiellement redondant avec le contenu des slides. Ces dernières sont plus récentes, elles sont donc à privilégier.",
     "crumbs": [
       "Accueil"
     ]
@@ -452,12 +452,12 @@
   {
     "objectID": "nowcasting_exemples.html",
     "href": "nowcasting_exemples.html",
-    "title": "Pour aller plus loin - Application sur le nowcasting (facultatif)",
+    "title": "Pour aller plus loin (facultatif) - Application sur le nowcasting",
     "section": "",
     "text": "L’objectif de ce TP est de montrer comment récupérer des données à partir de l’API de Twitter et de montrer un début d’exemple d’exploitation de ces données.\nLe TP peut être lancé sur le SSP Cloud en cliquant sur le bouton suivant:\n\nUn second bouton si l’installation de Pytorch est trop longue:",
     "crumbs": [
       "Nowcasting",
-      "Pour aller plus loin - Application sur le nowcasting (facultatif)"
+      "Pour aller plus loin (facultatif) - Application sur le nowcasting"
     ]
   },
   {
