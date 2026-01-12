@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Comment passe-t-on d’une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l’activité d’une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement <em>ad hoc</em> qui permettent d’extraire une information à partir de libellés textuels. Historiquement l’Insee utilisait des règles déterministes de classement à partir d’un algorithme nommé <a href="https://www.insee.fr/fr/information/4497076?sommaire=4497095">Sicore</a>, une IA symbolique qui classait à partir de règles métiers préconfigurée.</p>
 <p>Avec l’avènement du <em>machine learning</em>, la possibilité d’entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d’investissement intéressante pour l’Insee. L’objet de ce TD est d’illustrer la démarche adoptée avec cette approche à partir d’un modèle un peu plus simple que celui mis en oeuvre à l’Insee mais reprenant les principales caractéristiques de celui-ci.</p>
 <p>Le code pour lire les données est directement fourni:</p>
-<div id="c9ace03c" class="cell" data-execution_count="1">
+<div id="bb419ef8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
@@ -500,7 +500,7 @@ Aide
 </ol>
 </section>
 <p>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</p>
-<div id="72d76c38" class="cell" data-execution_count="3">
+<div id="1ece83e5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -564,7 +564,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
-<div id="a678faf7" class="cell" data-execution_count="5">
+<div id="26f6a181" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -574,7 +574,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d’entre elles ? Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.</p>
-<div id="e10c9bda" class="cell" data-execution_count="6">
+<div id="e2a5e18e" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -583,7 +583,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 </div>
-<div id="ff0906df" class="cell" data-execution_count="7">
+<div id="ed3d0aac" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -604,7 +604,7 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </ul>
 <p>et mettre ceux-ci dans le même dossier que votre <em>notebook</em> <code>Jupyter</code>.</p>
 <p>Le code de nettoyage est directement fourni:</p>
-<div id="dc609253" class="cell" data-execution_count="9">
+<div id="7e3b150b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
