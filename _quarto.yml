@@ -1,38 +1,16 @@
 project:
   type: website
+  render:
+    - *.qmd
 
 website:
   title: "Données émergentes"
-  navbar:
-    left:
-      - text: "Home"
-        file: index.qmd
-      - text: "Introduction"
-        file: introduction.qmd
-      - text: "Données administratives"
-        menu:
-          - administratives.qmd
-          - administratives_exemples.qmd
-      - text: "Données géolocalisées"
-        menu: 
-          - geolocalized_data.qmd
-          - applications/application1.qmd
-      - text: "Analyse textuelle"
-        menu:
-          - textes.qmd
-          - applications/ape.qmd
-      - text: "Analyse d'images"
-        menu:
-          - images.qmd
-          - images_exemples.qmd
-      - text: "Nowcasting"
-        menu:
-          - series_temporelles.qmd
-          - nowcasting_exemples.qmd
   sidebar:
     style: "docked"
     search: true
     contents:
+      - text: "Accueil"
+        file: index.qmd
       - section: "Introduction"
         contents:
           - introduction.qmd
@@ -43,8 +21,8 @@ website:
       - section: "Données géolocalisées"
         contents:
           - geolocalized_data.qmd
-          - geolocalized_data_exemples.qmd
           - applications/application1.qmd
+          - geolocalized_data_exemples.qmd
       - section: "Analyse textuelle"
         contents:
           - textes.qmd
