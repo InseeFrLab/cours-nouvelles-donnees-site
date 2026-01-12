@@ -1,5 +1,5 @@
 ---
-title: "Pour aller plus loin - Application sur le traitement d'images (facultatif)"
+title: "Pour aller plus loin (facultatif) - Application sur le traitement d'images"
 ---
 
 L'objectif de ce TP est d'explorer l'exploitation d'images à l'aide de modèles de Deep Learning,
@@ -7,10 +7,10 @@ avec une application sur les images satellitaires pour la statistique publique.
 
 Le TP peut être lancé sur le `SSP Cloud` en cliquant sur le bouton suivant:
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABtp-images%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fimages%2Finit-jupyter.sh%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABnouvelles-sources-images%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fimages%2Finit-jupyter.sh%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
 Le notebook `classification_oiseau.ipynb` traite un problème simple de classification d'image, à regarder dans un premier temps. Le notebook `donnees_satellite.ipynb` traite ensuite un problème de segmentation sémantique sur des images satellitaires, qui permet d'obtenir des cartes de couverture du territoire pouvant être utilisées pour produire des statistiques officielles.
 
 Un second bouton si l'installation de `Pytorch` est trop longue:
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-pytorch?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABtp-images%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fimages%2Finit-jupyter.sh%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-pytorch?autoLaunch=true&amp;onyxia.friendlyName=%C2%ABnouvelles-sources-images%C2%BB&amp;init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fimages%2Finit-jupyter.sh%C2%BB&amp;persistence.size=%C2%AB30Gi%C2%BB&amp;security.allowlist.enabled=false" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Tester%20via%20SSP--cloud-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
