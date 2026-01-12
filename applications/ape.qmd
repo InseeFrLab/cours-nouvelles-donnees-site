@@ -52,6 +52,7 @@ import pandas as pd
 naf = pd.read_excel("data/naf.parquet", skiprows = 2)
 # Import training data
 train = pd.read_parquet("data/data.parquet")
+train = train.sample(10000)
 
 # Merge classification info
 naf['Code'] = naf['Code'].str.replace(".","")
@@ -216,7 +217,7 @@ Les _wordclouds_ peuvent servir à rapidement visualiser la structure d'un corpu
 On voit ici que notre corpus est très bruité car nous n'avons pas nettoyé celui-ci:
 
 ```{python}
-wordcloud_corpus = graph_wordcloud(train)
+wordcloud_corpus = graph_wordcloud(train.sample(10000))
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
@@ -293,8 +294,8 @@ preprocessor = Preprocessor()
 TEXT_FEATURE = "text"
 Y = "nace"
 
+df = train.copy().sample(10000)
 df = preprocessor.clean_text(df, TEXT_FEATURE).drop('text_clean', axis = "columns")
-df = df.sample(10000)
 df.head(2)
 ```
 
@@ -355,7 +356,7 @@ tokenizer = NGramTokenizer(
     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
     len_word_ngrams=2, # On fait des 2grams de mots
     num_tokens=10000, # Nombre max de tokens considérés
-    training_text=training_data,
+    training_text=X,
 )
 ```
 </details>
@@ -469,7 +470,7 @@ tokenizer = NGramTokenizer(
     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
     len_word_ngrams=2, # On fait des 2grams de mots
     num_tokens=10000, # Nombre max de tokens considérés
-    training_text=training_data,
+    training_text=X,
 )
 ```
 

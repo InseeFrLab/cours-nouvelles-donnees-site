@@ -16,3 +16,4 @@ data/
 *.gpkgdata/
 
 **/*.quarto_ipynb
+applications/data/

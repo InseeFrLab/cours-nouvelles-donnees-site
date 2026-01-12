@@ -5,3 +5,9 @@ nltk.download('stopwords')
 nltk.download('punkt_tab')
 END_SCRIPT
 python -m spacy download fr_core_news_sm
+
+# App APE
+mkdir applications/data
+
+curl https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet --output applications/data/data.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls --output applications/data/naf.parquet
