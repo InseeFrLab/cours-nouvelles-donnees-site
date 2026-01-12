@@ -11,54 +11,60 @@ format:
 
 Cette application illustrera certains apports des outils du 
 NLP pour la codification automatique des déclarations d'activité
-dans la nomenclature des activités françaises. On pourra coder dans un 
-notebook au sein de l'environnement `SSP Cloud` suivant:
+dans la nomenclature des activités françaises. 
+Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en clicand sur le lien ci-dessous : 
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?name=vscode-python&version=2.1.23&s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
-
-<a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?name=jupyter-python&version=2.1.22&s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (Jupyter)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&version=2.4.5&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
 
 Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE. 
 
 
-## Exploration du jeu de données
+## Objectifs
 
-Ce tutoriel se propose d'illustrer la problématique de
-la classification automatique par le biais de
-l'algorithme d'apprentissage
-supervisé `FastText`, développé par Meta,
-à partir des données issues des déclarations Sirene. 
+Ce tutoriel se propose d'illustrer la problématique de la classification automatique en mobilisant un algorithme d'apprentissage supervisé de type `FastText`, à partir des données issues des déclarations Sirene. 
 
-L'idée de ce tutoriel est de classer des déclarations d'entreprise dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
+L'idée de ce tutoriel est de classer des déclarations d'entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
 
-Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l'activité d'une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement _ad hoc_ qui permettent d'extraire une information à partir de libellés textuels. Historiquement l'Insee utilisait des règles déterministes de classement à partir d'un algorithme nommé [Sicore](https://www.insee.fr/fr/information/4497076?sommaire=4497095), une IA symbolique qui classait à partir de règles métiers préconfigurée. 
+Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l'activité d'une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement _ad hoc_ qui permettent d'extraire une information à partir de libellés textuels. Historiquement l'Insee utilisait des règles déterministes de classement à partir d'un algorithme nommé [Sicore](https://www.insee.fr/fr/information/4497076?sommaire=4497095), une IA symbolique qui classait à partir de règles métiers préconfigurée.
 
 Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d'investissement intéressante pour l'Insee. L'objet de ce TD est d'illustrer la démarche adoptée avec cette approche à partir d'un modèle un peu plus simple que celui mis en oeuvre à l'Insee mais reprenant les principales caractéristiques de celui-ci. 
 
-Le code pour lire les données est directement fourni:
+## Environnement de travail
+
+Le services VSCode préconfiguré contient : 
+
+- les données dans un dossier "data"
+- un module de preprocessing
+- un script `script_tp.py` vierge où écrire votre code (la puce `# %%` permet une utilisation intéractive à l'instar des notebooks Jupyter).
+
+## Exploration du jeu de données
+
+Le code pour lire les données est directement fourni :
 
 ```{python}
 #| echo: true
-import matplotlib.pyplot as plt
-import pandas as pd
-from wordcloud import WordCloud
 
-DATA_PATH = "https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet"
-NAF_PATH = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls"
-naf = pd.read_excel(NAF_PATH, skiprows = 2)
+import os
+import pandas as pd
+
+# Import NAF classification
+naf = pd.read_excel("data/naf.parquet", skiprows = 2)
+# Import training data
+train = pd.read_parquet("data/data.parquet")
+
+# Merge classification info
 naf['Code'] = naf['Code'].str.replace(".","")
-train = pd.read_parquet(DATA_PATH)
 train = train.merge(naf, left_on = "nace", right_on = "Code")
 train.head(5)
+
 ```
 
 
-Le premier exercice a vocation à 
-illustrer la manière classique de rentrer
-dans un corpus de données textuelles. La démarche
-n'est pas particulièrement originale mais permet d'illustrer 
-les enjeux du nettoyage de texte. 
+
+
+Le premier exercice a vocation à illustrer la manière classique de rentrerdans un corpus de données textuelles. 
+La démarche n'est pas particulièrement originale mais permet d'illustrer les enjeux du nettoyage de texte. 
 
 ::: {.exercice}
 ## Exercice 1
@@ -66,23 +72,30 @@ les enjeux du nettoyage de texte.
 0. Lancer le code ci-dessous pour préparer votre environnement de travail :
 
 ```{.python}
+# Charge la bibliothèque spaCy pour le traitement du langage naturel (NLP)
 import spacy
-!python -m spacy download fr_core_news_sm
+
+# Télécharge le modèle français pour spaCy (nécessaire pour l'analyse morphosyntaxique en français)
+os.system("python -m spacy download fr_core_news_sm")
+
+# Charge la bibliothèque NLTK pour le traitement du texte
 import nltk
+
+# Télécharge le tokeniseur "punkt_tab" de NLTK (pour la segmentation en phrases/tokens)
 nltk.download('punkt_tab')
+
+# Télécharge la liste des stopwords français/anglais de NLTK (mots vides comme "le", "la", "the", etc.)
 nltk.download('stopwords')
+
 ```
 
-1. Créer une fonction pour compter le nombre de textes contenant une séquence de caractères
-donnée dans le corpus. La tester avec _"data science"_ et _"boulanger"_.
+1. Créer une fonction `filter_train_data` qui filtre les lignes du df dont le libellé d'activité __contient__ un pattern (mot) donné.
+Cette fonction aussi doit afficher (print) le nombre de lignes concernées.
+Tester avec _"data science"_ et _"boulanger"_.
 
-2. Faire une fonction pour afficher le _wordcloud_
-de notre corpus dans son ensemble et de certaines
-catégories pour comprendre la nature de notre
-corpus. 
+2. Faire une fonction `graph_wordcloud` pour afficher le _wordcloud_ de notre corpus dans son ensemble et de certaines
+catégories de la nomenclature pour comprendre la nature de notre corpus.
 
-3. Retirer les stopwords à partir de la liste
-des mots disponibles dans `SpaCy`.
 
 <details>
 <summary>
@@ -90,21 +103,51 @@ Aide
 </summary>
 
 ```{.python}
-from nltk.tokenize import word_tokenize
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+all_text = ["boulanger", "chauffer", "bus"]
+
+wordcloud = WordCloud(
+    width=800,
+    height=500,
+    random_state=21,
+    max_words=2000,
+    background_color="white",
+    colormap='Set2'
+).generate(all_text)
+
+```
+
+</details>
+
+
+
+
+3. Retirer les stopwords à partir de la liste des mots disponibles dans `SpaCy`.
+
+<details>
+<summary>
+Aide
+</summary>
+
+```{.python}
 import spacy
+from nltk.tokenize import word_tokenize
 
 nlp = spacy.load("fr_core_news_sm")
-stop_words = #liste de stopwords
+stop_words = nlp.Defaults.stop_words
+stop_words = set(stop_words)
 
 # Function to remove stopwords
 def remove_stopwords(text):
     word_tokens = word_tokenize(text)
-    filtered_text = [word for word in word_tokens if word.lower() not in stop_words]
+    filtered_text = ...
     return ' '.join(filtered_text)
 
 def remove_single_letters(text):
     word_tokens = word_tokenize(text)
-    filtered_text = [word for word in word_tokens if len(word) > 1]
+    filtered_text = ...
     return ' '.join(filtered_text)
 
 # Apply the function to the 'text' column
@@ -122,12 +165,8 @@ train['text_clean'] = (train['text']
 
 :::
 
-Dans une démarche exploratoire,
-le plus simple est de commencer par compter les mots
-de manière indépendante (approche sac de mot). 
-Par exemple, de manière naturelle, nous avons
-beaucoup plus de déclarations liées à la boulangerie que 
-liées à la _data science_:
+Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). 
+Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la _data science_:
 
 ```{python}
 train_data=train.copy()
@@ -145,11 +184,17 @@ def filter_train_data(train_data, sequence):
 ```{python}
 #| echo: true
 filter_train_data(train, "data science").head(5)
+```
+```{python}
+#| echo: true
 filter_train_data(train, "boulanger").head(5)
 ```
 
 ```{python}
-#1. Wordclouds
+
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
 def graph_wordcloud(train_data, text_var="text", naf=None):
     if naf is not None:
         train_data = train_data.loc[train_data['nace'] == naf]
@@ -167,49 +212,31 @@ def graph_wordcloud(train_data, text_var="text", naf=None):
     return wordcloud
 ```
 
-Les _wordclouds_ peuvent servir à rapidement visualiser
-la structure d'un corpus. On voit ici que notre
-corpus est très bruité car nous n'avons pas 
-nettoyé celui-ci:
+Les _wordclouds_ peuvent servir à rapidement visualiser la structure d'un corpus. 
+On voit ici que notre corpus est très bruité car nous n'avons pas nettoyé celui-ci:
 
 ```{python}
 wordcloud_corpus = graph_wordcloud(train)
-plt.figure()
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
-plt.axis("off")
-plt.show()
 ```
 
-Pour commencer à se faire une idée sur les spécificités
-des catégories, on peut représenter le corpus de certaines
-d'entre elles ? Arrivez-vous à inférer la catégorie de la NAF 
-en question ? Si oui, vous utilisez sans doute des heuristiques
-proches de celles que nous allons mettre en oeuvre dans notre
-algorithme de classification.
+Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d'entre elles ? 
+Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques
+proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.
 
 ```{python}
 wordcloud_corpus = graph_wordcloud(train, naf = "1071C")
-plt.figure()
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
-plt.axis("off")
-plt.show()
 ```
 
 ```{python}
 wordcloud_corpus = graph_wordcloud(train, naf = "4942Z")
-plt.figure()
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
-plt.axis("off")
-plt.show()
 ```
 
-Néanmoins, à ce stade, les données sont encore très
-bruitées. La première étape classique est de retirer
-les _stop words_ et éventuellement des 
-termes spécifiques à notre corpus. Par exemple,
-pour des données de caisse, on retirera les bruits, 
-les abréviations, etc. qui peuvent bruiter notre
-corpus. 
+Néanmoins, à ce stade, les données sont encore très bruitées. 
+La première étape classique est de retirer les _stop words_ et éventuellement des termes spécifiques à notre corpus. 
+Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.
 
 ```{python}
 from nltk.tokenize import word_tokenize
@@ -217,8 +244,6 @@ import spacy
 
 nlp = spacy.load("fr_core_news_sm")
 stop_words = nlp.Defaults.stop_words
-
-#stop_words = set(stopwords.words('french'))
 stop_words = set(stop_words)
 
 # Function to remove stopwords
@@ -239,27 +264,28 @@ train['text_clean'] = (train['text']
 )
 ```
 
+Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée : 
+
+```{python}
+wordcloud_corpus_cleaned = graph_wordcloud(train, "text_clean")
+plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
+```
+
+
+
 
 ## Premier algorithme d'apprentissage supervisé
 
-Nous avons nettoyé nos données. Cela devrait améliorer
-la pertinence de nos modèles en réduisant le ratio signal/bruit. 
-Nous allons généraliser notre nettoyage de texte
-en appliquant un peu plus d'étapes que précédemment. Nous allons
+Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. 
+Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d'étapes que précédemment. Nous allons
 notamment raciniser nos mots. 
 
-Pour cela, récupérer les fichiers suivants:
-
-- [`constants.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py)
-- [`processor.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py)
-- [`utils.py`](https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py)
-
-et mettre ceux-ci dans le même dossier que votre _notebook_ `Jupyter`.
-
+Pour cela, il suffit de charger le module `processor.py` mis à disposition dans votre environnement de travail.
 Le code de nettoyage est directement fourni:
 
 ```{python}
 #| echo: true
+
 from processor import Preprocessor
 preprocessor = Preprocessor()
 
@@ -267,201 +293,284 @@ preprocessor = Preprocessor()
 TEXT_FEATURE = "text"
 Y = "nace"
 
-df = preprocessor.clean_text(train, TEXT_FEATURE).drop('text_clean', axis = "columns")
+df = preprocessor.clean_text(df, TEXT_FEATURE).drop('text_clean', axis = "columns")
+df = df.sample(10000)
 df.head(2)
 ```
 
-Nous allons commencer à entraîner un modèle dont le plongement de mot est de 
-faible dimension. 
-Voici les paramètres qui seront utiles pour le prochain exercice.
+Pour développer votre code, utilisez un échantillon des données pour éviter les temps de calculs trop long au début.
+
+Récupérons les features et les labels.
 
 ```{python}
 #| echo: true
-#| label: create-training-text-example
-import pathlib
 
-params = {
-    "dim": 25,
-    "label_prefix": "__label__"
-}
-
-data_path = pathlib.Path("./data")
-data_path.mkdir(parents=True, exist_ok=True)
-
-def write_training_data(df, params, training_data_path=None):
-    warnings.filterwarnings("ignore", "Setuptools is replacing distutils.")
-    if training_data_path is None:
-        training_data_path = get_root_path() / "data/training_data.txt"
-
-    with open(training_data_path, "w", encoding="utf-8") as file:
-        for _, item in df.iterrows():
-            formatted_item = f"{params['label_prefix']}{item[Y]} {item[TEXT_FEATURE]}"
-            file.write(f"{formatted_item}\n")
-    return training_data_path.as_posix()
+df = df.dropna(subset = [Y, TEXT_FEATURE])
+X = df[TEXT_FEATURE].values
+y = df[Y].values
 ```
+
+
 
 ::: {.exercice}
 
-1. Découper notre échantillon complet en _train_ et _test_.
-2. `FastText` effectue son entraînement à partir d'objets stockés
-dans un `.txt`. Utiliser la fonction `write_training_data` 
-de la manière suivante pour l'écrire.
+1. Encoder les labels et découper les données en _train_, __val__ et _test_.
+
+<details>
+<summary>
+Aide
+</summary>
 
 ```{.python}
-# Write training data in a .txt file (fasttext-specific)
-training_data_path = write_training_data(df_train, params, pathlib.Path(str(data_path.absolute()) + "/training_data.txt"))
+# Pour l'encoding : 
+from sklearn.preprocessing import LabelEncoder
+
+# Pour le split :
+from sklearn.model_selection import train_test_split
+
 ```
+</details>
 
-3. Avec l'aide de la documentation de la librairie `FastText`, entraîner
-votre modèle de classification.
+Nous allons utiliser `torchTextClassifiers (ttc)` pour entraîner notre modèle.
+`ttc` est un framework de codification automatique, basé sur `torch` et qui permet de contruire des modèles de codification automatique.
+`ttc` va ici nous permettre d'entraîner un modèle de type `Fasttext`, mais sans passer par la vieille librairie archivée par Meta.
+A noter que `ttc` est une librarie opensource, développée et maintenue par l'Insee (unité SSPLab).
 
-4. Sauvegarder le modèle sous forme de binaire, cela pourra éventuellement
-servir ultérieurement. 
+La première étape consiste à instancier un tokenizer.
+Nous allons utiliser ici le tokenizer basique de `Fasttext` (découpage en mots, ngrams de mots et ngrams de caractères).
 
-5. Renvoyer les trois catégories les plus probables pour les nouveaux
-libellés suivants:
+2. Instancier un tokenizer `NGramTokenizer` (essayer à partir de la documentation de `torchTextClassifiers` - ou en reprenant le code ci-dessous)
+
+<details>
+<summary>
+Aide
+</summary>
 
 ```{.python}
-list_libs = ["vendeur d'huitres", "boulanger"]
-```
+from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
-6. Sur l'ensemble du jeu de test, renvoyer la meilleure prédiction
-pour chaque descriptif d'activités. Evaluer la performance globale
-et la performance classe par classe, par exemple en calculant le rappel (pour les classes de plus
-de 200 cas). 
+tokenizer = NGramTokenizer(
+    min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
+    min_n=2, 
+    max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
+    len_word_ngrams=2, # On fait des 2grams de mots
+    num_tokens=10000, # Nombre max de tokens considérés
+    training_text=training_data,
+)
+```
+</details>
+
+
+
+3. Etudiez le code dans l'aide ci-dessous et lancez-le pour configurer et entraîner votre modèle
+
+<details>
+<summary>
+Aide
+</summary>
+
+```{.python}
+
+from torchTextClassifiers import ModelConfig
+import numpy as np
+
+# Embedding dimension
+embedding_dim = 64
+
+# Count number of unique labels
+unique_values, counts = np.unique(y, return_counts=True)
+num_unique = len(unique_values)
+
+model_config = ModelConfig(
+    embedding_dim=embedding_dim,
+    num_classes=num_unique
+)
+
+
+from torchTextClassifiers import torchTextClassifiers
+
+classifier = torchTextClassifiers(
+    tokenizer=tokenizer,
+    model_config=model_config
+)
+
+from torchTextClassifiers import TrainingConfig
+
+# Training params (torch style)
+training_config = TrainingConfig(
+    num_epochs=30,
+    batch_size=8,
+    lr=1e-3,
+    patience_early_stopping=7,
+    num_workers=0,
+    trainer_params={'deterministic': True}
+)
+
+# Training !
+classifier.train(
+    X_train, 
+    y_train,
+    training_config,
+    X_val, 
+    y_val,
+    verbose=True
+)
+
+```
+</details>
+
+4. Calculer l'accuracy du modèle. Etonnant ?
+
+5. Tester le modèle sur quelques libellés de professions : 
+
+```{.python}
+searched_professions = np.array(["data scientist", "Commercial dans l'automobile", "peintre"])
+```
 
 :::
 
+
 ```{python}
-#| label: train-test-split
-import warnings
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+y_encoded = le.fit_transform(y)  # Convertit ["cat", "dog"] → [0, 1]
+```
+
+
+```{python}
+# Première division : train (80 %) + test (20%)
 from sklearn.model_selection import train_test_split
 
-df = df.dropna(subset = [Y, TEXT_FEATURE])
-
 X_train, X_test, y_train, y_test = train_test_split(
-            df[TEXT_FEATURE],
-            df[Y],
-            test_size=0.2,
-            random_state=0,
-            shuffle=True,
-        )
+    X,
+    y_encoded,
+    test_size=0.2,
+    random_state=0,
+    shuffle=True,
+)
+# Deuxième division pour aboutir à : train (60 % = 80% * 75%) + val =  (60 % = 80% * 25%) + test (20%)
 
-df_train = pd.concat([X_train, y_train], axis=1)
-df_test = pd.concat([X_test, y_test], axis=1)
-
-def write_training_data(df, params, training_data_path=None):
-    warnings.filterwarnings("ignore", "Setuptools is replacing distutils.")
-    if training_data_path is None:
-        training_data_path = get_root_path() / "data/training_data.txt"
-
-    with open(training_data_path, "w", encoding="utf-8") as file:
-        for _, item in df.iterrows():
-            formatted_item = f"{params['label_prefix']}{item[Y]} {item[TEXT_FEATURE]}"
-            file.write(f"{formatted_item}\n")
-    return training_data_path.as_posix()
+X_train, X_val, y_train, y_val = train_test_split(
+    X_train,
+    y_train,
+    test_size=0.25,
+    random_state=0,
+    shuffle=True,
+)
 ```
 
 
 ```{python}
-#| label: write-as-txt
-# Write training data in a .txt file (fasttext-specific)
-training_data_path = write_training_data(df_train, params, pathlib.Path(str(data_path.absolute()) + "/training_data.txt"))
+from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
+
+tokenizer = NGramTokenizer(
+    min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
+    min_n=2, 
+    max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
+    len_word_ngrams=2, # On fait des 2grams de mots
+    num_tokens=10000, # Nombre max de tokens considérés
+    training_text=training_data,
+)
+```
+
+Configuration du modèle : 
+
+```{python}
+from torchTextClassifiers import ModelConfig
+import numpy as np
+
+# Embedding dimension
+embedding_dim = 64
+
+# Count number of unique labels
+unique_values, counts = np.unique(y, return_counts=True)
+num_unique = len(unique_values)
+
+model_config = ModelConfig(
+    embedding_dim=embedding_dim,
+    num_classes=num_unique
+)
+```
+
+Création du classifier : 
+
+```{python}
+from torchTextClassifiers import torchTextClassifiers
+
+classifier = torchTextClassifiers(
+    tokenizer=tokenizer,
+    model_config=model_config
+)
 ```
 
 
-```{python}
-#| eval: false
-#| label: fasttext-training
-import fasttext
-
-# Train the fasttext model
-model = fasttext.train_supervised(
-            training_data_path,
-            **params,
-            lr=0.5,
-            verbose=2
-        )
-```
+Entraînement du modèle
 
 ```{python}
-#| eval: false
-#| label: save-model
-model.save_model("model.bin")
-```
 
+from torchTextClassifiers import TrainingConfig
 
-```{python}
-#| eval: false
-#| label: fasttext-predict
-list_libs = ["vendeur d'huitres", "boulanger"]
-
-results = model.predict(list_libs, k = 3)
-labels, probabilities = results
-
-flattened_labels = [label for sublist in labels for label in sublist]
-flattened_probabilities = [prob for sublist in probabilities for prob in sublist]
-
-# Create a DataFrame
-df = pd.DataFrame({
-    'Label': flattened_labels,
-    'IC': flattened_probabilities
-})
-
-df['Label'] = df['Label'].str.replace(r'__label__', '')
-```
-
-```{python}
-#| eval: false
-# label: merge-to-check
-df.merge(naf, left_on = "Label", right_on="Code")
-```
-
-
-```{python}
-#| eval: false
-# label: question6
-output_column = "prediction"
-predictions = pd.DataFrame(
-    {
-    output_column: \
-        [k[0] for k in model.predict(
-            [str(libel) for libel in df_test["text"]], k = 1
-            )[0]]
-    })
-
-df_test[output_column] = predictions['prediction'].astype(str).str.replace(r'__label__', '')
-df_test = df_test.reset_index(drop = True)
-
-df_test['prediction'] = predictions['prediction'].astype(str).str.replace(r'__label__', '')
-```
-
-```{python}
-#| eval: false
-from sklearn.metrics import accuracy_score
-accuracy_score(df_test['nace'], df_test['prediction'])
-
-df_test['match'] = (df_test['nace'] == df_test['prediction'])
-
-# Aggregating by 'nace' to count correct predictions and calculate accuracy
-aggregation = df_test.groupby('nace').agg(
-    correct_predictions=('match', 'sum'),
-    total=('nace', 'count'),
-    recall=('match', 'mean')
+# Training params (torch style)
+training_config = TrainingConfig(
+    num_epochs=30,
+    batch_size=8,
+    lr=1e-3,
+    patience_early_stopping=7,
+    num_workers=0,
+    trainer_params={'deterministic': True}
 )
 
-aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True)
+# Training !
+classifier.train(
+    X_train, 
+    y_train,
+    training_config,
+    X_val, 
+    y_val,
+    verbose=True
+)
+
 ```
+
+Evaluation du modèle : 
 
 ```{python}
-#| eval: false
-from plotnine import *
 
-ggplot(
-    aggregation.loc[aggregation['total']>200].sort_values('recall', ascending=True),
-    aes(x='recall')
-) + geom_histogram(bins=20)
+# Inference on testset
+result = classifier.predict(X_test)
+predictions = result["prediction"].squeeze().numpy()
+
+# Step 8: Evaluate
+accuracy = (predictions == y_test).mean()
+print(f"Test accuracy: {accuracy:.3f}")
+
 ```
+
+Testons le modèle sur quelques libellés d'activité : 
+
+```{python}
+searched_professions = np.array(["data scientist", "Commercial dans l'automobile", "peintre"])
+preds = classifier.predict(searched_professions)
+
+for profession, prediction, confidence in zip(searched_professions, preds["prediction"], preds["confidence"]):
+    # Affichage de la profession recherchée
+    print(f"\n🔍 Profession recherchée : {profession}")
+
+    # Conversion sécurisée de la prédiction (compatible PyTorch/NumPy)
+    pred_code = prediction.cpu().numpy()
+    pred_labels = le.inverse_transform(pred_code)
+
+    # Récupération des libellés NAF correspondants
+    matching_labels = naf.loc[naf["Code"].isin(pred_labels), "Libellé"].tolist()
+
+    # Affichage des résultats
+    print(f"🏷️ Profession(s) trouvée(s) : {', '.join(matching_labels)}")
+    print(f"📊 Confiance : {confidence.item() if hasattr(confidence, 'item') else confidence:.2f}")
+
+
+```
+
+
 
 ## Pour aller plus loin, introduction au MLOps
 

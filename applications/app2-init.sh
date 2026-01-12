@@ -18,3 +18,5 @@ pip install unidecode
 pip install pytorch_lightning
 pip install torchTextClassifiers[huggingface]
 pip install scikit-learn
+
+echo -e "# Script du TP\nCi-dessous une balise pour voir les résultats en intéractif\n# %%" > script_tp.py
