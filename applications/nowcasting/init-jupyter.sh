@@ -4,18 +4,25 @@ CLONE_DIR="${WORK_DIR}/cours-nouvelles-donnees-site"
 
 # Clone course repository
 REPO_URL="https://github.com/inseefrlab/cours-nouvelles-donnees-site/"
-git clone --depth 1 $REPO_URL $CLONE_DIR
+git clone $REPO_URL $CLONE_DIR --branch dev_nt  # Remove dev_nt when pushed to main
 
 # Copy relevant notebooks to work directory
-cp ${CLONE_DIR}/applications/nowcasting/{twitter.ipynb,requirements.txt,setup.sh} ${WORK_DIR}
+cp ${CLONE_DIR}/applications/nowcasting/{twitter.ipynb,pyproject.toml,uv.lock} ${WORK_DIR}
 
-# Remove repo and useless lost+found directory
-rm -rf ${CLONE_DIR}/ ${WORK_DIR}/lost+found
+# Download data
+mkdir data
+curl "https://minio.lab.sspcloud.fr/projet-funathon/2022/diffusion/2022/Sujet%202/climate_id.txt.00" --output "data/climate_id.txt.00"
 
-# Run setup and delete files
-source setup.sh
-rm requirements.txt setup.sh
+# Remove repo
+rm -rf "${CLONE_DIR}"
 
-# Open the first notebook when starting Jupyter Lab
-jupyter server --generate-config
-echo "c.LabApp.default_url = '/lab/tree/twitter.ipynb'" >> /home/onyxia/.jupyter/jupyter_server_config.py
+# Creating a Jupyter Kernel with all dependancies pre installed
+# https://docs.astral.sh/uv/guides/integration/jupyter/#using-jupyter-within-a-project
+
+# Install ipykernel and create a Jupyter kernel with dependencies open
+uv add --dev ipykernel
+uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=application_nowcasting
+
+# Delete config files
+rm pyproject.toml uv.lock
+

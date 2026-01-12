@@ -1,7 +1,0 @@
-twarc
-hvac
-twarc_csv
-wordcloud
-nltk
-transformers
-torch
