@@ -33,4 +33,3 @@ echo "c.LabApp.default_url = '/lab/tree/classification_oiseau.ipynb'" >> /home/o
 # Run Jupyter Lab
 uv run --with jupyter jupyter lab
 
-
