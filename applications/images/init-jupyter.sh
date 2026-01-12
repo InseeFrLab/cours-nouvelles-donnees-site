@@ -1,13 +1,13 @@
 #!/bin/bash
 WORK_DIR="/home/onyxia/work"
-CLONE_DIR="${WORK_DIR}/images-donnees-emergentes"
+CLONE_DIR="${WORK_DIR}/cours-nouvelles-donnees-site"
 
 # Clone course repository
-REPO_URL="https://git.lab.sspcloud.fr/tseimandi/images-donnees-emergentes.git"
+REPO_URL="https://github.com/inseefrlab/cours-nouvelles-donnees-site/"
 git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Copy relevant notebooks to work directory
-cp ${CLONE_DIR}/{classification_oiseau.ipynb,donnees_satellite.ipynb} ${WORK_DIR}
+cp ${CLONE_DIR}/applications/images/{classification_oiseau.ipynb,donnees_satellite.ipynb} ${WORK_DIR}
 
 # Remove repo and useless lost+found directory
 rm -rf ${CLONE_DIR}/ ${WORK_DIR}/lost+found
