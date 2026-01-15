@@ -52,7 +52,7 @@ import pandas as pd
 naf = pd.read_excel("data/naf.parquet", skiprows = 2)
 # Import training data
 train = pd.read_parquet("data/data.parquet")
-train = train.sample(10000)
+#train = train.sample(10000)
 
 # Merge classification info
 naf['Code'] = naf['Code'].str.replace(".","")
@@ -363,7 +363,7 @@ tokenizer = NGramTokenizer(
 
 
 
-3. Etudiez le code dans l'aide ci-dessous et lancez-le pour configurer et entraîner votre modèle
+3. Etudiez le code dans l'aide ci-dessous et lancez-le pour configurer et entraînez votre modèle
 
 <details>
 <summary>
@@ -407,15 +407,24 @@ training_config = TrainingConfig(
     trainer_params={'deterministic': True}
 )
 
-# Training !
-classifier.train(
-    X_train, 
-    y_train,
-    training_config,
-    X_val, 
-    y_val,
-    verbose=True
-)
+# Training (too long) !
+
+# classifier.train(
+#     X_train, 
+#     y_train,
+#     training_config,
+#     X_val, 
+#     y_val,
+#     verbose=True
+# )
+
+# Download a pre-trained instead to make it faster : 
+os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl")
+os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt")
+os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl")
+
+# Load it
+classifier = torchTextClassifiers.load("model_ape")
 
 ```
 </details>
@@ -518,18 +527,20 @@ training_config = TrainingConfig(
     lr=1e-3,
     patience_early_stopping=7,
     num_workers=0,
-    trainer_params={'deterministic': True}
+    trainer_params={'deterministic': True},
+    save_path="model_ape"
 )
 
-# Training !
-classifier.train(
-    X_train, 
-    y_train,
-    training_config,
-    X_val, 
-    y_val,
-    verbose=True
-)
+# Download the model
+# In terminal : 
+os.mkdirs("model_ape/", exist_ok=True)
+os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/metadata.pkl")
+os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output model_ape/model_checkpoint.ckpt")
+os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output model_ape/tokenizer.pkl")
+
+# Load it
+classifier = torchTextClassifiers.load("model_ape")
+
 
 ```
 
