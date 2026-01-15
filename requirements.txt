@@ -12,5 +12,5 @@ spacy
 nltk
 unidecode
 pytorch_lightning
-torchTextClassifiers[huggingface]
+torchTextClassifiers
 scikit-learn
