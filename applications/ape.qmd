@@ -533,7 +533,7 @@ training_config = TrainingConfig(
 
 # Download the model
 # In terminal : 
-os.mkdirs("model_ape/", exist_ok=True)
+os.makedirs("model_ape/", exist_ok=True)
 os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/metadata.pkl")
 os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output model_ape/model_checkpoint.ckpt")
 os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output model_ape/tokenizer.pkl")
