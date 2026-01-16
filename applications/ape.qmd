@@ -589,6 +589,7 @@ torch.set_num_interop_threads(1)
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 
+import numpy as np
 idx = np.random.choice(X_test.index, size=200, replace=False)
 
 X_sample = X_test.loc[idx]
