@@ -671,9 +671,45 @@ Aide
 </div>
 </div>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
+<div id="cell-use-graph_wordcloud" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ape_files/figure-html/use-graph_wordcloud-output-1.png" id="use-graph_wordcloud" width="575" height="372" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d’entre elles ? Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.</p>
+<div id="cell-use-graph_wordcloud2" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ape_files/figure-html/use-graph_wordcloud2-output-1.png" id="use-graph_wordcloud2" width="575" height="372" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-use-graph_wordcloud3" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ape_files/figure-html/use-graph_wordcloud3-output-1.png" id="use-graph_wordcloud3" width="575" height="372" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Néanmoins, à ce stade, les données sont encore très bruitées. La première étape classique est de retirer les <em>stop words</em> et éventuellement des termes spécifiques à notre corpus. Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.</p>
 <p>Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée :</p>
+<div id="cell-use-graph_wordcloud4" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ape_files/figure-html/use-graph_wordcloud4-output-1.png" id="use-graph_wordcloud4" width="575" height="372" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <section id="premier-algorithme-dapprentissage-supervisé" class="level2">
 <h2 class="anchored" data-anchor-id="premier-algorithme-dapprentissage-supervisé">Premier algorithme d’apprentissage supervisé</h2>
 <p>Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d’étapes que précédemment. Nous allons notamment <em>raciniser</em> nos mots.</p>
@@ -856,16 +892,16 @@ Aide
 <p>Chargement du modèle :</p>
 <div id="load-model" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stderr">
-<pre><code>2026-01-16 16:55:26 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
+<pre><code>2026-01-16 17:05:55 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
 /opt/hostedtoolcache/Python/3.13.11/x64/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
-2026-01-16 16:55:26 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
-2026-01-16 16:55:26 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
+2026-01-16 17:05:55 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
+2026-01-16 17:05:55 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
 </div>
 </div>
 <p>Evaluation du modèle :</p>
 <div id="get-accuracy3" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-stdout">
-<pre><code>Test accuracy: 0.755</code></pre>
+<pre><code>Test accuracy: 0.810</code></pre>
 </div>
 </div>
 <p>Testons le modèle sur quelques libellés d’activité :</p>
