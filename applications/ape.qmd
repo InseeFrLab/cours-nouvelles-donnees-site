@@ -1,23 +1,23 @@
 ---
-title: "Application 1: classification automatique de textes"
+title: "Application 2: classification automatique de textes"
 echo: false
 output-dir: _site
 filters:
 - custom-callout
-format: 
+format:
    html:
      df-print: paged
 ---
 
-Cette application illustrera certains apports des outils du 
+Cette application illustrera certains apports des outils du
 NLP pour la codification automatique des déclarations d'activité
 dans la nomenclature des activités françaises. 
-Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en clicand sur le lien ci-dessous : 
+Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en cliquant sur le lien ci-dessous : 
 
 <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&version=2.4.5&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
 
-Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE. 
+Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE.
 
 
 ## Objectifs
@@ -30,7 +30,7 @@ L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses
 
 Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l'activité d'une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement _ad hoc_ qui permettent d'extraire une information à partir de libellés textuels. Historiquement l'Insee utilisait des règles déterministes de classement à partir d'un algorithme nommé [Sicore](https://www.insee.fr/fr/information/4497076?sommaire=4497095), une IA symbolique qui classait à partir de règles métiers préconfigurée.
 
-Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d'investissement intéressante pour l'Insee. L'objet de ce TD est d'illustrer la démarche adoptée avec cette approche à partir d'un modèle un peu plus simple que celui mis en oeuvre à l'Insee mais reprenant les principales caractéristiques de celui-ci. 
+Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d'investissement intéressante pour l'Insee. L'objet de ce TD est d'illustrer la démarche adoptée avec cette approche à partir d'un modèle un peu plus simple que celui mis en oeuvre à l'Insee mais reprenant les principales caractéristiques de celui-ci.
 
 ## Environnement de travail
 
@@ -176,7 +176,7 @@ Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations li
 train_data=train.copy()
 
 def filter_train_data(train_data, sequence):
-    sequence_capitalized = sequence.upper() 
+    sequence_capitalized = sequence.upper()
     mask = train_data['text'].str.contains(sequence_capitalized)
     nb_occurrence = mask.astype(int).sum()
     print(
@@ -602,12 +602,12 @@ for profession, prediction, confidence in zip(searched_professions, preds["predi
 
 ## Pour aller plus loin, introduction au MLOps
 
-On utilise dans cette application un modèle de Machine 
-Learning (ML) pour prédire l'activité des entreprises à 
-partir de texte descriptifs. Les méthodes de 
-ML sont quasiment indispensables pour traiter du texte, 
-mais utiliser des modèles de ML pour servir des cas d'usage 
-réels demande de respecter un certain nombre de bonnes pratiques 
+On utilise dans cette application un modèle de Machine
+Learning (ML) pour prédire l'activité des entreprises à
+partir de texte descriptifs. Les méthodes de
+ML sont quasiment indispensables pour traiter du texte,
+mais utiliser des modèles de ML pour servir des cas d'usage
+réels demande de respecter un certain nombre de bonnes pratiques
 pour que tout se passe convenablement, en particulier:
 
 - Tracking propre des expérimentations
@@ -616,7 +616,7 @@ pour que tout se passe convenablement, en particulier:
 - Monitoring de l'activité du modèle servi
 - Réentraînement du modèle
 
-Une introduction à ces bonnes pratiques, auxquelles on fait 
-régulièrement référence à travers le terme MLOps, est donné dans 
-[cette formation](https://inseefrlab.github.io/formation-mlops/slides/fr/index.html#/title-slide) 
+Une introduction à ces bonnes pratiques, auxquelles on fait
+régulièrement référence à travers le terme MLOps, est donné dans
+[cette formation](https://inseefrlab.github.io/formation-mlops/slides/fr/index.html#/title-slide)
 ([dépôt associé](https://github.com/InseeFrLab/formation-mlops)).
