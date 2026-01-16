@@ -577,6 +577,14 @@ Evaluation du modèle :
 ```{python }
 #| label: get-accuracy
 
+import torch
+import os
+
+# Force single-threaded execution (for gh actions)
+torch.set_num_threads(1)
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+
 # Inference on testset
 result = classifier.predict(X_test)
 predictions = result["prediction"].squeeze().numpy()
