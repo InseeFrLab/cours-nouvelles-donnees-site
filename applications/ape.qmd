@@ -440,9 +440,23 @@ training_config = TrainingConfig(
 # )
 
 # Download a pre-trained instead to make it faster : 
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl")
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt")
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl")
+
+# Download the model
+base_url = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"
+files = ["metadata.pkl", "model_checkpoint.ckpt", "tokenizer.pkl"]
+
+import subprocess
+
+for file in files:
+    subprocess.run([
+        "curl", 
+        f"{base_url}/{file}",
+        "--output", f"model_ape/{file}",
+        "--silent",
+        "--fail",  # Fail on HTTP errors
+        "--location"  # Follow redirects
+    ], check=True)
+
 
 # Load it
 classifier = torchTextClassifiers.load("model_ape")
@@ -494,29 +508,59 @@ X_train, X_val, y_train, y_val = train_test_split(
 ```
 
 
-Téléchargement du modèle :
-
 ```{python}
-#| label: download-model
+#| label: useless-chunk
 
-#| warning: false
-#| message: false
+from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
-# Download the model
-base_url = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"
-files = ["metadata.pkl", "model_checkpoint.ckpt", "tokenizer.pkl"]
+tokenizer = NGramTokenizer(
+    min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
+    min_n=2, 
+    max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
+    len_word_ngrams=2, # On fait des 2grams de mots
+    num_tokens=10000, # Nombre max de tokens considérés dans le vocable
+    training_text=X, # Jeu d'entraînement du tokenizer
+)
 
-import subprocess
+# Set model configs ---------------
 
-for file in files:
-    subprocess.run([
-        "curl", 
-        f"{base_url}/{file}",
-        "--output", f"model_ape/{file}",
-        "--silent",
-        "--fail",  # Fail on HTTP errors
-        "--location"  # Follow redirects
-    ], check=True)
+from torchTextClassifiers import ModelConfig
+import numpy as np
+
+# Embedding dimension
+embedding_dim = 64
+
+# Count number of unique labels
+unique_values, counts = np.unique(y, return_counts=True)
+num_unique = len(unique_values)
+
+model_config = ModelConfig(
+    embedding_dim=embedding_dim,
+    num_classes=num_unique
+)
+
+# Instanciate a ttc model (nammed "classifier") ---------------
+
+from torchTextClassifiers import torchTextClassifiers
+
+classifier = torchTextClassifiers(
+    tokenizer=tokenizer,
+    model_config=model_config
+)
+
+# Set the training configs ---------------
+
+from torchTextClassifiers import TrainingConfig
+
+# Training params (torch style)
+training_config = TrainingConfig(
+    num_epochs=30,
+    batch_size=8,
+    lr=1e-3,
+    patience_early_stopping=7,
+    num_workers=0,
+    trainer_params={'deterministic': True}
+)
 
 ```
 
@@ -524,8 +568,8 @@ Chargement du modèle :
 
 ```{python}
 #| label: load-model
-from torchTextClassifiers import torchTextClassifiers
-classifier = torchTextClassifiers.load("model_ape")
+from torchTextClassifiers import torchTextClassifiers as ttc
+classifier = ttc.load("model_ape")
 ```
 
 Evaluation du modèle : 
