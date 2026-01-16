@@ -7,6 +7,8 @@ filters:
 format:
    html:
      df-print: paged
+execute:
+  daemon: false
 ---
 
 Cette application illustrera certains apports des outils du
@@ -48,6 +50,7 @@ Le code pour lire les données est directement fourni :
 
 ```{python}
 #| echo: true
+#| label: download-data
 
 import os
 import pandas as pd
@@ -173,6 +176,7 @@ Dans une démarche exploratoire, le plus simple est de commencer par compter les
 Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la _data science_:
 
 ```{python}
+#| label: filter_train_data
 train_data=train.copy()
 
 def filter_train_data(train_data, sequence):
@@ -186,16 +190,18 @@ def filter_train_data(train_data, sequence):
 ```
 
 ```{python}
+#| label: use-filter_train_data
 #| echo: true
 filter_train_data(train, "data science").head(5)
 ```
 ```{python}
+#| label: use-filter_train_data2
 #| echo: true
 filter_train_data(train, "boulanger").head(5)
 ```
 
 ```{python}
-
+#| label: def-graph_wordcloud
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
@@ -220,6 +226,7 @@ Les _wordclouds_ peuvent servir à rapidement visualiser la structure d'un corpu
 On voit ici que notre corpus est très bruité car nous n'avons pas nettoyé celui-ci:
 
 ```{python}
+#| label: use-graph_wordcloud
 wordcloud_corpus = graph_wordcloud(train.sample(10000))
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
@@ -229,11 +236,13 @@ Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous util
 proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.
 
 ```{python}
+#| label: use-graph_wordcloud2
 wordcloud_corpus = graph_wordcloud(train, naf = "1071C")
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
 ```{python}
+#| label: use-graph_wordcloud3
 wordcloud_corpus = graph_wordcloud(train, naf = "4942Z")
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
@@ -243,6 +252,7 @@ La première étape classique est de retirer les _stop words_ et éventuellement
 Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.
 
 ```{python}
+#| label: data-cleaning
 from nltk.tokenize import word_tokenize
 import spacy
 
@@ -271,6 +281,7 @@ train['text_clean'] = (train['text']
 Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée : 
 
 ```{python}
+#| label: use-graph_wordcloud4
 wordcloud_corpus_cleaned = graph_wordcloud(train.sample(10000), "text_clean")
 plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
 ```
@@ -288,6 +299,7 @@ Pour cela, il suffit de charger le module `processor.py` mis à disposition dans
 Le code de nettoyage est directement fourni:
 
 ```{python}
+#| label: data-processessing
 #| echo: true
 
 from processor import Preprocessor
@@ -308,6 +320,7 @@ Pour développer votre code, utilisez un échantillon des données pour éviter 
 Récupérons les features et les labels.
 
 ```{python}
+#| label: get-features
 #| echo: true
 
 df = df.dropna(subset = [Y, TEXT_FEATURE])
@@ -429,9 +442,23 @@ training_config = TrainingConfig(
 # )
 
 # Download a pre-trained instead to make it faster : 
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl")
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt")
-os.system("curl -I https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl")
+
+# Download the model
+base_url = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"
+files = ["metadata.pkl", "model_checkpoint.ckpt", "tokenizer.pkl"]
+
+import subprocess
+
+for file in files:
+    subprocess.run([
+        "curl", 
+        f"{base_url}/{file}",
+        "--output", f"model_ape/{file}",
+        "--silent",
+        "--fail",  # Fail on HTTP errors
+        "--location"  # Follow redirects
+    ], check=True)
+
 
 # Load it
 classifier = torchTextClassifiers.load("model_ape")
@@ -451,6 +478,7 @@ searched_professions = np.array(["Conseil datascience", "Concésion dans l'autom
 
 
 ```{python}
+#| label: label-encoding
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 y_encoded = le.fit_transform(y)  # Convertit ["cat", "dog"] → [0, 1]
@@ -458,6 +486,8 @@ y_encoded = le.fit_transform(y)  # Convertit ["cat", "dog"] → [0, 1]
 
 
 ```{python}
+#| label: split-data
+
 # Première division : train (80 %) + test (20%)
 from sklearn.model_selection import train_test_split
 
@@ -481,6 +511,8 @@ X_train, X_val, y_train, y_val = train_test_split(
 
 
 ```{python}
+#| label: useless-chunk
+
 # from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
 # tokenizer = NGramTokenizer(
@@ -488,14 +520,12 @@ X_train, X_val, y_train, y_val = train_test_split(
 #     min_n=2, 
 #     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
 #     len_word_ngrams=2, # On fait des 2grams de mots
-#     num_tokens=10000, # Nombre max de tokens considérés
-#     training_text=X,
+#     num_tokens=10000, # Nombre max de tokens considérés dans le vocable
+#     training_text=X, # Jeu d'entraînement du tokenizer
 # )
-```
 
-Configuration du modèle : 
+# # Set model configs ---------------
 
-```{python}
 # from torchTextClassifiers import ModelConfig
 # import numpy as np
 
@@ -510,20 +540,17 @@ Configuration du modèle :
 #     embedding_dim=embedding_dim,
 #     num_classes=num_unique
 # )
-```
 
+# # Instanciate a ttc model (nammed "classifier") ---------------
 
-```{python}
 # from torchTextClassifiers import torchTextClassifiers
 
 # classifier = torchTextClassifiers(
 #     tokenizer=tokenizer,
 #     model_config=model_config
 # )
-```
 
-
-```{python}
+# # Set the training configs ---------------
 
 # from torchTextClassifiers import TrainingConfig
 
@@ -534,40 +561,59 @@ Configuration du modèle :
 #     lr=1e-3,
 #     patience_early_stopping=7,
 #     num_workers=0,
-#     trainer_params={'deterministic': True},
-#     save_path="model_ape"
+#     trainer_params={'deterministic': True}
 # )
 
 ```
 
-Téléchargement du modèle :
+Chargement du modèle : 
 
 ```{python}
-#| warning: false
-#| message: false
-
-# Download the model
-# In terminal : 
-os.makedirs("model_ape/", exist_ok=True)
-os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output model_ape/metadata.pkl --silent")
-os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output model_ape/model_checkpoint.ckpt --silent")
-os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output model_ape/tokenizer.pkl --silent")
-
-# Load it
-from torchTextClassifiers import torchTextClassifiers
-classifier = torchTextClassifiers.load("model_ape")
+#| label: load-model
+from torchTextClassifiers import torchTextClassifiers as ttc
+classifier = ttc.load("model_ape")
 ```
 
 Evaluation du modèle : 
 
-```{python}
+```{python }
+#| label: get-accuracy
+
+# Force single-threaded execution (for gh actions)
+import torch.multiprocessing as mp
+mp.set_start_method("spawn", force=True)
+import torch
+import os
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+
+import numpy as np
+n = X_test.shape[0]
+sample_size = min(1000, n)
+
+rng = np.random.default_rng(seed=42)
+idx = rng.choice(n, size=sample_size, replace=False)
+
+X_sample = X_test[idx]
+y_sample = y_test[idx]
 
 # Inference on testset
-result = classifier.predict(X_test)
-predictions = result["prediction"].squeeze().numpy()
+result = classifier.predict(X_sample)
 
+```
+
+```{python }
+#| label: get-accuracy2
+predictions = result["prediction"].squeeze().numpy()
+```
+
+```{python }
+#| label: get-accuracy3
+ 
 # Step 8: Evaluate
-accuracy = (predictions == y_test).mean()
+accuracy = (predictions == y_sample).mean()
 print(f"Test accuracy: {accuracy:.3f}")
 
 ```
@@ -575,6 +621,7 @@ print(f"Test accuracy: {accuracy:.3f}")
 Testons le modèle sur quelques libellés d'activité : 
 
 ```{python}
+#| label: test-inference
 import numpy as np
 
 searched_professions = np.array(["Conseil datascience", "Concésion dans l'automobile", "Concession automobile", "peintre"])
