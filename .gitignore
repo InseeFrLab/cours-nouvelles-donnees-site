@@ -17,3 +17,7 @@ data/
 
 **/*.quarto_ipynb
 applications/data/
+applications/model_ape/
+*.pkl
+*.ckpt
+hparams.yaml

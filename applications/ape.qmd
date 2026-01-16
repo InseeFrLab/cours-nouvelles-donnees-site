@@ -24,7 +24,9 @@ Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (token
 
 Ce tutoriel se propose d'illustrer la problématique de la classification automatique en mobilisant un algorithme d'apprentissage supervisé de type `FastText`, à partir des données issues des déclarations Sirene. 
 
-L'idée de ce tutoriel est de classer des déclarations d'entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
+L'idée de ce tutoriel est de classer des déclarations d'entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. 
+
+L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
 
 Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l'activité d'une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement _ad hoc_ qui permettent d'extraire une information à partir de libellés textuels. Historiquement l'Insee utilisait des règles déterministes de classement à partir d'un algorithme nommé [Sicore](https://www.insee.fr/fr/information/4497076?sommaire=4497095), une IA symbolique qui classait à partir de règles métiers préconfigurée.
 
@@ -38,6 +40,8 @@ Le services VSCode préconfiguré contient :
 - un module de preprocessing
 - un script `script_tp.py` vierge où écrire votre code (la puce `# %%` permet une utilisation intéractive à l'instar des notebooks Jupyter).
 
+![](vscode.png)
+
 ## Exploration du jeu de données
 
 Le code pour lire les données est directement fourni :
@@ -50,9 +54,9 @@ import pandas as pd
 
 # Import NAF classification
 naf = pd.read_excel("data/naf.parquet", skiprows = 2)
+
 # Import training data
 train = pd.read_parquet("data/data.parquet")
-#train = train.sample(10000)
 
 # Merge classification info
 naf['Code'] = naf['Code'].str.replace(".","")
@@ -62,9 +66,8 @@ train.head(5)
 ```
 
 
+Le premier exercice a vocation à illustrer la manière classique « d'entrer » dans un corpus de données textuelles.
 
-
-Le premier exercice a vocation à illustrer la manière classique de rentrerdans un corpus de données textuelles. 
 La démarche n'est pas particulièrement originale mais permet d'illustrer les enjeux du nettoyage de texte. 
 
 ::: {.exercice}
@@ -268,7 +271,7 @@ train['text_clean'] = (train['text']
 Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée : 
 
 ```{python}
-wordcloud_corpus_cleaned = graph_wordcloud(train, "text_clean")
+wordcloud_corpus_cleaned = graph_wordcloud(train.sample(10000), "text_clean")
 plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
 ```
 
@@ -279,7 +282,7 @@ plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
 
 Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. 
 Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d'étapes que précédemment. Nous allons
-notamment raciniser nos mots. 
+notamment _raciniser_ nos mots. 
 
 Pour cela, il suffit de charger le module `processor.py` mis à disposition dans votre environnement de travail.
 Le code de nettoyage est directement fourni:
@@ -294,7 +297,8 @@ preprocessor = Preprocessor()
 TEXT_FEATURE = "text"
 Y = "nace"
 
-df = train.copy().sample(10000)
+df = train.copy()
+
 df = preprocessor.clean_text(df, TEXT_FEATURE).drop('text_clean', axis = "columns")
 df.head(2)
 ```
@@ -315,7 +319,7 @@ y = df[Y].values
 
 ::: {.exercice}
 
-1. Encoder les labels et découper les données en _train_, __val__ et _test_.
+1. Encoder les labels et découper les données en _train_, _val_ et _test_.
 
 <details>
 <summary>
@@ -333,14 +337,14 @@ from sklearn.model_selection import train_test_split
 </details>
 
 Nous allons utiliser `torchTextClassifiers (ttc)` pour entraîner notre modèle.
-`ttc` est un framework de codification automatique, basé sur `torch` et qui permet de contruire des modèles de codification automatique.
+`ttc` est un framework de codification automatique, construit sur `torch` et qui permet de d'entraîner des modèles de codification automatique.
 `ttc` va ici nous permettre d'entraîner un modèle de type `Fasttext`, mais sans passer par la vieille librairie archivée par Meta.
-A noter que `ttc` est une librarie opensource, développée et maintenue par l'Insee (unité SSPLab).
+À noter que `ttc` est une librairie _opensource_, développée et maintenue par l'Insee (unité SSPLab).
 
 La première étape consiste à instancier un tokenizer.
-Nous allons utiliser ici le tokenizer basique de `Fasttext` (découpage en mots, ngrams de mots et ngrams de caractères).
+Nous allons utiliser ici le tokenizer basique de la méthodologie `Fasttext` (découpage en mots, ngrams de mots et ngrams de caractères).
 
-2. Instancier un tokenizer `NGramTokenizer` (essayer à partir de la documentation de `torchTextClassifiers` - ou en reprenant le code ci-dessous)
+2. Instancier un tokenizer `NGramTokenizer` (essayer à partir de la documentation de `torchTextClassifiers` - ou en reprenant le code ci-dessous pour les moins courageux)
 
 <details>
 <summary>
@@ -355,15 +359,16 @@ tokenizer = NGramTokenizer(
     min_n=2, 
     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
     len_word_ngrams=2, # On fait des 2grams de mots
-    num_tokens=10000, # Nombre max de tokens considérés
-    training_text=X,
+    num_tokens=10000, # Nombre max de tokens considérés dans le vocable
+    training_text=X, # Jeu d'entraînement du tokenizer
 )
 ```
 </details>
 
 
 
-3. Etudiez le code dans l'aide ci-dessous et lancez-le pour configurer et entraînez votre modèle
+3. Etudiez le code dans l'aide ci-dessous et lancez-le. Malheureusement, l'entraînement d'un bon modèle prend du temps et de la ressource (GPU) : ici, nous vous donnons le code pour faire toutes les étapes vous-même mais, au lieu de faire l'entraînement (code en commentaire), nous vous proposons de télécharger un modèle déjà entraîné par nos soins (avec les mêmes données et les mêmes configurations que celles du TP).
+
 
 <details>
 <summary>
@@ -371,6 +376,8 @@ Aide
 </summary>
 
 ```{.python}
+
+# Set model configs ---------------
 
 from torchTextClassifiers import ModelConfig
 import numpy as np
@@ -387,6 +394,7 @@ model_config = ModelConfig(
     num_classes=num_unique
 )
 
+# Instanciate a ttc model (nammed "classifier") ---------------
 
 from torchTextClassifiers import torchTextClassifiers
 
@@ -394,6 +402,8 @@ classifier = torchTextClassifiers(
     tokenizer=tokenizer,
     model_config=model_config
 )
+
+# Set the training configs ---------------
 
 from torchTextClassifiers import TrainingConfig
 
@@ -429,12 +439,12 @@ classifier = torchTextClassifiers.load("model_ape")
 ```
 </details>
 
-4. Calculer l'accuracy du modèle. Etonnant ?
+4. Calculer l'accuracy du modèle.
 
 5. Tester le modèle sur quelques libellés de professions : 
 
 ```{.python}
-searched_professions = np.array(["data scientist", "Commercial dans l'automobile", "peintre"])
+searched_professions = np.array(["Conseil datascience", "Concésion dans l'automobile", "Concession automobile", "peintre"])
 ```
 
 :::
@@ -471,77 +481,81 @@ X_train, X_val, y_train, y_val = train_test_split(
 
 
 ```{python}
-from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
+# from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
-tokenizer = NGramTokenizer(
-    min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
-    min_n=2, 
-    max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
-    len_word_ngrams=2, # On fait des 2grams de mots
-    num_tokens=10000, # Nombre max de tokens considérés
-    training_text=X,
-)
+# tokenizer = NGramTokenizer(
+#     min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
+#     min_n=2, 
+#     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
+#     len_word_ngrams=2, # On fait des 2grams de mots
+#     num_tokens=10000, # Nombre max de tokens considérés
+#     training_text=X,
+# )
 ```
 
 Configuration du modèle : 
 
 ```{python}
-from torchTextClassifiers import ModelConfig
-import numpy as np
+# from torchTextClassifiers import ModelConfig
+# import numpy as np
 
-# Embedding dimension
-embedding_dim = 64
+# # Embedding dimension
+# embedding_dim = 64
 
-# Count number of unique labels
-unique_values, counts = np.unique(y, return_counts=True)
-num_unique = len(unique_values)
+# # Count number of unique labels
+# unique_values, counts = np.unique(y, return_counts=True)
+# num_unique = len(unique_values)
 
-model_config = ModelConfig(
-    embedding_dim=embedding_dim,
-    num_classes=num_unique
-)
-```
-
-Création du classifier : 
-
-```{python}
-from torchTextClassifiers import torchTextClassifiers
-
-classifier = torchTextClassifiers(
-    tokenizer=tokenizer,
-    model_config=model_config
-)
+# model_config = ModelConfig(
+#     embedding_dim=embedding_dim,
+#     num_classes=num_unique
+# )
 ```
 
 
-Entraînement du modèle
+```{python}
+# from torchTextClassifiers import torchTextClassifiers
+
+# classifier = torchTextClassifiers(
+#     tokenizer=tokenizer,
+#     model_config=model_config
+# )
+```
+
 
 ```{python}
 
-from torchTextClassifiers import TrainingConfig
+# from torchTextClassifiers import TrainingConfig
 
-# Training params (torch style)
-training_config = TrainingConfig(
-    num_epochs=30,
-    batch_size=8,
-    lr=1e-3,
-    patience_early_stopping=7,
-    num_workers=0,
-    trainer_params={'deterministic': True},
-    save_path="model_ape"
-)
+# # Training params (torch style)
+# training_config = TrainingConfig(
+#     num_epochs=30,
+#     batch_size=8,
+#     lr=1e-3,
+#     patience_early_stopping=7,
+#     num_workers=0,
+#     trainer_params={'deterministic': True},
+#     save_path="model_ape"
+# )
+
+```
+
+Téléchargement du modèle :
+
+```{python}
+#| warning: false
+#| message: false
 
 # Download the model
 # In terminal : 
 os.makedirs("model_ape/", exist_ok=True)
-os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/metadata.pkl")
-os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output model_ape/model_checkpoint.ckpt")
-os.system("curl -O https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output model_ape/tokenizer.pkl")
+os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output model_ape/metadata.pkl --silent")
+os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output model_ape/model_checkpoint.ckpt --silent")
+os.system("curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output model_ape/tokenizer.pkl --silent")
 
 # Load it
+from torchTextClassifiers import torchTextClassifiers
 classifier = torchTextClassifiers.load("model_ape")
-
-
 ```
 
 Evaluation du modèle : 
@@ -561,7 +575,9 @@ print(f"Test accuracy: {accuracy:.3f}")
 Testons le modèle sur quelques libellés d'activité : 
 
 ```{python}
-searched_professions = np.array(["data scientist", "Commercial dans l'automobile", "peintre"])
+import numpy as np
+
+searched_professions = np.array(["Conseil datascience", "Concésion dans l'automobile", "Concession automobile", "peintre"])
 preds = classifier.predict(searched_professions)
 
 for profession, prediction, confidence in zip(searched_professions, preds["prediction"], preds["confidence"]):
