@@ -511,56 +511,56 @@ X_train, X_val, y_train, y_val = train_test_split(
 ```{python}
 #| label: useless-chunk
 
-from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
+# from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
-tokenizer = NGramTokenizer(
-    min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
-    min_n=2, 
-    max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
-    len_word_ngrams=2, # On fait des 2grams de mots
-    num_tokens=10000, # Nombre max de tokens considérés dans le vocable
-    training_text=X, # Jeu d'entraînement du tokenizer
-)
+# tokenizer = NGramTokenizer(
+#     min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
+#     min_n=2, 
+#     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
+#     len_word_ngrams=2, # On fait des 2grams de mots
+#     num_tokens=10000, # Nombre max de tokens considérés dans le vocable
+#     training_text=X, # Jeu d'entraînement du tokenizer
+# )
 
-# Set model configs ---------------
+# # Set model configs ---------------
 
-from torchTextClassifiers import ModelConfig
-import numpy as np
+# from torchTextClassifiers import ModelConfig
+# import numpy as np
 
-# Embedding dimension
-embedding_dim = 64
+# # Embedding dimension
+# embedding_dim = 64
 
-# Count number of unique labels
-unique_values, counts = np.unique(y, return_counts=True)
-num_unique = len(unique_values)
+# # Count number of unique labels
+# unique_values, counts = np.unique(y, return_counts=True)
+# num_unique = len(unique_values)
 
-model_config = ModelConfig(
-    embedding_dim=embedding_dim,
-    num_classes=num_unique
-)
+# model_config = ModelConfig(
+#     embedding_dim=embedding_dim,
+#     num_classes=num_unique
+# )
 
-# Instanciate a ttc model (nammed "classifier") ---------------
+# # Instanciate a ttc model (nammed "classifier") ---------------
 
-from torchTextClassifiers import torchTextClassifiers
+# from torchTextClassifiers import torchTextClassifiers
 
-classifier = torchTextClassifiers(
-    tokenizer=tokenizer,
-    model_config=model_config
-)
+# classifier = torchTextClassifiers(
+#     tokenizer=tokenizer,
+#     model_config=model_config
+# )
 
-# Set the training configs ---------------
+# # Set the training configs ---------------
 
-from torchTextClassifiers import TrainingConfig
+# from torchTextClassifiers import TrainingConfig
 
-# Training params (torch style)
-training_config = TrainingConfig(
-    num_epochs=30,
-    batch_size=8,
-    lr=1e-3,
-    patience_early_stopping=7,
-    num_workers=0,
-    trainer_params={'deterministic': True}
-)
+# # Training params (torch style)
+# training_config = TrainingConfig(
+#     num_epochs=30,
+#     batch_size=8,
+#     lr=1e-3,
+#     patience_early_stopping=7,
+#     num_workers=0,
+#     trainer_params={'deterministic': True}
+# )
 
 ```
 

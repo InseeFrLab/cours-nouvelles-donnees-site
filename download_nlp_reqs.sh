@@ -15,5 +15,5 @@ curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf20
 mkdir applications/model_ape
 
 curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/metadata.pkl
-curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/model_checkpoint.ckpt
-curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/metadata.pkl --output applications/model_ape/tokenizer.pkl
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/model_checkpoint.ckpt --output applications/model_ape/model_checkpoint.ckpt
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape/tokenizer.pkl --output applications/model_ape/tokenizer.pkl
