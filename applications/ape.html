@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-5dcfcf7f8d229c93d75c4165c3ff646b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -113,16 +113,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Application 2: classification automatique de textes – Données émergentes">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/ape_files/figure-html/cell-6-output-1.png">
+<meta property="og:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/vscode.png">
 <meta property="og:site_name" content="Données émergentes">
-<meta property="og:image:height" content="689">
-<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="475">
+<meta property="og:image:width" content="1106">
 <meta name="twitter:title" content="Application 2: classification automatique de textes – Données émergentes">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/ape_files/figure-html/cell-6-output-1.png">
+<meta name="twitter:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/vscode.png">
 <meta name="twitter:creator" content="@linogaliana">
-<meta name="twitter:image-height" content="689">
-<meta name="twitter:image-width" content="1080">
+<meta name="twitter:image-height" content="475">
+<meta name="twitter:image-width" content="1106">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -343,7 +343,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exploration-du-jeu-de-données" id="toc-exploration-du-jeu-de-données" class="nav-link active" data-scroll-target="#exploration-du-jeu-de-données">Exploration du jeu de données</a></li>
+  <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+  <li><a href="#environnement-de-travail" id="toc-environnement-de-travail" class="nav-link" data-scroll-target="#environnement-de-travail">Environnement de travail</a></li>
+  <li><a href="#exploration-du-jeu-de-données" id="toc-exploration-du-jeu-de-données" class="nav-link" data-scroll-target="#exploration-du-jeu-de-données">Exploration du jeu de données</a></li>
   <li><a href="#exercice-1" id="toc-exercice-1" class="nav-link" data-scroll-target="#exercice-1">Exercice 1</a></li>
   <li><a href="#premier-algorithme-dapprentissage-supervisé" id="toc-premier-algorithme-dapprentissage-supervisé" class="nav-link" data-scroll-target="#premier-algorithme-dapprentissage-supervisé">Premier algorithme d’apprentissage supervisé</a></li>
   <li><a href="#pour-aller-plus-loin-introduction-au-mlops" id="toc-pour-aller-plus-loin-introduction-au-mlops" class="nav-link" data-scroll-target="#pour-aller-plus-loin-introduction-au-mlops">Pour aller plus loin, introduction au MLOps</a></li>
@@ -372,30 +374,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Cette application illustrera certains apports des outils du NLP pour la codification automatique des déclarations d’activité dans la nomenclature des activités françaises. On pourra coder dans un notebook au sein de l’environnement <code>SSP Cloud</code> suivant:</p>
-<p><a href="https://datalab.sspcloud.fr/launcher/ide/vscode-python?name=vscode-python&amp;version=2.1.23&amp;s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
-<p><a href="https://datalab.sspcloud.fr/launcher/ide/jupyter-python?name=jupyter-python&amp;version=2.1.22&amp;s3=region-ec97c721" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (Jupyter)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
+<p>Cette application illustrera certains apports des outils du NLP pour la codification automatique des déclarations d’activité dans la nomenclature des activités françaises. Vous pourrez réaliser ce TP dans un service préconfiguré du <code>SSP Cloud</code> en cliquant sur le lien ci-dessous :</p>
+<p><a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&amp;version=2.4.5&amp;s3=region-79669f20&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&amp;autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
 <p>Ce tutoriel n’a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, <em>embedding</em>, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de <a href="https://pythonds.linogaliana.fr/content/NLP/"><code>Python</code> pour la <em>data science</em></a> de l’ENSAE.</p>
-<section id="exploration-du-jeu-de-données" class="level2">
-<h2 class="anchored" data-anchor-id="exploration-du-jeu-de-données">Exploration du jeu de données</h2>
-<p>Ce tutoriel se propose d’illustrer la problématique de la classification automatique par le biais de l’algorithme d’apprentissage supervisé <code>FastText</code>, développé par Meta, à partir des données issues des déclarations Sirene.</p>
-<p>L’idée de ce tutoriel est de classer des déclarations d’entreprise dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. L’Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l’un des principaux cas d’application du NLP pour l’Institut dans des domaines aussi divers que la classification dans une nomenclature d’activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.</p>
+<section id="objectifs" class="level2">
+<h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
+<p>Ce tutoriel se propose d’illustrer la problématique de la classification automatique en mobilisant un algorithme d’apprentissage supervisé de type <code>FastText</code>, à partir des données issues des déclarations Sirene.</p>
+<p>L’idée de ce tutoriel est de classer des déclarations d’entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français.</p>
+<p>L’Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l’un des principaux cas d’application du NLP pour l’Institut dans des domaines aussi divers que la classification dans une nomenclature d’activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.</p>
 <p>Comment passe-t-on d’une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l’activité d’une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement <em>ad hoc</em> qui permettent d’extraire une information à partir de libellés textuels. Historiquement l’Insee utilisait des règles déterministes de classement à partir d’un algorithme nommé <a href="https://www.insee.fr/fr/information/4497076?sommaire=4497095">Sicore</a>, une IA symbolique qui classait à partir de règles métiers préconfigurée.</p>
 <p>Avec l’avènement du <em>machine learning</em>, la possibilité d’entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d’investissement intéressante pour l’Insee. L’objet de ce TD est d’illustrer la démarche adoptée avec cette approche à partir d’un modèle un peu plus simple que celui mis en oeuvre à l’Insee mais reprenant les principales caractéristiques de celui-ci.</p>
-<p>Le code pour lire les données est directement fourni:</p>
-<div id="bb419ef8" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+</section>
+<section id="environnement-de-travail" class="level2">
+<h2 class="anchored" data-anchor-id="environnement-de-travail">Environnement de travail</h2>
+<p>Le services VSCode préconfiguré contient :</p>
+<ul>
+<li>les données dans un dossier “data”</li>
+<li>un module de preprocessing</li>
+<li>un script <code>script_tp.py</code> vierge où écrire votre code (la puce <code># %%</code> permet une utilisation intéractive à l’instar des notebooks Jupyter).</li>
+</ul>
+<p><img src="vscode.png" class="img-fluid"></p>
+</section>
+<section id="exploration-du-jeu-de-données" class="level2">
+<h2 class="anchored" data-anchor-id="exploration-du-jeu-de-données">Exploration du jeu de données</h2>
+<p>Le code pour lire les données est directement fourni :</p>
+<div id="cell-download-data" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>NAF_PATH <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>naf <span class="op">=</span> pd.read_excel(NAF_PATH, skiprows <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>naf[<span class="st">'Code'</span>] <span class="op">=</span> naf[<span class="st">'Code'</span>].<span class="bu">str</span>.replace(<span class="st">"."</span>,<span class="st">""</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_parquet(DATA_PATH)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> train.merge(naf, left_on <span class="op">=</span> <span class="st">"nace"</span>, right_on <span class="op">=</span> <span class="st">"Code"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>train.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import NAF classification</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>naf <span class="op">=</span> pd.read_excel(<span class="st">"data/naf.parquet"</span>, skiprows <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Import training data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_parquet(<span class="st">"data/data.parquet"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge classification info</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>naf[<span class="st">'Code'</span>] <span class="op">=</span> naf[<span class="st">'Code'</span>].<span class="bu">str</span>.replace(<span class="st">"."</span>,<span class="st">""</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> train.merge(naf, left_on <span class="op">=</span> <span class="st">"nace"</span>, right_on <span class="op">=</span> <span class="st">"Code"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>train.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="download-data" class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -451,63 +468,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Le premier exercice a vocation à illustrer la manière classique de rentrer dans un corpus de données textuelles. La démarche n’est pas particulièrement originale mais permet d’illustrer les enjeux du nettoyage de texte.</p>
+<p>Le premier exercice a vocation à illustrer la manière classique « d’entrer » dans un corpus de données textuelles.</p>
+<p>La démarche n’est pas particulièrement originale mais permet d’illustrer les enjeux du nettoyage de texte.</p>
 </section>
 <section id="exercice-1" class="level2 exercice">
 <h2 class="anchored" data-anchor-id="exercice-1">Exercice 1</h2>
 <ol start="0" type="1">
 <li>Lancer le code ci-dessous pour préparer votre environnement de travail :</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python <span class="op">-</span>m spacy download fr_core_news_sm</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt_tab'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Charge la bibliothèque spaCy pour le traitement du langage naturel (NLP)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Télécharge le modèle français pour spaCy (nécessaire pour l'analyse morphosyntaxique en français)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>os.system(<span class="st">"python -m spacy download fr_core_news_sm"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Charge la bibliothèque NLTK pour le traitement du texte</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Télécharge le tokeniseur "punkt_tab" de NLTK (pour la segmentation en phrases/tokens)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt_tab'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Télécharge la liste des stopwords français/anglais de NLTK (mots vides comme "le", "la", "the", etc.)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
-<li><p>Créer une fonction pour compter le nombre de textes contenant une séquence de caractères donnée dans le corpus. La tester avec <em>“data science”</em> et <em>“boulanger”</em>.</p></li>
-<li><p>Faire une fonction pour afficher le <em>wordcloud</em> de notre corpus dans son ensemble et de certaines catégories pour comprendre la nature de notre corpus.</p></li>
-<li><p>Retirer les stopwords à partir de la liste des mots disponibles dans <code>SpaCy</code>.</p></li>
+<li><p>Créer une fonction <code>filter_train_data</code> qui filtre les lignes du df dont le libellé d’activité <strong>contient</strong> un pattern (mot) donné. Cette fonction aussi doit afficher (print) le nombre de lignes concernées. Tester avec <em>“data science”</em> et <em>“boulanger”</em>.</p></li>
+<li><p>Faire une fonction <code>graph_wordcloud</code> pour afficher le <em>wordcloud</em> de notre corpus dans son ensemble et de certaines catégories de la nomenclature pour comprendre la nature de notre corpus.</p></li>
 </ol>
 <details>
 <summary>
 Aide
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"fr_core_news_sm"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="co">#liste de stopwords</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to remove stopwords</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_single_letters(text):</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> word_tokens <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">1</span>]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'text' column</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'text_clean'</span>] <span class="op">=</span> (train[<span class="st">'text'</span>]</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_stopwords)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_single_letters)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>all_text <span class="op">=</span> [<span class="st">"boulanger"</span>, <span class="st">"chauffer"</span>, <span class="st">"bus"</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>wordcloud <span class="op">=</span> WordCloud(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">800</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">21</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    max_words<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    background_color<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    colormap<span class="op">=</span><span class="st">'Set2'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>).generate(all_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol start="3" type="1">
+<li>Retirer les stopwords à partir de la liste des mots disponibles dans <code>SpaCy</code>.</li>
+</ol>
+<details>
+<summary>
+Aide
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"fr_core_news_sm"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> nlp.Defaults.stop_words</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="bu">set</span>(stop_words)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to remove stopwords</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> ...</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_single_letters(text):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    word_tokens <span class="op">=</span> word_tokenize(text)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    filtered_text <span class="op">=</span> ...</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_text)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'text' column</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'text_clean'</span>] <span class="op">=</span> (train[<span class="st">'text'</span>]</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_stopwords)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(remove_single_letters)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ol start="4" type="1">
 <li>Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage.</li>
 </ol>
 </section>
 <p>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</p>
-<div id="1ece83e5" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-use-filter_train_data" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Nombre d'occurrences de la séquence 'data science': 54
-Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
+<pre><code>Nombre d'occurrences de la séquence 'data science': 54</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="use-filter_train_data" class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">nace</th>
+<th data-quarto-table-cell-role="th">text</th>
+<th data-quarto-table-cell-role="th">Code</th>
+<th data-quarto-table-cell-role="th">Libellé</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3183</th>
+<td>7219Z</td>
+<td>SERVICES CONSEILS ET FORMATIONS DANS LES DOMA...</td>
+<td>7219Z</td>
+<td>Recherche-développement en autres sciences phy...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">8357</th>
+<td>6202A</td>
+<td>ACTIVITE DE CONSEIL INFORMATIQUE ET TECHNOLOGI...</td>
+<td>6202A</td>
+<td>Conseil en systèmes et logiciels informatiques</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21510</th>
+<td>6202A</td>
+<td>ACTIVITE DE CONSEIL INFORMATIQUE ET TECHNOLOGI...</td>
+<td>6202A</td>
+<td>Conseil en systèmes et logiciels informatiques</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">33647</th>
+<td>6202A</td>
+<td>PRESTATIONS INFORMATIQUES LOGICIELS CONSEIL...</td>
+<td>6202A</td>
+<td>Conseil en systèmes et logiciels informatiques</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">35135</th>
+<td>6202A</td>
+<td>ACTIVITE DE CONSEIL INFORMATIQUE ET TECHNOLOGI...</td>
+<td>6202A</td>
+<td>Conseil en systèmes et logiciels informatiques</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-use-filter_train_data2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"boulanger"</span>).head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
+</div>
+<div id="use-filter_train_data2" class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -564,57 +671,26 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
-<div id="26f6a181" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ape_files/figure-html/cell-6-output-1.png" width="540" height="345" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d’entre elles ? Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.</p>
-<div id="e2a5e18e" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ape_files/figure-html/cell-7-output-1.png" width="540" height="345" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="ed3d0aac" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ape_files/figure-html/cell-8-output-1.png" width="540" height="345" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Néanmoins, à ce stade, les données sont encore très bruitées. La première étape classique est de retirer les <em>stop words</em> et éventuellement des termes spécifiques à notre corpus. Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.</p>
+<p>Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée :</p>
 <section id="premier-algorithme-dapprentissage-supervisé" class="level2">
 <h2 class="anchored" data-anchor-id="premier-algorithme-dapprentissage-supervisé">Premier algorithme d’apprentissage supervisé</h2>
-<p>Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d’étapes que précédemment. Nous allons notamment raciniser nos mots.</p>
-<p>Pour cela, récupérer les fichiers suivants:</p>
-<ul>
-<li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/constants.py"><code>constants.py</code></a></li>
-<li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/processor.py"><code>processor.py</code></a></li>
-<li><a href="https://github.com/InseeFrLab/cours-nouvelles-donnees-site/blob/main/applications/utils.py"><code>utils.py</code></a></li>
-</ul>
-<p>et mettre ceux-ci dans le même dossier que votre <em>notebook</em> <code>Jupyter</code>.</p>
-<p>Le code de nettoyage est directement fourni:</p>
-<div id="7e3b150b" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocess data before training and testing</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>TEXT_FEATURE <span class="op">=</span> <span class="st">"text"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="st">"nace"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> preprocessor.clean_text(train, TEXT_FEATURE).drop(<span class="st">'text_clean'</span>, axis <span class="op">=</span> <span class="st">"columns"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<p>Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d’étapes que précédemment. Nous allons notamment <em>raciniser</em> nos mots.</p>
+<p>Pour cela, il suffit de charger le module <code>processor.py</code> mis à disposition dans votre environnement de travail. Le code de nettoyage est directement fourni:</p>
+<div id="cell-data-processessing" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> Preprocessor()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocess data before training and testing</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>TEXT_FEATURE <span class="op">=</span> <span class="st">"text"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="st">"nace"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> train.copy()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> preprocessor.clean_text(df, TEXT_FEATURE).drop(<span class="st">'text_clean'</span>, axis <span class="op">=</span> <span class="st">"columns"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="data-processessing" class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -649,45 +725,169 @@ Nombre d'occurrences de la séquence 'boulanger': 1928</code></pre>
 </div>
 </div>
 </div>
-<p>Nous allons commencer à entraîner un modèle dont le plongement de mot est de faible dimension. Voici les paramètres qui seront utiles pour le prochain exercice.</p>
-<div id="create-training-text-example" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dim"</span>: <span class="dv">25</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label_prefix"</span>: <span class="st">"__label__"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> pathlib.Path(<span class="st">"./data"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>data_path.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_training_data(df, params, training_data_path<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    warnings.filterwarnings(<span class="st">"ignore"</span>, <span class="st">"Setuptools is replacing distutils."</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> training_data_path <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        training_data_path <span class="op">=</span> get_root_path() <span class="op">/</span> <span class="st">"data/training_data.txt"</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(training_data_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, item <span class="kw">in</span> df.iterrows():</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            formatted_item <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>params[<span class="st">'label_prefix'</span>]<span class="sc">}{</span>item[Y]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>item[TEXT_FEATURE]<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">file</span>.write(<span class="ss">f"</span><span class="sc">{</span>formatted_item<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> training_data_path.as_posix()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pour développer votre code, utilisez un échantillon des données pour éviter les temps de calculs trop long au début.</p>
+<p>Récupérons les features et les labels.</p>
+<div id="get-features" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(subset <span class="op">=</span> [Y, TEXT_FEATURE])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[TEXT_FEATURE].values</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[Y].values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="exercice">
 <ol type="1">
-<li>Découper notre échantillon complet en <em>train</em> et <em>test</em>.</li>
-<li><code>FastText</code> effectue son entraînement à partir d’objets stockés dans un <code>.txt</code>. Utiliser la fonction <code>write_training_data</code> de la manière suivante pour l’écrire.</li>
+<li>Encoder les labels et découper les données en <em>train</em>, <em>val</em> et <em>test</em>.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write training data in a .txt file (fasttext-specific)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>training_data_path <span class="op">=</span> write_training_data(df_train, params, pathlib.Path(<span class="bu">str</span>(data_path.absolute()) <span class="op">+</span> <span class="st">"/training_data.txt"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details>
+<summary>
+Aide
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour l'encoding : </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour le split :</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Nous allons utiliser <code>torchTextClassifiers (ttc)</code> pour entraîner notre modèle. <code>ttc</code> est un framework de codification automatique, construit sur <code>torch</code> et qui permet de d’entraîner des modèles de codification automatique. <code>ttc</code> va ici nous permettre d’entraîner un modèle de type <code>Fasttext</code>, mais sans passer par la vieille librairie archivée par Meta. À noter que <code>ttc</code> est une librairie <em>opensource</em>, développée et maintenue par l’Insee (unité SSPLab).</p>
+<p>La première étape consiste à instancier un tokenizer. Nous allons utiliser ici le tokenizer basique de la méthodologie <code>Fasttext</code> (découpage en mots, ngrams de mots et ngrams de caractères).</p>
+<ol start="2" type="1">
+<li>Instancier un tokenizer <code>NGramTokenizer</code> (essayer à partir de la documentation de <code>torchTextClassifiers</code> - ou en reprenant le code ci-dessous pour les moins courageux)</li>
+</ol>
+<details>
+<summary>
+Aide
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchTextClassifiers.tokenizers.ngram <span class="im">import</span> NGramTokenizer</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> NGramTokenizer(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    min_count<span class="op">=</span><span class="dv">2</span>, <span class="co"># On considère un mot s'il est trouvé au moins 2 fois dans le corpus</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    min_n<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    max_n<span class="op">=</span><span class="dv">4</span>, <span class="co"># On fait des 2grams, 3grams et 4grams de caractères</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    len_word_ngrams<span class="op">=</span><span class="dv">2</span>, <span class="co"># On fait des 2grams de mots</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    num_tokens<span class="op">=</span><span class="dv">10000</span>, <span class="co"># Nombre max de tokens considérés dans le vocable</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    training_text<span class="op">=</span>X, <span class="co"># Jeu d'entraînement du tokenizer</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <ol start="3" type="1">
-<li><p>Avec l’aide de la documentation de la librairie <code>FastText</code>, entraîner votre modèle de classification.</p></li>
-<li><p>Sauvegarder le modèle sous forme de binaire, cela pourra éventuellement servir ultérieurement.</p></li>
-<li><p>Renvoyer les trois catégories les plus probables pour les nouveaux libellés suivants:</p></li>
+<li>Etudiez le code dans l’aide ci-dessous et lancez-le. Malheureusement, l’entraînement d’un bon modèle prend du temps et de la ressource (GPU) : ici, nous vous donnons le code pour faire toutes les étapes vous-même mais, au lieu de faire l’entraînement (code en commentaire), nous vous proposons de télécharger un modèle déjà entraîné par nos soins (avec les mêmes données et les mêmes configurations que celles du TP).</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>list_libs <span class="op">=</span> [<span class="st">"vendeur d'huitres"</span>, <span class="st">"boulanger"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="6" type="1">
-<li>Sur l’ensemble du jeu de test, renvoyer la meilleure prédiction pour chaque descriptif d’activités. Evaluer la performance globale et la performance classe par classe, par exemple en calculant le rappel (pour les classes de plus de 200 cas).</li>
+<details>
+<summary>
+Aide
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set model configs ---------------</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchTextClassifiers <span class="im">import</span> ModelConfig</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Embedding dimension</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>embedding_dim <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Count number of unique labels</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>unique_values, counts <span class="op">=</span> np.unique(y, return_counts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>num_unique <span class="op">=</span> <span class="bu">len</span>(unique_values)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>model_config <span class="op">=</span> ModelConfig(</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    embedding_dim<span class="op">=</span>embedding_dim,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    num_classes<span class="op">=</span>num_unique</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Instanciate a ttc model (nammed "classifier") ---------------</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchTextClassifiers <span class="im">import</span> torchTextClassifiers</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>classifier <span class="op">=</span> torchTextClassifiers(</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    model_config<span class="op">=</span>model_config</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the training configs ---------------</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchTextClassifiers <span class="im">import</span> TrainingConfig</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Training params (torch style)</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>training_config <span class="op">=</span> TrainingConfig(</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    num_epochs<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">1e-3</span>,</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    patience_early_stopping<span class="op">=</span><span class="dv">7</span>,</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    num_workers<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    trainer_params<span class="op">=</span>{<span class="st">'deterministic'</span>: <span class="va">True</span>}</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Training (too long) !</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co"># classifier.train(</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_train, </span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#     y_train,</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#     training_config,</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_val, </span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#     y_val,</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     verbose=True</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Download a pre-trained instead to make it faster : </span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the model</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> [<span class="st">"metadata.pkl"</span>, <span class="st">"model_checkpoint.ckpt"</span>, <span class="st">"tokenizer.pkl"</span>]</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    subprocess.run([</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"curl"</span>, </span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>base_url<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--output"</span>, <span class="ss">f"model_ape/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--silent"</span>,</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--fail"</span>,  <span class="co"># Fail on HTTP errors</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--location"</span>  <span class="co"># Follow redirects</span></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>    ], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Load it</span></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>classifier <span class="op">=</span> torchTextClassifiers.load(<span class="st">"model_ape"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol start="4" type="1">
+<li><p>Calculer l’accuracy du modèle.</p></li>
+<li><p>Tester le modèle sur quelques libellés de professions :</p></li>
 </ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>searched_professions <span class="op">=</span> np.array([<span class="st">"Conseil datascience"</span>, <span class="st">"Concésion dans l'automobile"</span>, <span class="st">"Concession automobile"</span>, <span class="st">"peintre"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Chargement du modèle :</p>
+<div id="load-model" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-stderr">
+<pre><code>2026-01-16 16:55:26 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
+/opt/hostedtoolcache/Python/3.13.11/x64/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
+2026-01-16 16:55:26 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
+2026-01-16 16:55:26 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
+</div>
+</div>
+<p>Evaluation du modèle :</p>
+<div id="get-accuracy3" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-stdout">
+<pre><code>Test accuracy: 0.755</code></pre>
+</div>
+</div>
+<p>Testons le modèle sur quelques libellés d’activité :</p>
+<div id="test-inference" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+🔍 Profession recherchée : Conseil datascience
+🏷️ Profession(s) trouvée(s) : Activités spécialisées, scientifiques et techniques diverses
+📊 Confiance : 0.50
+
+🔍 Profession recherchée : Concésion dans l'automobile
+🏷️ Profession(s) trouvée(s) : Activités spécialisées de design
+📊 Confiance : 0.13
+
+🔍 Profession recherchée : Concession automobile
+🏷️ Profession(s) trouvée(s) : Activités spécialisées de design
+📊 Confiance : 0.22
+
+🔍 Profession recherchée : peintre
+🏷️ Profession(s) trouvée(s) : Travaux de peinture et vitrerie
+📊 Confiance : 1.00</code></pre>
+</div>
 </div>
 </section>
 <section id="pour-aller-plus-loin-introduction-au-mlops" class="level2">
