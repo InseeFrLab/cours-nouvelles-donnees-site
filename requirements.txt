@@ -1,13 +1,16 @@
 pandas
-nltk
-unidecode
 matplotlib
-wordcloud
-spacy
-scikit-learn
-fasttext
 plotnine
-xlrd
 jupyter
 pyarrow
 loguru
+
+# Application APE
+wordcloud
+xlrd
+spacy
+nltk
+unidecode
+pytorch_lightning
+torchTextClassifiers
+scikit-learn
