@@ -589,12 +589,26 @@ torch.set_num_interop_threads(1)
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 
-# Inference on testset
-result = classifier.predict(X_test)
-predictions = result["prediction"].squeeze().numpy()
+idx = np.random.choice(X_test.index, size=200, replace=False)
 
+X_sample = X_test.loc[idx]
+y_sample = y_test.loc[idx]
+
+# Inference on testset
+result = classifier.predict(X_sample)
+
+```
+
+```{python }
+#| label: get-accuracy2
+predictions = result["prediction"].squeeze().numpy()
+```
+
+```{python }
+#| label: get-accuracy3
+ 
 # Step 8: Evaluate
-accuracy = (predictions == y_test).mean()
+accuracy = (predictions == y_sample).mean()
 print(f"Test accuracy: {accuracy:.3f}")
 
 ```
