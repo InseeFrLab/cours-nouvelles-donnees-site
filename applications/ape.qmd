@@ -227,8 +227,8 @@ On voit ici que notre corpus est très bruité car nous n'avons pas nettoyé cel
 
 ```{python}
 #| label: use-graph_wordcloud
-wordcloud_corpus = graph_wordcloud(train.sample(10000))
-plt.imshow(wordcloud_corpus, interpolation="bilinear")
+# wordcloud_corpus = graph_wordcloud(train.sample(10000))
+# plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
 Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d'entre elles ? 
@@ -237,14 +237,14 @@ proches de celles que nous allons mettre en oeuvre dans notre algorithme de clas
 
 ```{python}
 #| label: use-graph_wordcloud2
-wordcloud_corpus = graph_wordcloud(train, naf = "1071C")
-plt.imshow(wordcloud_corpus, interpolation="bilinear")
+# wordcloud_corpus = graph_wordcloud(train, naf = "1071C")
+# plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
 ```{python}
 #| label: use-graph_wordcloud3
-wordcloud_corpus = graph_wordcloud(train, naf = "4942Z")
-plt.imshow(wordcloud_corpus, interpolation="bilinear")
+# wordcloud_corpus = graph_wordcloud(train, naf = "4942Z")
+# plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
 Néanmoins, à ce stade, les données sont encore très bruitées. 
@@ -282,8 +282,8 @@ Voici le wordcloud de notre corpus tout entier une fois cette première étape d
 
 ```{python}
 #| label: use-graph_wordcloud4
-wordcloud_corpus_cleaned = graph_wordcloud(train.sample(10000), "text_clean")
-plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
+# wordcloud_corpus_cleaned = graph_wordcloud(train.sample(10000), "text_clean")
+# plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
 ```
 
 
