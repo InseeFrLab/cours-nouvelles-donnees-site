@@ -384,12 +384,31 @@ Un enjeu fort existe autour de la production d'un [code statistique non signifia
 
 ### Un changement de la place de l'analyste de la donnée
 
-Cette situation change la place du statisticien
-dans le processus de production de la statistique officielle.
-Il convient de transformer en aval les données pour répondre
-aux besoins de l'analyse statistique.
-Cela implique un contrôle qualité ex-post, éventuellement
-un travail de reconstitution et de consolidation.
+Cette situation change la place du statisticien dans le processus de production de la statistique officielle.
+En 2025, l'Insee a produit un document de travail proposant un cadre méthodologique général pour la production de statistiques à partir de données administratives ([@koumarianos-25]).
+Ce document réaffirme que l’absence de collecte directe ne signifie pas simplicité : l’usage statistique de ces données implique une perte de maîtrise sur les concepts, les définitions, les temporalités et la qualité. Les données administratives sont des sous-produits de processus de gestion, ancrés dans un univers métier spécifique, ce qui génère des « frictions de données » lors de leur réutilisation statistique (par exemple, les administrations fiscales souhaitent connaître le revenu fiscal alors que les statisticiens publics sont généralement plutôt intéressés par le revenu "économique" des ménages). 
+
+Pour analyser ces sources, les auteurs proposent une grille en cinq dimensions (objet, champ, variable, domaine, temporalités) et une démarche en trois phases : acquisition, transformation et traitement statistique. 
+
+- Objet : un salarié tel qu’il apparaît dans la Déclaration sociale nominative (DSN), c’est-à-dire un individu dans son rôle de salarié pour un employeur donné.
+
+- Champ : l’ensemble des salariés du secteur privé couverts par la DSN sur une année donnée.
+
+- Variable : le salaire brut déclaré pour le salarié.
+
+- Domaine : une valeur numérique positive exprimée en euros, avec des codes spécifiques pour les valeurs manquantes ou nulles.
+
+- Temporalités : le mois auquel se rapporte le salaire (période de référence) et le mois où la déclaration est effectivement transmise à l’administration (période d’acquisition).
+
+De même, voici une illustration simple de chacune des trois phases, dans la continuité de l'exemple précédent : 
+
+- Acquisition : l’Insee reçoit les fichiers DSN issus du système d’information de l’Urssaf, les rassemble, documente leur structure, vérifie leur complétude et fige une version stable constituant une « source administrative » exploitable statistiquement.
+
+- Transformation : les données mensuelles, exprimées selon des règles de gestion propres à la paie, sont retraitées pour passer à des concepts statistiques (par exemple reconstitution d’un salaire mensuel comparable entre individus, harmonisation des statuts, gestion des changements d’employeur).
+
+- Traitement statistique : les données transformées sont agrégées pour produire des indicateurs (par exemple salaire moyen par secteur ou par région), avec contrôles de cohérence, analyse des évolutions et validation des résultats avant diffusion.
+
+Le processus est fondamentalement itératif, reposant sur des boucles de rétroaction visant à assurer la qualité et l’interprétabilité des résultats. 
 
 Cette situation change également la place des chercheurs dans
 le processus de production de la donnée. Comme le statisticien,

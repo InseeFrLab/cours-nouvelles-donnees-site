@@ -114,6 +114,15 @@ L'utilisation de données de téléphonie mobile pour la production de statistiq
 - **Questions légales** : les aspects légaux autour des données personnelles sont aussi à prendre en compte, en lien d'ailleurs avec les questions d'éthique et les questions sur la pérennité. Aujourd'hui la législation européenne et son application dans la loi française ne sont pas favorables à l'utilisation de données téléphoniques de signalisation pour la statistique publique. Même si elles venaient à le devenir, il n'y a aucune garantie qu'on ne revienne pas quelques années après à la situation actuelle.
 :::
 
+Plus récemment, l'utilisation conjointe de données mobile avec des données de transactions bancaires a permis d'estimer l'effet du télétravail sur la consommation locale ([@gambuli-26]).
+Ainsi, au sein de la métropole de Lyon, les auteurs ont pu mettre en exergue : 
+
+- un effet local du télétravail sur la consommation (au bénéfice des banlieues et au détriment des centre-villes).
+- des effets sectoriels hétérogène (au détriment des restaurant mais au bénéfice des bar et des commerces alimentaires).
+- un déplacement temporel de la consommation dans les zones de fort télétravail (davantage la semaine plutôt que les week-end).
+
+
+
 ### Données de réseaux sociaux
 
 Les réseaux sociaux constituent une source privée de données numériques pouvant, dans certains cas, être associées à une information de localisation. Bien que l’accès à ces données soit aujourd’hui plus restreint qu’auparavant, elles continuent de présenter un potentiel d’intérêt pour la statistique publique, sous réserve de fortes contraintes méthodologiques, juridiques et techniques.
@@ -156,6 +165,15 @@ Des défis se posent au moment d'utiliser les données AIS :
 - Les données brutes sont complexes et demandent de manière générale des pré-traitements lourds pour être utilisables. Des fournisseurs de données privées collectent, nettoient et vendent les données traitées (mais à des prix élevés). Des données pré-traitées sont aussi mises à disposition des Instituts statistiques nationaux sur la *UN Global Platform* ;
 - La taille des données constitue un fort enjeu. En effet, 310 milliards de transmissions sont effectuées chaque année. Une infrastructure adaptée est indispensable pour pouvoir traiter les données brutes ;
 :::
+
+
+### Et bien d'autres...
+
+La liste pourrait être encore longue. Quelques exemples supplémentaires dans le champ d'investigation de la statistique publique : 
+
+- les données de comptages routiers (_car loop_, https://avatar.cerema.fr/).
+- les données de transactions bancaires, mentionnées plus haut (https://www.insee.fr/fr/information/8546947?sommaire=8546949). 
+- les données de billetique des transports en commune.
 
 ### References
 
