@@ -410,7 +410,6 @@ De même, voici une illustration simple de chacune des trois phases, dans la con
 
 Le processus est fondamentalement itératif, reposant sur des boucles de rétroaction visant à assurer la qualité et l’interprétabilité des résultats. 
 
-
 Cette situation change également la place des chercheurs dans
 le processus de production de la donnée. Comme le statisticien,
 le chercheur n'est plus associé à l'amont de la production de données.
