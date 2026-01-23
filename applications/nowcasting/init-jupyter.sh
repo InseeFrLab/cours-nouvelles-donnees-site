@@ -12,7 +12,7 @@ cp ${CLONE_DIR}/applications/nowcasting/{twitter.ipynb,pyproject.toml,uv.lock} $
 
 # Download data
 mkdir data
-curl "https://minio.lab.sspcloud.fr/projet-funathon/2022/diffusion/2022/Sujet%202/climate_id.txt.00" --output "data/climate_id.txt.00"
+curl "https://minio.lab.sspcloud.fr/projet-funathon/2022/diffusion/2022/Sujet%202/climate_id.txt.00" --output "data/climate_id.txt.00"  --retry 3 --retry-all-errors --max-time 5
 
 # Remove repo
 rm -rf "${CLONE_DIR}"
