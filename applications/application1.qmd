@@ -57,11 +57,32 @@ curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montr
 #| echo: false
 #| output: false
 dir.create("data")
+
+download_with_retry <- function(url, destfile, max_attempts = 3) {
+  for (i in 1:max_attempts) {
+    tryCatch({
+      download.file(url, destfile, mode = "wb", timeout = 600)
+      return(TRUE)
+    }, error = function(e) {
+      if (i < max_attempts) {
+        message(sprintf("Attempt %d failed, retrying...", i))
+        Sys.sleep(5)
+      } else {
+        stop(e)
+      }
+    })
+  }
+}
+download_with_retry(
+  url="https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet",
+  destfile="data/carreaux.parquet"
+)
+
+#download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet", "data/carreaux.parquet")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/triangle.geojson", "data/triangle.geojson")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/malakoff.geojson", "data/malakoff.geojson")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/montrouge.geojson", "data/montrouge.geojson")
 download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/dvf.parquet", "data/dvf.parquet")
-download.file("https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/geoparquet/carreaux.parquet", "data/carreaux.parquet")
 ```
 
 :::
