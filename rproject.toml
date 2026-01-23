@@ -1,0 +1,47 @@
+# this config was migrated from renv.lock on 2026-01-23
+[project]
+name = "/home/onyxia/work/cours-nouvelles-donnees-site"
+r_version = "4.5"
+
+repositories = [
+    { alias = "CRAN", url = "https://packagemanager.posit.co/cran/latest"}
+]
+
+dependencies = [
+    { name = "DBI", repository = "CRAN" },
+    { name = "RColorBrewer", repository = "CRAN" },
+    { name = "askpass", repository = "CRAN" },
+    { name = "aws.signature", repository = "CRAN" },
+    { name = "base64enc", repository = "CRAN" },
+    { name = "brew", repository = "CRAN" },
+    { name = "cachem", repository = "CRAN" },
+    { name = "dplyr", repository = "CRAN" },
+    { name = "farver", repository = "CRAN" },
+    { name = "fastmap", repository = "CRAN" },
+    { name = "fontawesome", repository = "CRAN" },
+    { name = "glue", repository = "CRAN" },
+    { name = "gtable", repository = "CRAN" },
+    { name = "highr", repository = "CRAN" },
+    { name = "htmlwidgets", repository = "CRAN" },
+    { name = "httr", repository = "CRAN" },
+    { name = "jquerylib", repository = "CRAN" },
+    { name = "labeling", repository = "CRAN" },
+    { name = "lazyeval", repository = "CRAN" },
+    { name = "leaflet.providers", repository = "CRAN" },
+    { name = "leafpop", repository = "CRAN" },
+    { name = "memoise", repository = "CRAN" },
+    { name = "munsell", repository = "CRAN" },
+    { name = "pkgconfig", repository = "CRAN" },
+    { name = "plyr", repository = "CRAN" },
+    { name = "png", repository = "CRAN" },
+    { name = "servr", repository = "CRAN" },
+    { name = "sys", repository = "CRAN" },
+    { name = "tidyselect", repository = "CRAN" },
+    { name = "uuid", repository = "CRAN" },
+    { name = "viridisLite", repository = "CRAN" },
+    { name = "withr", repository = "CRAN" },
+    "duckdb",
+    "dbplyr",
+    "mapview",
+    "ggplot2",
+]

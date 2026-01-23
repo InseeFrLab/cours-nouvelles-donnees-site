@@ -21,3 +21,5 @@ applications/model_ape/
 *.pkl
 *.ckpt
 hparams.yaml
+
+.venv/
