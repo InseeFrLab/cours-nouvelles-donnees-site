@@ -3,7 +3,7 @@ os.chdir("ape")
 import pandas as pd
 
 # Import NAF classification
-naf = pd.read_excel("data/naf.parquet", skiprows = 2)
+naf = pd.read_excel("data/naf.xls", skiprows = 2)
 # Import training data
 train = pd.read_parquet("data/data.parquet")
 # train = train.sample(10000)
