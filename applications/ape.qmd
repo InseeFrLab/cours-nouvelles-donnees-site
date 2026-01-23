@@ -13,8 +13,8 @@ execute:
 
 Cette application illustrera certains apports des outils du
 NLP pour la codification automatique des déclarations d'activité
-dans la nomenclature des activités françaises. 
-Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en cliquant sur le lien ci-dessous : 
+dans la nomenclature des activités françaises.
+Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en cliquant sur le lien ci-dessous :
 
 <a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&version=2.4.5&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
@@ -24,9 +24,9 @@ Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (token
 
 ## Objectifs
 
-Ce tutoriel se propose d'illustrer la problématique de la classification automatique en mobilisant un algorithme d'apprentissage supervisé de type `FastText`, à partir des données issues des déclarations Sirene. 
+Ce tutoriel se propose d'illustrer la problématique de la classification automatique en mobilisant un algorithme d'apprentissage supervisé de type `FastText`, à partir des données issues des déclarations Sirene.
 
-L'idée de ce tutoriel est de classer des déclarations d'entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français. 
+L'idée de ce tutoriel est de classer des déclarations d'entreprises dans une nomenclature générique des activités productives. Celle-ci permet de produire de nombreuses statistiques économiques sectorielles sur le tissu productif français.
 
 L'Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l'un des principaux cas d'application du NLP pour l'Institut dans des domaines aussi divers que la classification dans une nomenclature d'activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.
 
@@ -36,7 +36,7 @@ Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorit
 
 ## Environnement de travail
 
-Le services VSCode préconfiguré contient : 
+Le services VSCode préconfiguré contient :
 
 - les données dans un dossier "data"
 - un module de preprocessing
@@ -56,7 +56,7 @@ import os
 import pandas as pd
 
 # Import NAF classification
-naf = pd.read_excel("data/naf.parquet", skiprows = 2)
+naf = pd.read_excel("data/naf.xls", skiprows = 2)
 
 # Import training data
 train = pd.read_parquet("data/data.parquet")
@@ -71,7 +71,7 @@ train.head(5)
 
 Le premier exercice a vocation à illustrer la manière classique « d'entrer » dans un corpus de données textuelles.
 
-La démarche n'est pas particulièrement originale mais permet d'illustrer les enjeux du nettoyage de texte. 
+La démarche n'est pas particulièrement originale mais permet d'illustrer les enjeux du nettoyage de texte.
 
 ::: {.exercice}
 ## Exercice 1
@@ -172,7 +172,7 @@ train['text_clean'] = (train['text']
 
 :::
 
-Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). 
+Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot).
 Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la _data science_:
 
 ```{python}
@@ -222,7 +222,7 @@ def graph_wordcloud(train_data, text_var="text", naf=None):
     return wordcloud
 ```
 
-Les _wordclouds_ peuvent servir à rapidement visualiser la structure d'un corpus. 
+Les _wordclouds_ peuvent servir à rapidement visualiser la structure d'un corpus.
 On voit ici que notre corpus est très bruité car nous n'avons pas nettoyé celui-ci:
 
 ```{python}
@@ -231,7 +231,7 @@ wordcloud_corpus = graph_wordcloud(train.sample(10000))
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
-Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d'entre elles ? 
+Pour commencer à se faire une idée sur les spécificités des catégories, on peut représenter le corpus de certaines d'entre elles ?
 Arrivez-vous à inférer la catégorie de la NAF en question ? Si oui, vous utilisez sans doute des heuristiques
 proches de celles que nous allons mettre en oeuvre dans notre algorithme de classification.
 
@@ -247,8 +247,8 @@ wordcloud_corpus = graph_wordcloud(train, naf = "4942Z")
 plt.imshow(wordcloud_corpus, interpolation="bilinear")
 ```
 
-Néanmoins, à ce stade, les données sont encore très bruitées. 
-La première étape classique est de retirer les _stop words_ et éventuellement des termes spécifiques à notre corpus. 
+Néanmoins, à ce stade, les données sont encore très bruitées.
+La première étape classique est de retirer les _stop words_ et éventuellement des termes spécifiques à notre corpus.
 Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.
 
 ```{python}
@@ -278,7 +278,7 @@ train['text_clean'] = (train['text']
 )
 ```
 
-Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée : 
+Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée :
 
 ```{python}
 #| label: use-graph_wordcloud4
@@ -291,9 +291,9 @@ plt.imshow(wordcloud_corpus_cleaned, interpolation="bilinear")
 
 ## Premier algorithme d'apprentissage supervisé
 
-Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. 
+Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit.
 Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d'étapes que précédemment. Nous allons
-notamment _raciniser_ nos mots. 
+notamment _raciniser_ nos mots.
 
 Pour cela, il suffit de charger le module `processor.py` mis à disposition dans votre environnement de travail.
 Le code de nettoyage est directement fourni:
@@ -340,7 +340,7 @@ Aide
 </summary>
 
 ```{.python}
-# Pour l'encoding : 
+# Pour l'encoding :
 from sklearn.preprocessing import LabelEncoder
 
 # Pour le split :
@@ -369,7 +369,7 @@ from torchTextClassifiers.tokenizers.ngram import NGramTokenizer
 
 tokenizer = NGramTokenizer(
     min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
-    min_n=2, 
+    min_n=2,
     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
     len_word_ngrams=2, # On fait des 2grams de mots
     num_tokens=10000, # Nombre max de tokens considérés dans le vocable
@@ -433,15 +433,15 @@ training_config = TrainingConfig(
 # Training (too long) !
 
 # classifier.train(
-#     X_train, 
+#     X_train,
 #     y_train,
 #     training_config,
-#     X_val, 
+#     X_val,
 #     y_val,
 #     verbose=True
 # )
 
-# Download a pre-trained instead to make it faster : 
+# Download a pre-trained instead to make it faster :
 
 # Download the model
 base_url = "https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"
@@ -451,7 +451,7 @@ import subprocess
 
 for file in files:
     subprocess.run([
-        "curl", 
+        "curl",
         f"{base_url}/{file}",
         "--output", f"model_ape/{file}",
         "--silent",
@@ -468,7 +468,7 @@ classifier = torchTextClassifiers.load("model_ape")
 
 4. Calculer l'accuracy du modèle.
 
-5. Tester le modèle sur quelques libellés de professions : 
+5. Tester le modèle sur quelques libellés de professions :
 
 ```{.python}
 searched_professions = np.array(["Conseil datascience", "Concésion dans l'automobile", "Concession automobile", "peintre"])
@@ -517,7 +517,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
 # tokenizer = NGramTokenizer(
 #     min_count=2, # On considère un mot s'il est trouvé au moins 2 fois dans le corpus
-#     min_n=2, 
+#     min_n=2,
 #     max_n=4, # On fait des 2grams, 3grams et 4grams de caractères
 #     len_word_ngrams=2, # On fait des 2grams de mots
 #     num_tokens=10000, # Nombre max de tokens considérés dans le vocable
@@ -566,7 +566,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
 ```
 
-Chargement du modèle : 
+Chargement du modèle :
 
 ```{python}
 #| label: load-model
@@ -574,7 +574,7 @@ from torchTextClassifiers import torchTextClassifiers as ttc
 classifier = ttc.load("model_ape")
 ```
 
-Evaluation du modèle : 
+Evaluation du modèle :
 
 ```{python }
 #| label: get-accuracy
@@ -611,14 +611,14 @@ predictions = result["prediction"].squeeze().numpy()
 
 ```{python }
 #| label: get-accuracy3
- 
+
 # Step 8: Evaluate
 accuracy = (predictions == y_sample).mean()
 print(f"Test accuracy: {accuracy:.3f}")
 
 ```
 
-Testons le modèle sur quelques libellés d'activité : 
+Testons le modèle sur quelques libellés d'activité :
 
 ```{python}
 #| label: test-inference

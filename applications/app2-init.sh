@@ -7,7 +7,7 @@ mkdir data
 echo "data/" >> .gitignore
 
 curl https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet --output data/data.parquet  --retry 5 --retry-all-errors --max-time 15
-curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls --output data/naf.parquet  --retry 5 --retry-all-errors --max-time 15
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls --output data/naf.xls  --retry 5 --retry-all-errors --max-time 15
 curl -O https://raw.githubusercontent.com/InseeFrLab/cours-nouvelles-donnees-site/main/applications/processor.py  --retry 5 --retry-all-errors --max-time 15
 
 pip install wordcloud
