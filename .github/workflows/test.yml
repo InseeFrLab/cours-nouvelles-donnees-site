@@ -40,7 +40,7 @@ jobs:
 
       - name: Download NLP requirements
         run: |
-          uv run download_nlp_reqs.sh
+          uv run bash download_nlp_reqs.sh
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
