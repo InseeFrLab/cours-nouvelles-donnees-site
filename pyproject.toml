@@ -1,0 +1,23 @@
+[project]
+name = "cours-nouvelles-donnees-site"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jupyter>=1.1.1",
+    "loguru>=0.7.3",
+    "matplotlib==3.10.8",
+    "nltk>=3.9.2",
+    "numpy==2.4.1",
+    "pandas==2.3.3",
+    "plotnine>=0.15.2",
+    "pyarrow==23.0.0",
+    "pytorch-lightning==2.6.0",
+    "scikit-learn==1.8.0",
+    "spacy>=3.8.11",
+    "torchtextclassifiers==1.0.3",
+    "unidecode>=1.4.0",
+    "wordcloud>=1.9.6",
+    "xlrd>=2.0.2",
+]
