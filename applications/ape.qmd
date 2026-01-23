@@ -34,6 +34,10 @@ Comment passe-t-on d'une déclaration en langage naturel, qui fait sens pour un 
 
 Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d'investissement intéressante pour l'Insee. L'objet de ce TD est d'illustrer la démarche adoptée avec cette approche à partir d'un modèle un peu plus simple que celui mis en oeuvre à l'Insee mais reprenant les principales caractéristiques de celui-ci.
 
+Voici un schéma simplifié pour comprendre l'architecture de notre modèle (très proche de Fasttext) : 
+
+![](images/fasttext_schema.png){.lightbox}
+
 ## Environnement de travail
 
 Le services VSCode préconfiguré contient :
