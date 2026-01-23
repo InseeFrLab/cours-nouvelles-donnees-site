@@ -16,7 +16,7 @@ NLP pour la codification automatique des déclarations d'activité
 dans la nomenclature des activités françaises.
 Vous pourrez réaliser ce TP dans un service préconfiguré du `SSP Cloud` en cliquant sur le lien ci-dessous :
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&version=2.4.5&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&version=2.4.5&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fapp2-init.sh»&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a>
 
 
 Ce tutoriel n'a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, _embedding_, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de [`Python` pour la _data science_](https://pythonds.linogaliana.fr/content/NLP/) de l'ENSAE.
