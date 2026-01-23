@@ -4,7 +4,9 @@ CLONE_DIR="${WORK_DIR}/cours-nouvelles-donnees-site"
 
 # Clone course repository
 REPO_URL="https://github.com/inseefrlab/cours-nouvelles-donnees-site/"
-git clone $REPO_URL $CLONE_DIR --branch dev_nt  # Remove dev_nt when pushed to main
+git clone --depth 1 $REPO_URL $CLONE_DIR          # For prod - uncomment when prod - comment when dev
+# git clone $REPO_URL $CLONE_DIR --branch dev_nt  # For dev - comment when prod - uncomment when dev
+
 
 # Copy relevant notebooks to work directory
 cp ${CLONE_DIR}/applications/images/{classification_oiseau.ipynb,donnees_satellite.ipynb,pyproject.toml,uv.lock} ${WORK_DIR}
