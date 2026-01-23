@@ -10,7 +10,7 @@ python -m spacy download fr_core_news_sm
 mkdir applications/data
 
 curl https://minio.lab.sspcloud.fr/projet-formation/diffusion/mlops/data/firm_activity_data.parquet --output applications/data/data.parquet
-curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls --output applications/data/naf.parquet
+curl https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/data/naf2008_liste_n5.xls --output applications/data/naf.xls
 
 mkdir applications/model_ape
 
