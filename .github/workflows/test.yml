@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install system dependencies & rv & uv
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y --fix-missing \
@@ -20,19 +20,30 @@ jobs:
             libgdal-dev \
             libgeos-dev \
             libproj-dev
-          curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
-          curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - uses: r-lib/actions/setup-r@v2
+
+      - name: Installing rv
+        run: |
+          curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
 
       - name: Install R Dependencies
         run:  |
           rv sync
 
+
       - name: Install python
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Add venv to PATH
+        run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
 
       - name: Install python dependencies
         run: |
@@ -50,22 +61,7 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.600
 
-      # add software dependencies here
-      # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
-      # the appropriate block below
 
-      # - name: Publish to Netlify (and render)
-      #   uses: quarto-dev/quarto-actions/publish@v2
-      #   with:
-      #     target: netlify
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-      # - name: Publish to RStudio Connect (and render)
-      #   uses: quarto-dev/quarto-actions/publish@v2
-      #   with:
-      #     target: connect
-      #     CONNECT_SERVER: enter-the-server-url-here
-      #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
