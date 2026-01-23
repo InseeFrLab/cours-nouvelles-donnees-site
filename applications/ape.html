@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Cette application illustrera certains apports des outils du NLP pour la codification automatique des déclarations d’activité dans la nomenclature des activités françaises. Vous pourrez réaliser ce TP dans un service préconfiguré du <code>SSP Cloud</code> en cliquant sur le lien ci-dessous :</p>
-<p><a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&amp;version=2.4.5&amp;s3=region-79669f20&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmaj-25%2Fapplications%2Fapp2-init.sh»&amp;autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
+<p><a href="https://datalab.sspcloud.fr/launcher/ide/vscode-pytorch?name=vscode-pytorch-nouvellessouces&amp;version=2.4.5&amp;s3=region-79669f20&amp;init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fapp2-init.sh»&amp;autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSPcloud-Ouvrir sur le sspcloud (VSCode)-informational&amp;color=yellow?logo=Python" alt="Onyxia"></a></p>
 <p>Ce tutoriel n’a pas vocation à introduire aux principaux concepts du NLP (tokenisation, sac de mot, <em>embedding</em>, etc.) mais à être une introduction pratique à la thématique de la classification textuelle. Pour découvrir les concepts centraux du NLP, se référer au cours de <a href="https://pythonds.linogaliana.fr/content/NLP/"><code>Python</code> pour la <em>data science</em></a> de l’ENSAE.</p>
 <section id="objectifs" class="level2">
 <h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import NAF classification</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>naf <span class="op">=</span> pd.read_excel(<span class="st">"data/naf.parquet"</span>, skiprows <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>naf <span class="op">=</span> pd.read_excel(<span class="st">"data/naf.xls"</span>, skiprows <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Import training data</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_parquet(<span class="st">"data/data.parquet"</span>)</span>
@@ -776,7 +776,7 @@ Aide
 <summary>
 Aide
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour l'encoding : </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour l'encoding :</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour le split :</span></span>
@@ -795,7 +795,7 @@ Aide
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> NGramTokenizer(</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    min_count<span class="op">=</span><span class="dv">2</span>, <span class="co"># On considère un mot s'il est trouvé au moins 2 fois dans le corpus</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    min_n<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    min_n<span class="op">=</span><span class="dv">2</span>,</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    max_n<span class="op">=</span><span class="dv">4</span>, <span class="co"># On fait des 2grams, 3grams et 4grams de caractères</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    len_word_ngrams<span class="op">=</span><span class="dv">2</span>, <span class="co"># On fait des 2grams de mots</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    num_tokens<span class="op">=</span><span class="dv">10000</span>, <span class="co"># Nombre max de tokens considérés dans le vocable</span></span>
@@ -853,15 +853,15 @@ Aide
 <span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Training (too long) !</span></span>
 <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co"># classifier.train(</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_train, </span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_train,</span></span>
 <span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#     y_train,</span></span>
 <span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#     training_config,</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_val, </span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     X_val,</span></span>
 <span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#     y_val,</span></span>
 <span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     verbose=True</span></span>
 <span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
 <span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Download a pre-trained instead to make it faster : </span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Download a pre-trained instead to make it faster :</span></span>
 <span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the model</span></span>
 <span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"https://minio.lab.sspcloud.fr/projet-formation/nouvelles-sources/model_ape"</span></span>
@@ -871,7 +871,7 @@ Aide
 <span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
 <span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    subprocess.run([</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"curl"</span>, </span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"curl"</span>,</span>
 <span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>base_url<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">"</span>,</span>
 <span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--output"</span>, <span class="ss">f"model_ape/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">"</span>,</span>
 <span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--silent"</span>,</span>
@@ -892,10 +892,10 @@ Aide
 <p>Chargement du modèle :</p>
 <div id="load-model" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stderr">
-<pre><code>2026-01-23 14:20:24 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
-/opt/hostedtoolcache/Python/3.13.11/x64/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
-2026-01-23 14:20:24 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
-2026-01-23 14:20:24 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
+<pre><code>2026-01-23 16:08:15 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
+/home/runner/work/cours-nouvelles-donnees-site/cours-nouvelles-donnees-site/.venv/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
+2026-01-23 16:08:15 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
+2026-01-23 16:08:15 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
 </div>
 </div>
 <p>Evaluation du modèle :</p>
