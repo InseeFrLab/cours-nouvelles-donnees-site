@@ -78,6 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-5dcfcf7f8d229c93d75c4165c3ff646b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,16 +116,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Application 2: classification automatique de textes – Données émergentes">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/vscode.png">
+<meta property="og:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/images/fasttext_schema.png">
 <meta property="og:site_name" content="Données émergentes">
-<meta property="og:image:height" content="475">
-<meta property="og:image:width" content="1106">
+<meta property="og:image:height" content="1491">
+<meta property="og:image:width" content="3031">
 <meta name="twitter:title" content="Application 2: classification automatique de textes – Données émergentes">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/vscode.png">
+<meta name="twitter:image" content="https://InseeFrLab.github.io/cours-nouvelles-donnees-site/applications/images/fasttext_schema.png">
 <meta name="twitter:creator" content="@linogaliana">
-<meta name="twitter:image-height" content="475">
-<meta name="twitter:image-width" content="1106">
+<meta name="twitter:image-height" content="1491">
+<meta name="twitter:image-width" content="3031">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -384,6 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>L’Insee ayant vocation à produire des statistiques agrégées sur de nombreuses questions, cette approche constitue l’un des principaux cas d’application du NLP pour l’Institut dans des domaines aussi divers que la classification dans une nomenclature d’activités (NAF), une nomenclature de professions (PCS), de produits (COICOP), de lieux géographiques, etc.</p>
 <p>Comment passe-t-on d’une déclaration en langage naturel, qui fait sens pour un entrepreneur, à une représentation plus générique, et forcément plus simpliste, de l’activité d’une entreprise, qui fait sens à une institution statistique et espérons, pour le débat public ? Grâce à des algorithmes de classement <em>ad hoc</em> qui permettent d’extraire une information à partir de libellés textuels. Historiquement l’Insee utilisait des règles déterministes de classement à partir d’un algorithme nommé <a href="https://www.insee.fr/fr/information/4497076?sommaire=4497095">Sicore</a>, une IA symbolique qui classait à partir de règles métiers préconfigurée.</p>
 <p>Avec l’avènement du <em>machine learning</em>, la possibilité d’entraîner un algorithme apprenant par induction plutôt que de manière déductive, est apparue être une voie d’investissement intéressante pour l’Insee. L’objet de ce TD est d’illustrer la démarche adoptée avec cette approche à partir d’un modèle un peu plus simple que celui mis en oeuvre à l’Insee mais reprenant les principales caractéristiques de celui-ci.</p>
+<p>Voici un schéma simplifié pour comprendre l’architecture de notre modèle (très proche de Fasttext) :</p>
+<p><a href="images/fasttext_schema.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/fasttext_schema.png" class="img-fluid"></a></p>
 </section>
 <section id="environnement-de-travail" class="level2">
 <h2 class="anchored" data-anchor-id="environnement-de-travail">Environnement de travail</h2>
@@ -892,10 +897,10 @@ Aide
 <p>Chargement du modèle :</p>
 <div id="load-model" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stderr">
-<pre><code>2026-01-23 16:29:39 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
+<pre><code>2026-01-23 17:45:06 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
 /home/runner/work/cours-nouvelles-donnees-site/cours-nouvelles-donnees-site/.venv/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
-2026-01-23 16:29:39 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
-2026-01-23 16:29:39 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
+2026-01-23 17:45:06 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
+2026-01-23 17:45:06 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
 </div>
 </div>
 <p>Evaluation du modèle :</p>
@@ -1377,6 +1382,38 @@ Aide
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
