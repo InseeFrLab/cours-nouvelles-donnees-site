@@ -2,6 +2,7 @@ project:
   type: website
   render:
     - "*.qmd"
+    - "!rv/**/*.qmd"
 
 website:
   title: "Données émergentes"
