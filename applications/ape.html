@@ -348,8 +348,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
   <li><a href="#environnement-de-travail" id="toc-environnement-de-travail" class="nav-link" data-scroll-target="#environnement-de-travail">Environnement de travail</a></li>
-  <li><a href="#exploration-du-jeu-de-données" id="toc-exploration-du-jeu-de-données" class="nav-link" data-scroll-target="#exploration-du-jeu-de-données">Exploration du jeu de données</a></li>
-  <li><a href="#exercice-1" id="toc-exercice-1" class="nav-link" data-scroll-target="#exercice-1">Exercice 1</a></li>
+  <li><a href="#exploration-du-jeu-de-données" id="toc-exploration-du-jeu-de-données" class="nav-link" data-scroll-target="#exploration-du-jeu-de-données">Exploration du jeu de données</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#éléments-de-réponse" id="toc-éléments-de-réponse" class="nav-link" data-scroll-target="#éléments-de-réponse">Éléments de réponse</a></li>
+  </ul></li>
   <li><a href="#premier-algorithme-dapprentissage-supervisé" id="toc-premier-algorithme-dapprentissage-supervisé" class="nav-link" data-scroll-target="#premier-algorithme-dapprentissage-supervisé">Premier algorithme d’apprentissage supervisé</a></li>
   <li><a href="#pour-aller-plus-loin-introduction-au-mlops" id="toc-pour-aller-plus-loin-introduction-au-mlops" class="nav-link" data-scroll-target="#pour-aller-plus-loin-introduction-au-mlops">Pour aller plus loin, introduction au MLOps</a></li>
   </ul>
@@ -475,9 +478,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Le premier exercice a vocation à illustrer la manière classique « d’entrer » dans un corpus de données textuelles.</p>
 <p>La démarche n’est pas particulièrement originale mais permet d’illustrer les enjeux du nettoyage de texte.</p>
-</section>
-<section id="exercice-1" class="level2 exercice">
-<h2 class="anchored" data-anchor-id="exercice-1">Exercice 1</h2>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <ol start="0" type="1">
 <li>Lancer le code ci-dessous pour préparer votre environnement de travail :</li>
 </ol>
@@ -496,8 +498,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Télécharge la liste des stopwords français/anglais de NLTK (mots vides comme "le", "la", "the", etc.)</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
-<li><p>Créer une fonction <code>filter_train_data</code> qui filtre les lignes du df dont le libellé d’activité <strong>contient</strong> un pattern (mot) donné. Cette fonction aussi doit afficher (print) le nombre de lignes concernées. Tester avec <em>“data science”</em> et <em>“boulanger”</em>.</p></li>
-<li><p>Faire une fonction <code>graph_wordcloud</code> pour afficher le <em>wordcloud</em> de notre corpus dans son ensemble et de certaines catégories de la nomenclature pour comprendre la nature de notre corpus.</p></li>
+<li>Créer une fonction <code>filter_train_data</code> qui filtre les lignes du df dont le libellé d’activité <strong>contient</strong> un pattern (mot) donné. Cette fonction aussi doit afficher (print) le nombre de lignes concernées. Tester avec <em>“data science”</em> et <em>“boulanger”</em>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pensez à l’impact de la capitalisation du texte dans vos résultats. Vous avez un indice plus bas pour le résultat à trouver.</p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Faire une fonction <code>graph_wordcloud</code> pour afficher le <em>wordcloud</em> de notre corpus dans son ensemble et de certaines catégories de la nomenclature pour comprendre la nature de notre corpus.</li>
 </ol>
 <details>
 <summary>
@@ -518,8 +535,21 @@ Aide
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>).generate(all_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ol start="3" type="1">
-<li>Retirer les stopwords à partir de la liste des mots disponibles dans <code>SpaCy</code>.</li>
+<li>Retirer les stopwords à partir de la liste des mots disponibles dans <a href="https://spacy.io/models"><code>SpaCy</code></a>.</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La fonction <code>word_tokenize</code> du package <code>nltk</code> peut vous être utile. Allez voir la <a href="https://www.nltk.org/api/nltk.tokenize.word_tokenize.html">documentation</a>.</p>
+</div>
+</div>
 <details>
 <summary>
 Aide
@@ -552,7 +582,11 @@ Aide
 <li>Refaire quelques uns des nuages de mots et étudier la différence avant nettoyage.</li>
 </ol>
 </section>
-<p>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</p>
+<section id="éléments-de-réponse" class="level3">
+<h3 class="anchored" data-anchor-id="éléments-de-réponse">Éléments de réponse</h3>
+<ol type="1">
+<li>Dans une démarche exploratoire, le plus simple est de commencer par compter les mots de manière indépendante (approche sac de mot). Par exemple, de manière naturelle, nous avons beaucoup plus de déclarations liées à la boulangerie que liées à la <em>data science</em>:</li>
+</ol>
 <div id="cell-use-filter_train_data" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>filter_train_data(train, <span class="st">"data science"</span>).head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -675,6 +709,9 @@ Aide
 </div>
 </div>
 </div>
+<ol start="2" type="1">
+<li>Voici les nuages de mots obtenus à partir des données.</li>
+</ol>
 <p>Les <em>wordclouds</em> peuvent servir à rapidement visualiser la structure d’un corpus. On voit ici que notre corpus est très bruité car nous n’avons pas nettoyé celui-ci:</p>
 <div id="cell-use-graph_wordcloud" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
@@ -704,8 +741,10 @@ Aide
 </div>
 </div>
 </div>
-<p>Néanmoins, à ce stade, les données sont encore très bruitées. La première étape classique est de retirer les <em>stop words</em> et éventuellement des termes spécifiques à notre corpus. Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.</p>
-<p>Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée :</p>
+<ol start="3" type="1">
+<li><p>Néanmoins, à ce stade, les données sont encore très bruitées. La première étape classique est de retirer les <em>stop words</em> et éventuellement des termes spécifiques à notre corpus. Par exemple, pour des données de caisse, on retirera les bruits, les abréviations, etc. qui peuvent bruiter notre corpus.</p></li>
+<li><p>Voici le wordcloud de notre corpus tout entier une fois cette première étape de nettoyage achevée :</p></li>
+</ol>
 <div id="cell-use-graph_wordcloud4" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
@@ -715,9 +754,11 @@ Aide
 </div>
 </div>
 </div>
+</section>
+</section>
 <section id="premier-algorithme-dapprentissage-supervisé" class="level2">
 <h2 class="anchored" data-anchor-id="premier-algorithme-dapprentissage-supervisé">Premier algorithme d’apprentissage supervisé</h2>
-<p>Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d’étapes que précédemment. Nous allons notamment <em>raciniser</em> nos mots.</p>
+<p>Nous avons nettoyé nos données. Cela devrait améliorer la pertinence de nos modèles en réduisant le ratio signal/bruit. Nous allons généraliser notre nettoyage de texte en appliquant un peu plus d’étapes que précédemment. Nous allons notamment <em>raciniser</em> nos mots : cela veut dire qu’on ne va transformer les mots pour ne garder que leur racine. <code>'MISSIONS PONCTUELLES AIDE PLATEFORME</code> sera remplacé par les racines des mots <code>'mission ponctuel aid plateform'</code>.</p>
 <p>Pour cela, il suffit de charger le module <code>processor.py</code> mis à disposition dans votre environnement de travail. Le code de nettoyage est directement fourni:</p>
 <div id="cell-data-processessing" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processor <span class="im">import</span> Preprocessor</span>
@@ -766,14 +807,25 @@ Aide
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Pour développer votre code, utilisez un échantillon des données pour éviter les temps de calculs trop long au début.</p>
+</div>
+</div>
 <p>Récupérons les features et les labels.</p>
 <div id="get-features" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(subset <span class="op">=</span> [Y, TEXT_FEATURE])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[TEXT_FEATURE].values</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[Y].values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="exercice">
 <ol type="1">
 <li>Encoder les labels et découper les données en <em>train</em>, <em>val</em> et <em>test</em>.</li>
 </ol>
@@ -893,14 +945,13 @@ Aide
 <li><p>Tester le modèle sur quelques libellés de professions :</p></li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>searched_professions <span class="op">=</span> np.array([<span class="st">"Conseil datascience"</span>, <span class="st">"Concésion dans l'automobile"</span>, <span class="st">"Concession automobile"</span>, <span class="st">"peintre"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>Chargement du modèle :</p>
 <div id="load-model" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stderr">
-<pre><code>2026-01-23 17:45:06 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
+<pre><code>2026-01-27 16:18:35 - torchTextClassifiers.model.model - 🔹 No categorical variable network provided; using only text embeddings.
 /home/runner/work/cours-nouvelles-donnees-site/cours-nouvelles-donnees-site/.venv/lib/python3.13/site-packages/pytorch_lightning/utilities/parsing.py:210: Attribute 'loss' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['loss'])`.
-2026-01-23 17:45:06 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
-2026-01-23 17:45:06 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
+2026-01-27 16:18:35 - torchTextClassifiers.torchTextClassifiers - Model checkpoint loaded from model_ape/model_checkpoint.ckpt
+2026-01-27 16:18:35 - torchTextClassifiers.torchTextClassifiers - Model loaded successfully from model_ape</code></pre>
 </div>
 </div>
 <p>Evaluation du modèle :</p>
