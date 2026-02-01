@@ -235,7 +235,7 @@ Cet exercice nous fera entrer progressivement dans les données à partir de que
 
 
 ```{r}
-#| echo: true
+#| echo: false
 preview_q1 <- dbGetQuery(con, "SELECT * FROM read_parquet('data/dvf.parquet') LIMIT 10")
 preview_q1_bis <- table_logement %>% head(10)
 preview_q1
@@ -245,7 +245,7 @@ A la question 2, la liste des colonnes donnera plutôt
 
 
 ```{r}
-#| echo: true
+#| echo: false
 describe_dvf <- dbGetQuery(con, "DESCRIBE SELECT * FROM read_parquet('data/dvf.parquet')")
 table_logement %>% colnames(.)
 ```
@@ -254,7 +254,7 @@ Que contient le champ `nature_mutation` ? (il a été filtré aux ventes classiq
 
 
 ```{r}
-#| echo: true
+#| echo: false
 unique_nature_mutation <- dbGetQuery(con, "SELECT DISTINCT nature_mutation FROM read_parquet('data/dvf.parquet')")
 unique_nature_mutation_bis <- table_logement %>% distinct(nature_mutation)
 unique_nature_mutation_bis
@@ -263,7 +263,7 @@ unique_nature_mutation_bis
 A la question 4, vous devriez obtenir des statistiques similaires à celles-ci :
 
 ```{r}
-#| echo: true
+#| echo: false
 stats_q4 <- dbGetQuery(con, "
         SELECT
             MIN(valeur_fonciere) AS min_valeur,
@@ -296,6 +296,7 @@ Avec l'approche SQL vous devriez obtenir
 
 
 ```{r}
+#| echo: false
 query1 <- glue("
     SELECT
         code_commune,
@@ -313,7 +314,7 @@ print(result1)
 On peut se rassurer, on obtient la même chose l'approche `dplyr` :
 
 ```{r}
-#| echo: true
+#| echo: false
 table_logement %>%
   filter(code_commune %in% c(cog_malakoff, cog_montrouge)) %>%
   group_by(code_commune) %>%
@@ -423,7 +424,7 @@ mapview(carr_montrouge) + mapview(sf::st_boundary(montrouge))
 On obtient, _in fine_, les statistiques suivantes
 
 ```{r}
-#| echo: true
+#| echo: false
 mean_menpauvres_malakoff <- round(100 * sum(carr_malakoff$men_pauv) / sum(carr_malakoff$men), 2)
 mean_menpauvres_montrouge <- round(100 * sum(carr_montrouge$men_pauv) / sum(carr_montrouge$men), 2)
 
@@ -482,7 +483,7 @@ triangle_wkt
 ```
 
 
-Pour l'exercice 4.2, nous aurons besoin de la structure de requête suivante pour créer la variable "in_triangle" :
+Pour l'exercice 4.3, nous aurons besoin de la structure de requête suivante pour créer la variable "in_triangle" :
 
 ```{.r}
 ST_Within(
