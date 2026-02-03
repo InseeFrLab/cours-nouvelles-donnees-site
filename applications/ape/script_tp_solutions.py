@@ -188,7 +188,7 @@ num_unique = len(unique_values)
 model_config = ModelConfig(embedding_dim=embedding_dim, num_classes=num_unique)
 
 # %%
-# Instanciate a ttc model (nammed "classifier") ---------------
+# Instanciate a ttc model (named "classifier") ---------------
 
 from torchTextClassifiers import torchTextClassifiers
 
@@ -232,7 +232,7 @@ for file in files:
 
 # %%
 # Load it
-classifier = torchTextClassifiers.load("model_ape")
+classifier = torchTextClassifiers.load("data/model_ape")
 
 # %%
 # Sample testset
