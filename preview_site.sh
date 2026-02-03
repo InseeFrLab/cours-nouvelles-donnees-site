@@ -3,5 +3,5 @@
 source rv_installation.sh && source ~/.bashrc
 rv sync
 uv sync
-uv run bash download_nlp_reqs.sh
+uv run bash applications/ape/download_nlp_reqs.sh
 uv run quarto preview
