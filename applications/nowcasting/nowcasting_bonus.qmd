@@ -1,5 +1,7 @@
 ---
 title: "Pour aller plus loin (facultatif) - Application sur le nowcasting"
+aliases:
+  - nowcasting_exemples.html
 ---
 
 L'objectif de ce TP est de montrer comment récupérer des données à partir de l'API de Twitter

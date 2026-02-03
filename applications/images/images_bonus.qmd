@@ -1,5 +1,7 @@
 ---
 title: "Pour aller plus loin (facultatif) - Application sur le traitement d'images"
+aliases:
+  - images_exemples.html
 ---
 
 L'objectif de ce TP est d'explorer l'exploitation d'images à l'aide de modèles de Deep Learning,

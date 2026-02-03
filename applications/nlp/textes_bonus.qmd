@@ -1,5 +1,7 @@
 ---
 title: "Pour aller plus loin - préparation des données et Elastic Search (facultatif)"
+aliases:
+  - textes_exemples.html
 ---
 
 L'objectif de ce TP est d'explorer les aspects suivants du traitement

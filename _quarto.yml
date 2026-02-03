@@ -23,20 +23,20 @@ website:
         contents:
           - geolocalized_data.qmd
           - applications/spatial/application1.qmd
-          - geolocalized_data_exemples.qmd
+          - applications/spatial/geolocalized_data_bonus.qmd
       - section: "Analyse textuelle"
         contents:
           - textes.qmd
-          - applications/ape.qmd
-          - textes_exemples.qmd
+          - applications/ape/ape.qmd
+          - applications/nlp/textes_bonus.qmd
       - section: "Analyse d'images"
         contents:
           - images.qmd
-          - images_exemples.qmd
+          - applications/images/images_bonus.qmd
       - section: "Nowcasting"
         contents:
-          - series_temporelles.qmd
-          - nowcasting_exemples.qmd
+          - nowcasting.qmd
+          - applications/nowcasting/nowcasting_bonus.qmd
     tools:
       - icon: twitter
         href: https://twitter.com
