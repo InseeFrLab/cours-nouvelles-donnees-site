@@ -10,12 +10,14 @@ format:
    html:
      df-print: paged
 echo: true
+aliases:
+  - applications/application1.html
 ---
 
 Pour lancer cette application, tout a été pré-automatisé avec le SSPCloud.
 Vous avez juste à **cliquer sur le bouton ci-dessous**.
 
-<a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?name=Appli1&version=2.1.17&s3=region-ec97c721&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fapp1-init.sh»&networking.user.enabled=true&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSP%20Cloud-Ouvrir_dans_RStudio-blue?logo=rstudio&amp;logoColor=blue" alt="Onyxia"></a>
+<a href="https://datalab.sspcloud.fr/launcher/ide/rstudio?name=Appli1&version=2.1.17&s3=region-ec97c721&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fcours-nouvelles-donnees-site%2Frefs%2Fheads%2Fmain%2Fapplications%2Fspatial%2Fapp1-init.sh»&networking.user.enabled=true&autoLaunch=true" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SSP%20Cloud-Ouvrir_dans_RStudio-blue?logo=rstudio&amp;logoColor=blue" alt="Onyxia"></a>
 
 
 ::: {.callout-important collapse="true"}

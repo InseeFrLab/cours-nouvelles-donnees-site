@@ -22,7 +22,7 @@ website:
       - section: "Données géolocalisées"
         contents:
           - geolocalized_data.qmd
-          - applications/application1.qmd
+          - applications/spatial/application1.qmd
           - geolocalized_data_exemples.qmd
       - section: "Analyse textuelle"
         contents:
@@ -59,7 +59,6 @@ website:
     creator: "@linogaliana"
   open-graph: true
 
-
 bibliography: references.bib
 
 format:
@@ -71,7 +70,6 @@ format:
 theme:
   light: [flatly, custom.scss]
   dark: [darkly, custom.scss]
-
 
 filters:
   #- black-formatter
