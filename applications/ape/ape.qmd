@@ -38,7 +38,7 @@ Avec l'avènement du _machine learning_, la possibilité d'entraîner un algorit
 
 Voici un schéma simplifié pour comprendre l'architecture de notre modèle (très proche de Fasttext) :
 
-![](images/fasttext_schema.png){.lightbox}
+![](fasttext_schema.png){.lightbox}
 
 ## Environnement de travail
 

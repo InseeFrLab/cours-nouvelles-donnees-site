@@ -11,7 +11,7 @@ format:
      df-print: paged
 echo: true
 aliases:
-  - applications/application1.html
+  - /applications/application1.html
 ---
 
 Pour lancer cette application, tout a été pré-automatisé avec le SSPCloud.
@@ -27,7 +27,7 @@ Les données ont été préparées en amont de ce TD. Un lien de lancement rapid
 
 Après avoir cliqué sur le bouton en haut de cette page, il convient de créer un projet `RStudio` depuis le dossier `appli1` (`File > New Project`) :
 
-![](/applications/new_project.png)
+![](new_project.png)
 
 `Git` est normalement préconfiguré dans ce dossier, vous pourrez donc _pusher_ votre travail sur `Github` si vous créez un dépôt dessus.
 
